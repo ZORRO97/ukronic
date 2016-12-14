@@ -10,4 +10,8 @@ namespace UkronicBundle\Repository;
  */
 class RatingRepository extends \Doctrine\ORM\EntityRepository
 {
+	function trouve(User $user, Movie $movie){
+		$rating = $this->findOneBy(array("user"=>$user,"movie"=>$movie);
+			return $rating;
+	}
 }

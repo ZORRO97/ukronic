@@ -8,8 +8,10 @@ use Symfony\Component\HttpFoundation\Request;
 use UkronicBundle\Entity\MovieQuery;
 use UkronicBundle\Entity\Movie;
 use UkronicBundle\Entity\Decrypt;
+use UkronicBundle\Entity\Rating;
 use UkronicBundle\Repository\DecryptRepository;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
@@ -174,15 +176,10 @@ class DefaultController extends Controller
                 break;
             }          
 
-        
-        
-        
-
         $em->persist($movie);
         $em->flush();
         }
 
-     
         if ($movie == null) {
             return $this->redirect(path("main"));
         }
@@ -264,6 +261,10 @@ class DefaultController extends Controller
         $movie = $repository->findOneById($idMovie);
 
         $decrypt = new Decrypt();
+        $rating = new Rating();
+        $repository = $em->getRepository("UkronicBundle:Rating");
+        $rating = $repositoryRating->trouve($user,$movie);
+
 
 
 
@@ -275,6 +276,26 @@ class DefaultController extends Controller
                     'hypothèse de fin' => "F",
                     'Séquence' => "S"
                 )))
+            ->add('prefered',HiddenType::class, array(
+                    'mapped' => false,
+                    
+                    'attr'=> array('class' => "prefered",
+                                    'value' => $rating->getNote()
+                        )
+                ))
+            ->add('nocomprendo',HiddenType::class, array(
+                    'mapped' => false,
+                    
+                    'attr'=> array('class' => "nocomprendo",
+                            'value' => $rating->getAmbiguous()
+                        )
+                ))
+            ->add('baleze',HiddenType::class, array(
+                    'mapped' => false,
+                    
+                    'attr'=> array('class' => "baleze",
+                        "value" => $rating->getUnderstand())
+                ))
             
             ->add('save', SubmitType::class, array('label' => 'Enregistrer'))
             ->getForm();
@@ -294,6 +315,21 @@ class DefaultController extends Controller
             // raccorder au User connecté
             // enregistrer le décryptage
             $em->persist($decrypt);
+
+            $prefered = $form['prefered']->getData();
+            
+            $nocomprendo = $form['nocomprendo']->getData();
+            
+            $baleze = $form['baleze']->getData();
+
+            // $rating = new Rating();
+            $rating->setMovie($movie);
+            $rating->setUser($user);
+            $rating->setNote($prefered);
+            $rating->setAmbiguous($nocomprendo);
+            $rating->setUnderstand($baleze);
+            $em->persist($rating);
+
             $em->flush();
             return $this->redirectToRoute("dbukronic",array("id"=>$idMovie));
             
@@ -312,8 +348,33 @@ class DefaultController extends Controller
         $repository = $em->getRepository("UkronicBundle:Decrypt");
         // vérifier existence dans la BDD Ukronic
         $decrypt = $repository->findOneById($id);
+        if ($decrypt) {
+            $nbRead = $decrypt->getNbRead();
+            $decrypt->setNbRead($nbRead + 1);
+            $em->persist($decrypt); // sauvegarde le cpt de lectures du 
+            $em->flush();
+        }
 
-             return $this->render("UkronicBundle:ukronic:decryptDisplay.html.twig", array("decrypt"=>$decrypt));
+        return $this->render("UkronicBundle:ukronic:decryptDisplay.html.twig", array("decrypt"=>$decrypt));
+    }
+
+     /**
+     * @Route("/decrypt/like/{id}", name="decryptLike")
+     */
+    public function decryptLikeAction($id){
+
+        $em = $this->getDoctrine()->getManager();
+        $repository = $em->getRepository("UkronicBundle:Decrypt");
+        // vérifier existence dans la BDD Ukronic
+        $decrypt = $repository->findOneById($id);
+        if ($decrypt) {
+            $nbLiked = $decrypt->getNbLiked();
+            $decrypt->setNbLiked($nbLiked + 1);
+            $em->persist($decrypt); // sauvegarde le cpt de lectures du 
+            $em->flush();
+        }
+
+        return $this->render("UkronicBundle:ukronic:decryptDisplay.html.twig", array("decrypt"=>$decrypt));
     }
 
 }

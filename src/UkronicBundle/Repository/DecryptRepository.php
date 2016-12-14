@@ -57,7 +57,7 @@ class DecryptRepository extends \Doctrine\ORM\EntityRepository
 		// TODO nombre de séquences de moins de 100 mots
 		$monId = $user->getId();
 		$q = $this->getEntityManager()
-		->createQuery("SELECT COUNT(d.id) FROM UkronicBundle:Decrypt d JOIN d.user u WHERE d.typeDecrypt = 'S' AND d.wordCount < 100" );
+		->createQuery("SELECT COUNT(DISTINCT d.id) FROM UkronicBundle:Decrypt d JOIN d.user u WHERE d.typeDecrypt = 'S' AND d.wordCount < 100" );
     	$nb = $q->getSingleResult();
 		return $nb;
 	}
