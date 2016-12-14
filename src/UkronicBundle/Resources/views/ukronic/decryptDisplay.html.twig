@@ -1,0 +1,10 @@
+{% extends 'UkronicBundle::layout.html.twig' %}
+
+{% block content %}
+	<h2>Décryptage</h2>
+	<p><img src="{{ decrypt.movie.posterURL }}" alt="image Film"></p>
+	<p>Film {{ decrypt.movie.title }}</p>
+	<p> {{ decrypt.title }} </p>
+	<p> {{ decrypt.content }}</p>
+    
+{% endblock %}

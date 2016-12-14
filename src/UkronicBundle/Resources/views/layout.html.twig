@@ -1,0 +1,22 @@
+{% extends '::base.html.twig' %}
+
+{% block stylesheets %}
+<style>
+	.ukronic {
+		background-color : #149BDE;
+		color: white;
+	}
+</style>
+{% endblock %}
+
+
+{% block body %}
+    
+
+{% block topnav %}
+    {% include 'UkronicBundle:ukronic:topnav.html.twig'  %}
+{% endblock %}
+	{% block content %}
+	    <p>Bonne séance</p>
+	{% endblock %}
+{% endblock %}

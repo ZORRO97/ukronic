@@ -1,0 +1,74 @@
+{% extends 'UkronicBundle::layout.html.twig' %}
+
+{% block content %}
+	{# page du film #}
+	<div class="container-fluid">
+		<p class="text-center">RECHERCHE : {{ movie.title }}</p>
+
+		<div class="row">
+			<div class="col-md-3">
+				<img src= {{ movie.posterURL }} alt= {{ movie.title }} >
+			</div>
+			<div class="col-md-9">
+				<p>NOM DU FILM : {{ movie.title }} </p>
+				<p>DATE DE SORTIE : {{ movie.productionYear }} </p>
+				<p>CASTING : {{ movie.casting }} </p>
+				<p>SCRIPT : <pre> {{ movie.script }} </pre></p>
+			</div>
+
+		</div>
+		<div class="row">
+			<div class="col-md-4">
+				<h2 class="text-center">HYPOTHESE DE FIN</h2>
+				{# mettre les 6 boutons #}
+				{# liste des commentaires associés  #}
+				<ul>
+					{% for decrypt in movie.decrypts %}
+						{% if decrypt.typeDecrypt == "F" %}
+						<li>
+							<a href="{{ path('decryptRead',{'id' : decrypt.id }) }}">{{ decrypt.title }} </a>(
+							{% if decrypt.wordCount < 100 %}
+								-100
+							{% elseif decrypt.wordCount < 300 %}
+								-300
+							{% else %}
+								+300
+							{% endif %}
+							)
+							
+						</li>	
+						{% endif %}
+					{% endfor %}
+				</ul>
+
+				{% if is_granted("ROLE_USER") %}
+				<p><a href="{{ path('decrypt', {'idMovie': movie.id}) }}">Ajouter une critique</a></p>
+				{% endif %}
+			</div>
+			<div class="col-md-4 col-md-offset-2">
+				<h2 class="text-center">SEQUENCE</h2>
+				{# mettre les boutons de sélection #}
+				<ul>
+					{% for decrypt in movie.decrypts %}
+						{% if decrypt.typeDecrypt == "S" %}
+						<li>
+							<a href="{{ path('decryptRead',{'id' : decrypt.id }) }}">{{ decrypt.title }} </a> (
+							{% if decrypt.wordCount < 100 %}
+								-100
+							{% elseif decrypt.wordCount < 300 %}
+								-300
+							{% else %}
+								+300
+							{% endif %}
+							)
+						</li>	
+						{% endif %}
+					{% endfor %}
+				</ul>
+			</div>
+		</div>
+
+	</div>
+
+
+{% endblock %}

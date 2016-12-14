@@ -1,0 +1,35 @@
+{% extends 'UkronicBundle::layout.html.twig' %}
+
+{% block content %}
+<div class="container">
+<h1 class="text-center">UKRONIC</h1>
+
+
+<div>
+{{ form_start(form) }}
+{{ form_widget(form) }}
+{{ form_end(form) }}
+</div>
+<div>
+	
+	<p>tous les résultats pour {% if movieRequest.title is defined %}{{ movieRequest.title }} {% endif %}</p>
+	<div>
+		{% if message.Search is defined %}
+			{% for item in message.Search %}
+				
+				<h5>Série {{ loop.index }} </h5>
+				<a href="{{ path("movie", {'imdbID': item["imdbID"] , 'typeMovie' : 'S'}) }}">
+					<img src= {{ item["Poster"] }} >
+					<span> {{ item["Year"] }} </span>
+					<span> {{ item["Title"] }} </span>
+					<span> {{ item["imdbID"] }} </span>
+				</a>
+				
+			    
+			{% endfor %}
+		{% endif %}
+	</div>
+	
+</div>
+</div>    
+{% endblock %}

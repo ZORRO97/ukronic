@@ -1,0 +1,47 @@
+{% extends 'UkronicBundle::layout.html.twig' %}
+
+{% block content %}
+
+	{# page profil #}
+	<h2 class="text-center">Mon Profil</h2>
+	<div class="row">
+		<div class="col-md-3 col-md-offset-1">La photo
+		<img src="Jack_Nicholson__TH_2662450k.jpg" alt="Jack Nicholson" width=300px height=300px >
+		</div>
+		<div class="col-md-7 col-md-offset-1">
+			
+			<p>Film préféré : Highlander</p>
+			<p>Film ou j'ai rien compris : Matrix</p>
+			<p>Film balaise où j'ai (peut être) tout compris : Inception</p>
+		</div>
+
+	</div>
+
+	<div class="row">
+		
+		<div class="col-md-4 col-md-offset-1">
+			<h2 class="text-center">Mon activité</h2>
+			<div>
+				mes stats
+				<p>likes postés</p>
+				<p>{{ nbComment | number_format }} commentaires postés</p>
+				<p> {{ nbSequence | number_format }} séquences décryptées</p>
+				<p> {% if nbSequence100 is defined %} {{ nbSequence100 | number_format }} {% else %} inconnu {% endif %} - 100 mots</p>
+				<p> {{ nbSequence300 | number_format }} - 300 mots</p>
+				<p> {{ nbSequenceO300 | number_format }} + 300 mots</p>
+				<p> {{ nbEnd  | number_format}} fin de films décryptés</p>
+				<p> {{ nbEnd100 | number_format }}  - 100 mots</p>
+				<p> {{ nbEnd300 | number_format }}  - 300 mots</p>
+				<p> {{ nbEndO300 | number_format }} + 300 mots</p>
+
+			</div>
+		</div>
+		<div class="col-md-7">
+			<h2 class="text-center">Actualités</h2>
+			<div>
+				liste des actualités
+			</div>
+
+		</div>
+	</div>
+{% endblock %}

@@ -1,0 +1,338 @@
+<?php
+
+namespace UkronicBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
+
+/**
+ * Movie
+ *
+ * @ORM\Table(name="movie")
+ * @ORM\Entity(repositoryClass="UkronicBundle\Repository\MovieRepository")
+ */
+class Movie
+{
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Decrypt", mappedBy="movie")
+     */
+    private $decrypts;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Rating", mappedBy="movie")
+     */
+    private $ratings;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="number", type="string", length=11)
+     */
+    private $number;
+
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="title", type="string", length=255)
+     */
+    private $title;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="typeMovie", type="string", length=1)
+     */
+    private $typeMovie;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="productionYear", type="string", length=4)
+     */
+    private $productionYear;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="casting", type="string", length=255, nullable=true)
+     */
+    private $casting;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="script", type="text", nullable=true)
+     */
+    private $script;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="posterURL", type="string", length=255, nullable=true)
+     */
+    private $posterURL;
+
+
+    public function __construct()
+    {
+        $this->decrypts = new ArrayCollection();
+        $this->ratings = new ArrayCollection();
+    }
+
+    /**
+     * Get id
+     *
+     * @return int
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set number
+     *
+     * @param string $number
+     *
+     * @return Movie
+     */
+    public function setNumber($number)
+    {
+        $this->number = $number;
+
+        return $this;
+    }
+    
+    /**
+     * Get number
+     *
+     * @return string
+     */
+    public function getNumber()
+    {
+        return $this->number;
+    }
+
+
+    /**
+     * Set title
+     *
+     * @param string $title
+     *
+     * @return Movie
+     */
+    public function setTitle($title)
+    {
+        $this->title = $title;
+
+        return $this;
+    }
+
+    /**
+     * Get title
+     *
+     * @return string
+     */
+    public function getTitle()
+    {
+        return $this->title;
+    }
+
+    /**
+     * Set typeMovie
+     *
+     * @param string $typeMovie
+     *
+     * @return Movie
+     */
+    public function setTypeMovie($typeMovie)
+    {
+        $this->typeMovie = $typeMovie;
+
+        return $this;
+    }
+
+    /**
+     * Get typeMovie
+     *
+     * @return string
+     */
+    public function getTypeMovie()
+    {
+        return $this->typeMovie;
+    }
+
+    /**
+     * Set productionYear
+     *
+     * @param string $productionYear
+     *
+     * @return Movie
+     */
+    public function setProductionYear($productionYear)
+    {
+        $this->productionYear = $productionYear;
+
+        return $this;
+    }
+
+    /**
+     * Get productionYear
+     *
+     * @return string
+     */
+    public function getProductionYear()
+    {
+        return $this->productionYear;
+    }
+
+    /**
+     * Set casting
+     *
+     * @param string $casting
+     *
+     * @return Movie
+     */
+    public function setCasting($casting)
+    {
+        $this->casting = $casting;
+
+        return $this;
+    }
+
+    /**
+     * Get casting
+     *
+     * @return string
+     */
+    public function getCasting()
+    {
+        return $this->casting;
+    }
+
+    /**
+     * Set script
+     *
+     * @param string $script
+     *
+     * @return Movie
+     */
+    public function setScript($script)
+    {
+        $this->script = $script;
+
+        return $this;
+    }
+
+    /**
+     * Get script
+     *
+     * @return string
+     */
+    public function getScript()
+    {
+        return $this->script;
+    }
+
+    /**
+     * Set posterURL
+     *
+     * @param string $posterURL
+     *
+     * @return Movie
+     */
+    public function setPosterURL($posterURL)
+    {
+        $this->posterURL = $posterURL;
+
+        return $this;
+    }
+
+    /**
+     * Get posterURL
+     *
+     * @return string
+     */
+    public function getPosterURL()
+    {
+        return $this->posterURL;
+    }
+
+    /**
+     * Add decrypt
+     *
+     * @param \UkronicBundle\Entity\Decrypt $decrypt
+     *
+     * @return Movie
+     */
+    public function addDecrypt(\UkronicBundle\Entity\Decrypt $decrypt)
+    {
+        $this->decrypts[] = $decrypt;
+
+        return $this;
+    }
+
+    /**
+     * Remove decrypt
+     *
+     * @param \UkronicBundle\Entity\Decrypt $decrypt
+     */
+    public function removeDecrypt(\UkronicBundle\Entity\Decrypt $decrypt)
+    {
+        $this->decrypts->removeElement($decrypt);
+    }
+
+    /**
+     * Get decrypts
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getDecrypts()
+    {
+        return $this->decrypts;
+    }
+
+    /**
+     * Add rating
+     *
+     * @param \UkronicBundle\Entity\Rating $rating
+     *
+     * @return Movie
+     */
+    public function addRating(\UkronicBundle\Entity\Rating $rating)
+    {
+        $this->ratings[] = $rating;
+
+        return $this;
+    }
+
+    /**
+     * Remove rating
+     *
+     * @param \UkronicBundle\Entity\Rating $rating
+     */
+    public function removeRating(\UkronicBundle\Entity\Rating $rating)
+    {
+        $this->ratings->removeElement($rating);
+    }
+
+    /**
+     * Get ratings
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getRatings()
+    {
+        return $this->ratings;
+    }
+}

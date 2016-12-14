@@ -1,0 +1,50 @@
+{% extends 'UkronicBundle::layout.html.twig' %}
+
+{% block content %}
+<div class="container">
+<h1 class="text-center">UKRONIC</h1>
+
+
+<p class= "text-center"><a href="{{ path('search') }}">Recherche</a></p>
+<div class="raw">
+	<div class="col-md-8">
+		<h2>Les derniers décryptages de films</h2>
+		<ul>
+
+			{% if lastMovieDecrypts is not empty %}
+				{% for decrypt in lastMovieDecrypts %}
+					{% if decrypt.movie.typeMovie == "F"  %}
+					<li><a href="{{ path('decrypt', {'idMovie': decrypt.movie.id}) }}">
+						<img src="{{ decrypt.movie.posterURL }}" > par {{ decrypt.user.username }} Titre {{ decrypt.title }} 
+					</a></li>
+				    {% endif %}
+				{% endfor %}
+			{% else %}
+				<li>liste vide</li>
+			{% endif %}
+			
+		</ul>
+		<h2>Les derniers décryptages de séries</h2>
+		<ul>
+			{% if lastSerieDecrypts is not empty %}
+				{% for decrypt in lastSerieDecrypts %}
+					{% if decrypt.movie.typeMovie == "S" %}
+					<li><a href="#">
+						<img src="{{ decrypt.movie.posterURL }}" > par {{ decrypt.user.username }} Titre {{ decrypt.title }} 
+					</a></li>
+				    {% endif %}
+				{% endfor %}
+			{% else %}
+				<li>liste vide</li>
+			{% endif %}
+		</ul>
+	</div>
+	<div class="col-md-4">
+		<p>TOP 5 des films les plus décryptés</p>
+		<p>TOP 5 des séries les plus décryptées</p>
+		<p>TOP 5</p>
+	</div>
+</div>
+
+</div>    
+{% endblock %}

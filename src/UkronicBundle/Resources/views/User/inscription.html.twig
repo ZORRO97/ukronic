@@ -1,0 +1,49 @@
+{% extends 'UkronicBundle::layout.html.twig' %}
+
+{% block content %}
+
+	<h1 class="text-center">S'inscrire</h1>
+	<div class ="container">
+		<h3 class="text-center">Devenez membre de SensCritique </h3>
+
+		<p class="text-center">Inscrivez vous rapidement en 2 secondes ! on postera rien sans votre accord</p>
+		{# le formulaire d'inscription #}
+		<div class="row">
+			<div class="col-md-6 col-md-offset-3">
+
+			{{ form_start(form) }}
+			
+			
+
+			
+			<p>{{ form_label(form.email) }}</p>
+			{{ form_widget(form.email) }}
+
+			<p>{{ form_label(form.username) }}</p>
+			{{ form_widget(form.username, {'label': 'Pseudo'}) }}
+
+			<p>
+				{{ form_label(form.password) }}
+			</p>
+			{{ form_widget(form.password, {'label': 'Mot de passe'}) }}
+
+			{# inclure le captcha #}
+
+			{# accord des CGU #}
+
+			{# bouton créer mon compte pour la validation du formulaire #}
+
+			{{ form_rest(form) }}
+			
+			{{ form_end(form) }} 
+			</div>
+
+		</div>
+
+	</div>
+    
+{% endblock %}
+
+{% block title %}UkronicBundle:User:Inscription{% endblock %}
+
+

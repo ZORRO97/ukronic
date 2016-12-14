@@ -1,0 +1,5 @@
+# src/OC/PlatformBundle/Resources/config/services.yml
+
+services:
+    ukronic.infomovie:
+        class: UkronicBundle\InfoMovie\InfoMovie
