@@ -95,7 +95,32 @@
 	{{ parent() }}
 	<script>
 	$(function(){
-		console.log("la guerre des étoiles");
+		var prefered = $('input.prefered').val();
+		
+		var nocomprendo = $('input.nocomprendo').val();
+		
+		var baleze = $('input.baleze').val();
+		
+
+		// on remplit l'affichage si une ancienne note existe
+		if (prefered > 0) {
+			var preferedTd = $('tr.prefered').find('td')[prefered - 1];
+			$(preferedTd).find('img').attr("src","{{ asset("fleche_pleine.png") }}");
+			$(preferedTd).prevAll().find('img').attr("src","{{ asset("fleche_pleine.png") }}");
+		}
+
+		if (nocomprendo > 0) {
+			var nocomprendoTd = $('tr.nocomprendo').find('td')[nocomprendo - 1];
+			$(nocomprendoTd).find('img').attr("src","{{ asset("fleche_pleine.png") }}");
+			$(nocomprendoTd).prevAll().find('img').attr("src","{{ asset("fleche_pleine.png") }}");
+		}
+
+		if (baleze > 0) {
+			var balezeTd = $('tr.baleze').find('td')[baleze - 1];
+			$(balezeTd).find('img').attr("src","{{ asset("fleche_pleine.png") }}");
+			$(balezeTd).prevAll().find('img').attr("src","{{ asset("fleche_pleine.png") }}");
+		}
+		// en cas de clic sur une étoile on met à jour l'affichage sur une ligne
 		$('.star').click(function(){
 			
 			$(this).attr("src","{{ asset("fleche_pleine.png") }}");

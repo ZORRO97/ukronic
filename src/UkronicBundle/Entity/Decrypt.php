@@ -3,6 +3,7 @@
 namespace UkronicBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+// use Smallhead\UserBundle\Entity\User as User;
 
 /**
  * Decrypt

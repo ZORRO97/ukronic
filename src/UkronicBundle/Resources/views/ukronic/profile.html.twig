@@ -10,9 +10,9 @@
 		</div>
 		<div class="col-md-7 col-md-offset-1">
 			
-			<p>Film préféré : Highlander</p>
-			<p>Film ou j'ai rien compris : Matrix</p>
-			<p>Film balaise où j'ai (peut être) tout compris : Inception</p>
+			<p>Film préféré : {{ preferedMovie }} </p>
+			<p>Film ou j'ai rien compris : {{ ambiguousMovie }}</p>
+			<p>Film balaise où j'ai (peut être) tout compris : {{ understandMovie }}</p>
 		</div>
 
 	</div>
@@ -40,6 +40,12 @@
 			<h2 class="text-center">Actualités</h2>
 			<div>
 				liste des actualités
+				{% for histo in lastHistos %}
+					<p>
+						{{ histo.action | number_format }} {{ histo.dateAction | date("d/m/Y") }} 
+					</p>
+				    
+				{% endfor %}
 			</div>
 
 		</div>

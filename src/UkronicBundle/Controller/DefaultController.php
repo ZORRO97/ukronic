@@ -9,13 +9,14 @@ use UkronicBundle\Entity\MovieQuery;
 use UkronicBundle\Entity\Movie;
 use UkronicBundle\Entity\Decrypt;
 use UkronicBundle\Entity\Rating;
+use UkronicBundle\Entity\Histo;
 use UkronicBundle\Repository\DecryptRepository;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
-// use Symfony\Component\Validator\Constraints\Date;
+
 
 
 class DefaultController extends Controller
@@ -227,6 +228,14 @@ class DefaultController extends Controller
         $nbEnd300 = $decryptRepository->endM300Decrypted($user);
         $nbEndO300 = $decryptRepository->endO300Decrypted($user);
 
+        $ratingRepository = $em->getRepository('UkronicBundle:Rating');
+        $bestMovie = $ratingRepository->preferedMovie($user);
+        $ambiguousMovie = $ratingRepository->ambiguousMovie($user);
+        $understandMovie = $ratingRepository->balaiseMovie($user);
+
+        $histoRepository = $em->getRepository('UkronicBundle:Histo');
+        $lastHistos = $histoRepository->lastNews($user);
+
 
         return $this->render("UkronicBundle:ukronic:profile.html.twig",array(
             'nbComment' => $nbComment,
@@ -237,7 +246,11 @@ class DefaultController extends Controller
             'nbEnd' => $nbEnd,
             'nbEnd100' => $nbEnd100,
             'nbEnd300' => $nbEnd300,
-            'nbEndO300' => $nbEndO300
+            'nbEndO300' => $nbEndO300,
+            'preferedMovie' => $bestMovie,
+            'ambiguousMovie' => $ambiguousMovie,
+            'understandMovie' => $understandMovie,
+            'lastHistos' => $lastHistos
 
             ));
     }
@@ -261,9 +274,12 @@ class DefaultController extends Controller
         $movie = $repository->findOneById($idMovie);
 
         $decrypt = new Decrypt();
-        $rating = new Rating();
-        $repository = $em->getRepository("UkronicBundle:Rating");
-        $rating = $repositoryRating->trouve($user,$movie);
+        // $rating = new Rating();
+        $repositoryRating = $em->getRepository("UkronicBundle:Rating");
+        $rating = $repositoryRating->trouve($user->getId(),$movie->getId());
+        if (!$rating) {
+            $rating = new Rating();
+        } 
 
 
 
@@ -315,6 +331,7 @@ class DefaultController extends Controller
             // raccorder au User connecté
             // enregistrer le décryptage
             $em->persist($decrypt);
+            $em->flush();
 
             $prefered = $form['prefered']->getData();
             
@@ -329,6 +346,19 @@ class DefaultController extends Controller
             $rating->setAmbiguous($nocomprendo);
             $rating->setUnderstand($baleze);
             $em->persist($rating);
+
+            $histo = new Histo();
+            $histo->setUser($user);
+            // ajouter les détails
+            if ($decrypt->getTypeDecrypt() == "F") {
+            $histo->setAction(3); // faire un test 3 pour fin 4 pour séquence
+            } else {
+                $histo->setAction(4);
+            }
+            $histo->setDateAction(new \DateTime('now'));
+            $histo->setReference($decrypt->getId());
+            $em->persist($histo);
+
 
             $em->flush();
             return $this->redirectToRoute("dbukronic",array("id"=>$idMovie));

@@ -47,8 +47,9 @@ class DecryptRepository extends \Doctrine\ORM\EntityRepository
 		// TODO requête comptant le nombre de séquences décryptées
 		$monId = $user->getId();
 		$q = $this->getEntityManager()
-		->createQuery("SELECT COUNT(d.id) FROM UkronicBundle:Decrypt d LEFT JOIN d.user u WHERE d.typeDecrypt = 'S'" );
-    	$nb = $q->getSingleResult();
+		->createQuery("SELECT COUNT(DISTINCT d.id) FROM UkronicBundle:Decrypt d  JOIN d.user u JOIN d.movie m WHERE d.typeDecrypt = 'S' AND u.id = $monId ");
+    	$nb = $q->getSingleScalarResult();
+
 		return $nb;
 		
 	}
@@ -57,37 +58,57 @@ class DecryptRepository extends \Doctrine\ORM\EntityRepository
 		// TODO nombre de séquences de moins de 100 mots
 		$monId = $user->getId();
 		$q = $this->getEntityManager()
-		->createQuery("SELECT COUNT(DISTINCT d.id) FROM UkronicBundle:Decrypt d JOIN d.user u WHERE d.typeDecrypt = 'S' AND d.wordCount < 100" );
-    	$nb = $q->getSingleResult();
+		->createQuery("SELECT COUNT(DISTINCT d.id) FROM UkronicBundle:Decrypt d JOIN d.user u JOIN d.movie m WHERE d.typeDecrypt = 'S' AND d.wordCount < 100 AND u.id = $monId" );
+    	$nb = $q->getSingleScalarResult();
 		return $nb;
 	}
 
 	public function sequenceM300Decrypted(User $user){
-		return 2;
+		$monId = $user->getId();
+		$q = $this->getEntityManager()
+		->createQuery("SELECT COUNT(DISTINCT d.id) FROM UkronicBundle:Decrypt d JOIN d.user u JOIN d.movie m WHERE d.typeDecrypt = 'S' AND d.wordCount < 300 aND d.wordCount >= 100 AND u.id = $monId" );
+    	$nb = $q->getSingleScalarResult();
+		return $nb;
 	}
 
 	public function sequenceO300Decrypted(User $user){
-		return 1;
+		$monId = $user->getId();
+		$q = $this->getEntityManager()
+		->createQuery("SELECT COUNT(DISTINCT d.id) FROM UkronicBundle:Decrypt d JOIN d.user u JOIN d.movie m WHERE d.typeDecrypt = 'S' AND d.wordCount > 300 AND u.id = $monId" );
+    	$nb = $q->getSingleScalarResult();
+		return $nb;
 	}
 
 	public function endDecrypted(User $user){
 		$monId = $user->getId();
 		$q = $this->getEntityManager()
-		->createQuery("SELECT COUNT(d.id) FROM UkronicBundle:Decrypt d LEFT JOIN d.user u WHERE d.typeDecrypt = 'F'" );
-    	$nb = $q->getSingleResult();
+		->createQuery("SELECT COUNT(d.id) FROM UkronicBundle:Decrypt d JOIN d.user u WHERE d.typeDecrypt = 'F' AND u.id = $monId" );
+    	$nb = $q->getSingleScalarResult();
 		return $nb;
 	}
 
 	public function endM100Decrypted(User $user){
-		return 3;
+		$monId = $user->getId();
+		$q = $this->getEntityManager()
+		->createQuery("SELECT COUNT(DISTINCT d.id) FROM UkronicBundle:Decrypt d JOIN d.user u JOIN d.movie m WHERE d.typeDecrypt = 'F' AND d.wordCount < 100 AND u.id = $monId" );
+    	$nb = $q->getSingleScalarResult();
+		return $nb;
 	}
 
 	public function endM300Decrypted(User $user){
-		return 2;
+		$monId = $user->getId();
+		$q = $this->getEntityManager()
+		->createQuery("SELECT COUNT(DISTINCT d.id) FROM UkronicBundle:Decrypt d JOIN d.user u JOIN d.movie m WHERE d.typeDecrypt = 'F' AND d.wordCount < 300 AND d.wordCount >= 100 AND u.id = $monId" );
+    	$nb = $q->getSingleScalarResult();
+		return $nb;
 	}
 
 	public function endO300Decrypted(User $user){
-		return 1;
+		$monId = $user->getId();
+		$q = $this->getEntityManager()
+		->createQuery("SELECT COUNT(DISTINCT d.id) FROM UkronicBundle:Decrypt d JOIN d.user u JOIN d.movie m WHERE d.typeDecrypt = 'F' AND d.wordCount > 300 AND u.id = $monId" );
+    	$nb = $q->getSingleScalarResult();
+		return $nb;
 	}
 
 }

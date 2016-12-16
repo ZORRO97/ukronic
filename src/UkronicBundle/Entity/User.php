@@ -1,5 +1,4 @@
 <?php
-// src/UkronicBundle/Entity/User.php
 
 namespace UkronicBundle\Entity;
 
@@ -30,12 +29,18 @@ class User extends BaseUser
      */
     private $ratings;
 
+    /**
+     * @ORM\OneToMany(targetEntity="Histo", mappedBy="user")
+     */
+    private $histos;
+
     public function __construct()
     {
         parent::__construct();
         // your own logic
         $this->decrypts = new ArrayCollection();
         $this->ratings = new ArrayCollection();
+        $this->histos = new ArrayCollection();
     }
 
     /**
