@@ -39,9 +39,9 @@ class RatingRepository extends \Doctrine\ORM\EntityRepository
 		->createQuery("SELECT r FROM UkronicBundle:Rating r  JOIN r.user u JOIN r.movie m WHERE u.id = $idUser ORDER BY r.note DESC");
     	$result = $q->getResult();
     	if ($result) {
-    		return $result[0]->getMovie()->getTitle();
+    		return $result[0]->getMovie();
     	} else {
-    		return "non renseigné";
+    		return null;
     	}
 		
 	}
@@ -52,9 +52,9 @@ class RatingRepository extends \Doctrine\ORM\EntityRepository
 		->createQuery("SELECT r FROM UkronicBundle:Rating r  JOIN r.user u JOIN r.movie m WHERE u.id = $idUser ORDER BY r.ambiguous ASC");
     	$result = $q->getResult();
     	if ($result) {
-    		return $result[0]->getMovie()->getTitle();
+    		return $result[0]->getMovie();
     	} else {
-    		return "non renseigné";
+    		return null;
     	}
 	}
 
@@ -64,9 +64,9 @@ class RatingRepository extends \Doctrine\ORM\EntityRepository
 		->createQuery("SELECT r FROM UkronicBundle:Rating r  JOIN r.user u JOIN r.movie m WHERE u.id = $idUser ORDER BY r.understand DESC");
     	$result = $q->getResult();
     	if ($result) {
-    		return $result[0]->getMovie()->getTitle();
+    		return $result[0]->getMovie();
     	} else {
-    		return "non renseigné";
+    		return null;
     	}
 	}
 }

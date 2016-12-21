@@ -74,3 +74,14 @@ fos_user:
     firewall_name: main
     user_class: UkronicBundle\Entity\User
 
+# vich File upload
+vich_uploader:
+    db_driver: orm # or mongodb or propel or phpcr
+    mappings:
+        user_image:
+            uri_prefix:         /images/users
+            upload_destination: '%kernel.root_dir%/../web/images/users'
+            inject_on_load:     true
+            delete_on_update:   true
+            delete_on_remove:   true    
+

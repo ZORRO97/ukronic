@@ -36,6 +36,11 @@ class Decrypt
      */
     private $movie;
 
+   /**
+     * @ORM\OneToMany(targetEntity="Beloved", mappedBy="decrypt")
+     */
+    private $likes;
+
     /**
      * @var string
      *

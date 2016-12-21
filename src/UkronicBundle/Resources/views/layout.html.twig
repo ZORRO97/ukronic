@@ -1,10 +1,11 @@
 {% extends '::base.html.twig' %}
 
 {% block stylesheets %}
+	{{ parent() }}
 <style>
 	.ukronic {
-		background-color : #149BDE;
-		color: white;
+		/* background-color : #149BDE; 
+		color: black; */
 	}
 </style>
 {% endblock %}
@@ -16,9 +17,15 @@
 {% block topnav %}
     {% include 'UkronicBundle:ukronic:topnav.html.twig'  %}
 {% endblock %}
+<div id="fh5co-project">
 	{% block content %}
-	    <p>Bonne séance</p>
-	    {% block fos_user_content %}
-        {% endblock fos_user_content %}
+		
+			
+		    
+		    {% block fos_user_content %}
+	        {% endblock fos_user_content %}
+	        
+	    
 	{% endblock %}
+</div>
 {% endblock %}

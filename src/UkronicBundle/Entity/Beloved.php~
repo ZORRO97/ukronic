@@ -1,0 +1,80 @@
+<?php
+
+namespace UkronicBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Beloved
+ *
+ * @ORM\Table(name="beloved")
+ * @ORM\Entity(repositoryClass="UkronicBundle\Repository\BelovedRepository")
+ */
+class Beloved
+{
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="likes")
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
+     */
+    private $user;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Decrypt", inversedBy="likes")
+     * @ORM\JoinColumn(name="decrypt_id", referencedColumnName="id")
+     */
+    private $decrypt;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="date_like", type="datetime")
+     */
+    private $dateLike;
+
+
+
+
+    /**
+     * Get id
+     *
+     * @return int
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set dateLike
+     *
+     * @param \DateTime $dateLike
+     *
+     * @return Beloved
+     */
+    public function setDateLike($dateLike)
+    {
+        $this->dateLike = $dateLike;
+
+        return $this;
+    }
+
+    /**
+     * Get dateLike
+     *
+     * @return \DateTime
+     */
+    public function getDateLike()
+    {
+        return $this->dateLike;
+    }
+}
+

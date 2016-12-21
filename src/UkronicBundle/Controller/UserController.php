@@ -12,6 +12,7 @@ use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 
 class UserController extends Controller
 {
@@ -55,6 +56,31 @@ class UserController extends Controller
         	"user" => $user
             // ...
         ));
+    }
+
+    /**
+    * @Route("/imageUser", name = "imageUser")
+    */
+    public function imageUserAction(Request $request){
+        $user = $this->container->get('security.token_storage')->getToken()->getUser();
+        $form = $this->createFormBuilder($user)
+        ->add('imageFile',FileType::class)
+        ->add('save', SubmitType::class, array('label' => "Modifier l'image"))
+        ->getForm();
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            
+            // $user->setImageName($user->getUsername());
+            $user = $form->getData();
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($user);
+            $em->flush();
+            return $this->redirectToRoute('profile');
+        }
+        return $this->render("UkronicBundle:user:imageUser.html.twig",array(
+                "form" => $form->createView(),
+                "user" => $user
+            ));
     }
 
 }

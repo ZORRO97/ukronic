@@ -10,6 +10,7 @@ use UkronicBundle\Entity\Movie;
 use UkronicBundle\Entity\Decrypt;
 use UkronicBundle\Entity\Rating;
 use UkronicBundle\Entity\Histo;
+use UkronicBundle\Entity\Beloved;
 use UkronicBundle\Repository\DecryptRepository;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
@@ -236,8 +237,13 @@ class DefaultController extends Controller
         $histoRepository = $em->getRepository('UkronicBundle:Histo');
         $lastHistos = $histoRepository->lastNews($user);
 
+        $likesRepository = $em->getRepository('UkronicBundle:Beloved');
+        $nbLikes = $likesRepository->nbLiked($user);
+
+
 
         return $this->render("UkronicBundle:ukronic:profile.html.twig",array(
+            'nbLikes' => $nbLikes,
             'nbComment' => $nbComment,
             'nbSequence' => $nbSequence,
             'nbSequence100' => $nbSequence100,
@@ -384,8 +390,12 @@ class DefaultController extends Controller
             $em->persist($decrypt); // sauvegarde le cpt de lectures du 
             $em->flush();
         }
+        $user = $this->container->get('security.token_storage')->getToken()->getUser();
+        $repositoryBeloved = $em->getRepository("UkronicBundle:Beloved");
+        $liked = $repositoryBeloved->isLiked($user,$decrypt);
 
-        return $this->render("UkronicBundle:ukronic:decryptDisplay.html.twig", array("decrypt"=>$decrypt));
+
+        return $this->render("UkronicBundle:ukronic:decryptDisplay.html.twig", array("decrypt"=>$decrypt,"liked" => $liked));
     }
 
      /**
@@ -397,14 +407,20 @@ class DefaultController extends Controller
         $repository = $em->getRepository("UkronicBundle:Decrypt");
         // vérifier existence dans la BDD Ukronic
         $decrypt = $repository->findOneById($id);
+        $user = $this->container->get('security.token_storage')->getToken()->getUser();
         if ($decrypt) {
             $nbLiked = $decrypt->getNbLiked();
             $decrypt->setNbLiked($nbLiked + 1);
             $em->persist($decrypt); // sauvegarde le cpt de lectures du 
+            $beloved = new Beloved();
+            $beloved->setDecrypt($decrypt);
+            $beloved->setUser($user);
+            $beloved->setDateLike(new \DateTime('now'));
+            $em->persist($beloved);
             $em->flush();
         }
 
-        return $this->render("UkronicBundle:ukronic:decryptDisplay.html.twig", array("decrypt"=>$decrypt));
+        return $this->render("UkronicBundle:ukronic:decryptDisplay.html.twig", array("decrypt"=>$decrypt,"liked" =>true));
     }
 
 }

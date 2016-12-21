@@ -5,6 +5,13 @@
 	<p><img src="{{ decrypt.movie.posterURL }}" alt="image Film"></p>
 	<p>Film {{ decrypt.movie.title }}</p>
 	<p> {{ decrypt.title }} </p>
-	<p> {{ decrypt.content }} <a href="{{ path('decryptLike', {'id' : decrypt.id }) }}" class="btn-like">LIKE</a></p>
+	<p> {{ decrypt.content }} 
+		{% if not liked  %}
+		<a href="{{ path('decryptLike', {'id' : decrypt.id }) }}" class="btn-like">LIKE</a>
+	{% else %}
+		déja liked
+	{% endif %}	
+
+	</p>
     
 {% endblock %}

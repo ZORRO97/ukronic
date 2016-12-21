@@ -1,0 +1,22 @@
+{% extends 'UkronicBundle::layout.html.twig' %}
+
+{% block content %}
+	<div class="container">
+		
+		{{ form_start(form) }}
+		<div>
+			<img src="{{ asset(user.imageName) }}" >
+		</div>
+		<p>
+		{{ form_label(form.imageFile) }}
+		{{ form_widget(form.imageFile) }}
+		</p>
+
+		{{ form_widget(form.save) }}
+		{{ form_rest(form) }}
+			
+		{{ form_end(form) }} 
+
+	</div>
+
+{% endblock %}
