@@ -2,10 +2,11 @@
 
 {% block content %}
 <div class="container">
-<h1 class="text-center">UKRONIC</h1>
+{#<h1 class="text-center">UKRONIC</h1>
 
 
 <p class= "text-center"><a href="{{ path('search') }}">Recherche</a></p>
+#}
 <div class="raw">
 	<div class="col-md-8">
 		<h2>Les derniers décryptages de films</h2>
@@ -41,7 +42,23 @@
 	</div>
 	<div class="col-md-4">
 		<p>TOP 5 des films les plus décryptés</p>
+		{% if moreMovieDecrypts is defined %}
+			{% for item in moreMovieDecrypts %}
+			    <p>
+			    	
+			    	{{ item[0].movie.title }} {{ item["dcount"] }}
+			    </p>
+			{% endfor %}
+		
+		{% endif %}
+
 		<p>TOP 5 des séries les plus décryptées</p>
+		{% for item in moreSerieDecrypts %}
+			    <p>
+			    	
+			    	{{ item[0].movie.title }} {{ item["dcount"] }}
+			    </p>
+			{% endfor %}
 		<p>TOP 5</p>
 	</div>
 </div>

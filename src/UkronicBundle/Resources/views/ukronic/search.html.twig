@@ -2,13 +2,16 @@
 
 {% block content %}
 <div class="container">
-<h1 class="text-center">UKRONIC</h1>
+{#<h1 class="text-center">UKRONIC</h1> #}
 
 
-<div>
-{{ form_start(form) }}
-{{ form_widget(form) }}
-{{ form_end(form) }}
+<div class="row">
+	<h2 class="text-center">Rechercher un Film</h2>
+	<div class="col-md-4 col-md-push-4">
+		{{ form_start(form) }}
+		{{ form_widget(form) }}
+		{{ form_end(form) }}
+	</div>
 </div>
 <div>
 	
@@ -24,12 +27,7 @@
 					<span> {{ item["Title"] }} </span>
 					<span> {{ item["imdbID"] }} </span>
 				</a>
-				{#
-				{% for key,value in item %}
-
-				     <p>{{ key }} ----> {{ value }}  </p>
-				{% endfor %}
-				#}
+				
 			    
 			{% endfor %}
 		{% endif %}

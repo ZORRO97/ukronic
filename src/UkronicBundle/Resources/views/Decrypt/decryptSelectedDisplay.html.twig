@@ -1,0 +1,20 @@
+
+
+<ul>
+	{% for decrypt in decrypts %}
+		
+		<li>
+			<a href="{{ path('decryptRead',{'id' : decrypt.id }) }}">{{ decrypt.title }} </a>(
+			{% if decrypt.wordCount < 100 %}
+				-100
+			{% elseif decrypt.wordCount < 300 %}
+				-300
+			{% else %}
+				+300
+			{% endif %}
+			)
+			
+		</li>	
+		
+	{% endfor %}
+</ul>

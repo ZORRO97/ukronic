@@ -51,10 +51,14 @@ class DefaultController extends Controller
         $decryptRepository = $em->getRepository("UkronicBundle:Decrypt");
         $lastMovieDecrypts = $decryptRepository->movieLastDecrypted();
         $lastSerieDecrypts = $decryptRepository->serieLastDecrypted();
+        $moreMovieDecrypts = $decryptRepository->movieMoreDecrypted();
+        $moreSerieDecrypts = $decryptRepository->serieMoreDecrypted();
 
         return $this->render('UkronicBundle:ukronic:main.html.twig', array(
                 "lastMovieDecrypts" => $lastMovieDecrypts,
-                "lastSerieDecrypts" => $lastSerieDecrypts
+                "lastSerieDecrypts" => $lastSerieDecrypts,
+                "moreMovieDecrypts" => $moreMovieDecrypts,
+                "moreSerieDecrypts" => $moreSerieDecrypts
             ));
     }
 
@@ -188,12 +192,14 @@ class DefaultController extends Controller
         return $this->render("UkronicBundle:ukronic:movie.html.twig",array("movie"=>$movie));
     }
 
-    /**
-     * @Route("/dbukronic/{id}", name="dbukronic")
-     */
-    public function dbukronicAction($id){
+    
 
-        // $movie = new Movie();
+     /**
+     * @Route("/dbukronic/{id}/{filter_end}/{filter_seq}", name="dbukronic")
+     */
+    public function dbukronicAction($id,$filter_end="-100",$filter_seq="-100"){
+
+        
         $em = $this->getDoctrine()->getManager();
         $repository = $em->getRepository("UkronicBundle:Movie");
         // vérifier si le film existe dans la BDD Ukronic
@@ -201,13 +207,15 @@ class DefaultController extends Controller
 
         if ($result) {
             $movie = $result;
-        } 
-
-     
-        if ($movie == null) {
+        } else {
             return $this->redirectToRoute("main");
         }
-        return $this->render("UkronicBundle:ukronic:movie.html.twig",array("movie"=>$movie));
+
+        return $this->render("UkronicBundle:ukronic:movie.html.twig",array(
+            "movie"=>$movie,
+            "filter_end" => $filter_end,
+            "filter_seq" => $filter_seq
+            ));
     }
 
     /**
