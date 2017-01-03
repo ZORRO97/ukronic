@@ -13,7 +13,7 @@
 		<div class="col-md-7 col-md-offset-1">
 			
 			<p>Film préféré : 
-				{% if preferedMovie is defined %}
+				{% if preferedMovie.id is defined %}
 					<a href="{{ path('dbukronic',{'id': preferedMovie.id}) }}">
 						{{ preferedMovie.title }}
 					</a>
@@ -22,7 +22,7 @@
 				{% endif %}
 			 </p>
 			<p>Film ou j'ai rien compris : 
-				{% if ambiguousMovie is defined %}
+				{% if ambiguousMovie.id is defined %}
 					<a href="{{ path('dbukronic',{'id': ambiguousMovie.id}) }}">
 						{{ ambiguousMovie.title }}
 					</a>
@@ -32,7 +32,7 @@
 				
 			</p>
 			<p>Film balaise où j'ai (peut être) tout compris : 
-				{% if understandMovie is defined %}
+				{% if understandMovie.id is defined %}
 					<a href="{{ path('dbukronic',{'id': understandMovie.id}) }}">
 						{{ understandMovie.title }}
 					</a>

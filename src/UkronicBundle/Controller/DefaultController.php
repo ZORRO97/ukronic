@@ -128,7 +128,7 @@ class DefaultController extends Controller
         
         if ($form->isSubmitted() && $form->isValid()) {
         // $form->getData() holds the submitted values
-        // but, the original `$task` variable has also been updated
+        // but, the original  variable has also been updated
             $movieRequest = $form->getData();
             $message = "formulaire validé";
             // faire l'appel de l'API allociné
@@ -189,7 +189,11 @@ class DefaultController extends Controller
         if ($movie == null) {
             return $this->redirect(path("main"));
         }
-        return $this->render("UkronicBundle:ukronic:movie.html.twig",array("movie"=>$movie));
+        return $this->render("UkronicBundle:ukronic:movie.html.twig",array(
+            "movie"=>$movie,
+            "filter_end" => "-100",
+            "filter_seq" => "-100"
+            ));
     }
 
     
