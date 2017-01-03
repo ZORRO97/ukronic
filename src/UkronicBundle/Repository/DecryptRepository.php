@@ -43,7 +43,8 @@ class DecryptRepository extends \Doctrine\ORM\EntityRepository
 
 	public function movieLastDecrypted() {
 		$q = $this->getEntityManager()
-		->createQuery("SELECT d FROM UkronicBundle:Decrypt d  ORDER BY d.dateDecrypt DESC" );
+		->createQuery("SELECT d FROM UkronicBundle:Decrypt d  ORDER BY d.dateDecrypt DESC" )
+		->setMaxresults(5);
     	$decrypts = $q->getResult();
 		return $decrypts;
 
@@ -51,7 +52,8 @@ class DecryptRepository extends \Doctrine\ORM\EntityRepository
 
 	public function serieLastDecrypted() {
 		$q = $this->getEntityManager()
-		->createQuery("SELECT d FROM UkronicBundle:Decrypt d WHERE d.typeDecrypt = 'S' ORDER BY d.dateDecrypt DESC" );
+		->createQuery("SELECT d FROM UkronicBundle:Decrypt d WHERE d.typeDecrypt = 'S' ORDER BY d.dateDecrypt DESC" )
+		->setMaxresults(5);
     	$decrypts = $q->getResult();
 		return $decrypts;
 
