@@ -3,6 +3,8 @@
 namespace UkronicBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
+// use Smallhead\UserBundle\Entity\User as User;
 
 /**
  * Decrypt
@@ -34,6 +36,16 @@ class Decrypt
      * @ORM\JoinColumn(name="movie_id", referencedColumnName="id")
      */
     private $movie;
+
+   /**
+     * @ORM\OneToMany(targetEntity="Beloved", mappedBy="decrypt")
+     */
+    private $likes;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Comment", mappedBy="decrypt")
+     */
+    private $comments;
 
     /**
      * @var string
@@ -83,6 +95,15 @@ class Decrypt
      * @ORM\Column(name="typeDecrypt", type="string", length=1)
      */
     private $typeDecrypt;
+
+     public function __construct()
+    {
+        parent::__construct();
+        // your own logic
+       
+        $this->likes = new ArrayCollection();
+        $this->comments = new ArrayCollection();
+    }
 
 
     /**
@@ -285,5 +306,29 @@ class Decrypt
     public function getMovie()
     {
         return $this->movie;
+    }
+
+    /**
+     * Set wordCount
+     *
+     * @param integer $wordCount
+     *
+     * @return Decrypt
+     */
+    public function setWordCount($wordCount)
+    {
+        $this->wordCount = $wordCount;
+
+        return $this;
+    }
+
+    /**
+     * Get wordCount
+     *
+     * @return integer
+     */
+    public function getWordCount()
+    {
+        return $this->wordCount;
     }
 }

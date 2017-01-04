@@ -77,6 +77,20 @@ class DecryptRepository extends \Doctrine\ORM\EntityRepository
         		$q = $this->getEntityManager()
 		->createQuery("SELECT d FROM UkronicBundle:Decrypt d JOIN d.movie m WHERE d.typeDecrypt = '$typeDecrypt' AND d.wordCount > 300  AND m.id = $idMovie" );
         		break;
+        	case 'liked' :
+        	$q = $this->getEntityManager()
+		->createQuery("SELECT d FROM UkronicBundle:Decrypt d JOIN d.movie m WHERE d.typeDecrypt = '$typeDecrypt' AND d.nbLiked > 0  AND m.id = $idMovie ORDER BY d.nbLiked DESC" );
+        	break;
+        
+        	case 'read' :
+        		$q = $this->getEntityManager()
+		->createQuery("SELECT d FROM UkronicBundle:Decrypt d JOIN d.movie m WHERE d.typeDecrypt = '$typeDecrypt' AND d.nbRead > 0  AND m.id = $idMovie ORDER BY d.nbRead DESC" );
+        	break;
+
+        	case 'comment' : 
+        	$q = $this->getEntityManager()
+		->createQuery("SELECT d FROM UkronicBundle:Decrypt d JOIN d.movie m WHERE d.typeDecrypt = '$typeDecrypt' AND d.nbLiked > 0  AND m.id = $idMovie ORDER BY d.nbLiked DESC" );
+        	break;
         	default:
         		$q = $this->getEntityManager()
 		->createQuery("SELECT d FROM UkronicBundle:Decrypt d  JOIN d.movie m WHERE d.typeDecrypt = '$typeDecrypt' AND m.id = $idMovie ");

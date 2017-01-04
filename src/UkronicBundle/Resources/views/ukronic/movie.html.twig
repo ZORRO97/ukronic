@@ -27,6 +27,9 @@
 					<a class="buttond" href = "{{ path('dbukronic',{'id' : movie.id, 'filter_end' : '-100','filter_seq' : filter_seq }) }}" class="decrypt-display-change">-100</a>
 					<a class="buttond" href = "{{ path('dbukronic',{'id' : movie.id, 'filter_end' : '-300','filter_seq' : filter_seq }) }}" class="decrypt-display-change">-300</a>
 					<a class="buttond" href = "{{ path('dbukronic',{'id' : movie.id, 'filter_end' : '+300','filter_seq' : filter_seq }) }}" class="decrypt-display-change">+300</a>
+					<a class="buttond" href = "{{ path('dbukronic',{'id' : movie.id, 'filter_end' : 'read','filter_seq' : filter_seq }) }}" class="decrypt-display-change">+lus</a>
+					<a class="buttond" href = "{{ path('dbukronic',{'id' : movie.id, 'filter_end' : 'liked','filter_seq' : filter_seq }) }}" class="decrypt-display-change">+likés</a>
+					<a class="buttond" href = "{{ path('dbukronic',{'id' : movie.id, 'filter_end' : 'comment','filter_seq' : filter_seq }) }}" class="decrypt-display-change">+commentés</a>
 					
 					</div>
 				
@@ -49,6 +52,9 @@
 					<a class="buttond" href = "{{ path('dbukronic',{'id' : movie.id, 'filter_end' : filter_end ,'filter_seq' : "-100" }) }}" class="decrypt-display-change">-100</a>
 					<a class="buttond" href = "{{ path('dbukronic',{'id' : movie.id, 'filter_end' : filter_end,'filter_seq' : "-300" }) }}" class="decrypt-display-change">-300</a>
 					<a class="buttond" href = "{{ path('dbukronic',{'id' : movie.id, 'filter_end' : filter_end,'filter_seq' : "+300" }) }}" class="decrypt-display-change">+300</a>
+					<a class="buttond" href = "{{ path('dbukronic',{'id' : movie.id, 'filter_end' : filter_end,'filter_seq' : "read" }) }}" class="decrypt-display-change">+lus</a>
+					<a class="buttond" href = "{{ path('dbukronic',{'id' : movie.id, 'filter_end' : filter_end,'filter_seq' : "liked" }) }}" class="decrypt-display-change">+likés</a>
+					<a class="buttond" href = "{{ path('dbukronic',{'id' : movie.id, 'filter_end' : filter_end,'filter_seq' : "comment" }) }}" class="decrypt-display-change">+commentés</a>
 					
 					</div>
 

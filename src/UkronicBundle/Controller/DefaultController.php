@@ -11,6 +11,7 @@ use UkronicBundle\Entity\Decrypt;
 use UkronicBundle\Entity\Rating;
 use UkronicBundle\Entity\Histo;
 use UkronicBundle\Entity\Beloved;
+use UkronicBundle\Entity\Comment;
 use UkronicBundle\Repository\DecryptRepository;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
@@ -390,24 +391,53 @@ class DefaultController extends Controller
      /**
      * @Route("/decrypt/read/{id}", name="decryptRead")
      */
-    public function decryptReadAction($id){
+    public function decryptReadAction($id, Request $request){
 
         $em = $this->getDoctrine()->getManager();
         $repository = $em->getRepository("UkronicBundle:Decrypt");
         // vérifier existence dans la BDD Ukronic
         $decrypt = $repository->findOneById($id);
-        if ($decrypt) {
+       
+        $user = $this->container->get('security.token_storage')->getToken()->getUser();
+        $repositoryBeloved = $em->getRepository("UkronicBundle:Beloved");
+        $liked = $repositoryBeloved->isLiked($user,$decrypt);
+
+        // récupérer la liste des commentaires attachés au décryptage
+        // ajouter un formulaire pour la saisie des commentaires
+        $comment = new Comment();
+        $form = $this->createFormBuilder($comment)
+            ->add('content',TextareaType::class)
+                       
+            ->add('save', SubmitType::class, array('label' => 'Enregistrer'))
+            ->getForm();
+        
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+        // $form->getData() holds the submitted values
+        
+            $comment = $form->getData();
+            $comment->setUser($user);
+            $comment->setDecrypt($decrypt);
+            $comment->setDateComment(new \DateTime('now'));
+
+            $em->persist($comment);
+            $em->flush();
+        } else {
             $nbRead = $decrypt->getNbRead();
             $decrypt->setNbRead($nbRead + 1);
             $em->persist($decrypt); // sauvegarde le cpt de lectures du 
             $em->flush();
         }
-        $user = $this->container->get('security.token_storage')->getToken()->getUser();
-        $repositoryBeloved = $em->getRepository("UkronicBundle:Beloved");
-        $liked = $repositoryBeloved->isLiked($user,$decrypt);
 
 
-        return $this->render("UkronicBundle:ukronic:decryptDisplay.html.twig", array("decrypt"=>$decrypt,"liked" => $liked));
+
+        return $this->render("UkronicBundle:ukronic:decryptDisplay.html.twig", array(
+            "decrypt"=>$decrypt,
+            "liked" => $liked,
+            "user" => $user,            
+            "form" => $form->createView()
+            ));
     }
 
      /**

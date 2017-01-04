@@ -5,12 +5,12 @@ namespace UkronicBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Beloved
+ * Comment
  *
- * @ORM\Table(name="beloved")
- * @ORM\Entity(repositoryClass="UkronicBundle\Repository\BelovedRepository")
+ * @ORM\Table(name="comment")
+ * @ORM\Entity(repositoryClass="UkronicBundle\Repository\CommentRepository")
  */
-class Beloved
+class Comment
 {
     /**
      * @var int
@@ -22,25 +22,30 @@ class Beloved
     private $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity="User", inversedBy="likes")
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="comments")
      * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
      */
     private $user;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Decrypt", inversedBy="likes")
+     * @ORM\ManyToOne(targetEntity="Decrypt", inversedBy="comments")
      * @ORM\JoinColumn(name="decrypt_id", referencedColumnName="id")
      */
     private $decrypt;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="content", type="text")
+     */
+    private $content;
+
+    /**
      * @var \DateTime
      *
-     * @ORM\Column(name="date_like", type="datetime")
+     * @ORM\Column(name="date_comment", type="datetime")
      */
-    private $dateLike;
-
-
+    private $dateComment;
 
 
     /**
@@ -54,27 +59,51 @@ class Beloved
     }
 
     /**
-     * Set dateLike
+     * Set content
      *
-     * @param \DateTime $dateLike
+     * @param string $content
      *
-     * @return Beloved
+     * @return Comment
      */
-    public function setDateLike($dateLike)
+    public function setContent($content)
     {
-        $this->dateLike = $dateLike;
+        $this->content = $content;
 
         return $this;
     }
 
     /**
-     * Get dateLike
+     * Get content
+     *
+     * @return string
+     */
+    public function getContent()
+    {
+        return $this->content;
+    }
+
+    /**
+     * Set dateComment
+     *
+     * @param \DateTime $dateComment
+     *
+     * @return Comment
+     */
+    public function setDateComment($dateComment)
+    {
+        $this->dateComment = $dateComment;
+
+        return $this;
+    }
+
+    /**
+     * Get dateComment
      *
      * @return \DateTime
      */
-    public function getDateLike()
+    public function getDateComment()
     {
-        return $this->dateLike;
+        return $this->dateComment;
     }
 
     /**
@@ -82,7 +111,7 @@ class Beloved
      *
      * @param \UkronicBundle\Entity\User $user
      *
-     * @return Beloved
+     * @return Comment
      */
     public function setUser(\UkronicBundle\Entity\User $user = null)
     {
@@ -106,7 +135,7 @@ class Beloved
      *
      * @param \UkronicBundle\Entity\Decrypt $decrypt
      *
-     * @return Beloved
+     * @return Comment
      */
     public function setDecrypt(\UkronicBundle\Entity\Decrypt $decrypt = null)
     {

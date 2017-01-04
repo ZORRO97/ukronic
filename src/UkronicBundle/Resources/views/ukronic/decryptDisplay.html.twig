@@ -1,8 +1,16 @@
 {% extends 'UkronicBundle::layout.html.twig' %}
 
 {% block content %}
-	<h2>Décryptage</h2>
+	<div class="row">
+
+		
+	
+
+	<h2 class="text-center">Décryptage</h2>
+	<div class="col-md-2 col-md-offset-2">
 	<p><img src="{{ decrypt.movie.posterURL }}" alt="image Film"></p>
+	</div>
+	<div class="col-md-6 col-md-offset-2">
 	<p>Film {{ decrypt.movie.title }}</p>
 	<p> {{ decrypt.title }} </p>
 	<p> {{ decrypt.content }} 
@@ -13,5 +21,22 @@
 	{% endif %}	
 
 	</p>
+	</div>
+	</div>
+	<div class="row">
+		<div class="col-md-8 col-md-offset-2">
+			<h2>Commentaires</h2>
+			{{ form_start(form) }}
+			{{ form_widget(form) }}
+			{{ form_end(form) }}
+			{% if decrypt.comments is not empty  %}
+				{% for comment in decrypt.comments %}
+				    <p>
+				    	{{ comment.dateComment | date("d/m/Y h:i") }} {{ comment.content }}
+				    </p>
+				{% endfor %}
+			{% endif %}
+		</div>
+	</div>
     
 {% endblock %}

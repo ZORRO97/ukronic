@@ -3,6 +3,7 @@
 namespace UkronicBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 // use Smallhead\UserBundle\Entity\User as User;
 
 /**
@@ -40,6 +41,11 @@ class Decrypt
      * @ORM\OneToMany(targetEntity="Beloved", mappedBy="decrypt")
      */
     private $likes;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Comment", mappedBy="decrypt")
+     */
+    private $comments;
 
     /**
      * @var string
@@ -89,6 +95,15 @@ class Decrypt
      * @ORM\Column(name="typeDecrypt", type="string", length=1)
      */
     private $typeDecrypt;
+
+     public function __construct()
+    {
+        parent::__construct();
+        // your own logic
+       
+        $this->likes = new ArrayCollection();
+        $this->comments = new ArrayCollection();
+    }
 
 
     /**
@@ -315,5 +330,73 @@ class Decrypt
     public function getWordCount()
     {
         return $this->wordCount;
+    }
+
+    /**
+     * Add like
+     *
+     * @param \UkronicBundle\Entity\Beloved $like
+     *
+     * @return Decrypt
+     */
+    public function addLike(\UkronicBundle\Entity\Beloved $like)
+    {
+        $this->likes[] = $like;
+
+        return $this;
+    }
+
+    /**
+     * Remove like
+     *
+     * @param \UkronicBundle\Entity\Beloved $like
+     */
+    public function removeLike(\UkronicBundle\Entity\Beloved $like)
+    {
+        $this->likes->removeElement($like);
+    }
+
+    /**
+     * Get likes
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getLikes()
+    {
+        return $this->likes;
+    }
+
+    /**
+     * Add comment
+     *
+     * @param \UkronicBundle\Entity\Comment $comment
+     *
+     * @return Decrypt
+     */
+    public function addComment(\UkronicBundle\Entity\Comment $comment)
+    {
+        $this->comments[] = $comment;
+
+        return $this;
+    }
+
+    /**
+     * Remove comment
+     *
+     * @param \UkronicBundle\Entity\Comment $comment
+     */
+    public function removeComment(\UkronicBundle\Entity\Comment $comment)
+    {
+        $this->comments->removeElement($comment);
+    }
+
+    /**
+     * Get comments
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getComments()
+    {
+        return $this->comments;
     }
 }
