@@ -61,25 +61,25 @@ class DecryptRepository extends \Doctrine\ORM\EntityRepository
 
 
 
-	public function getDecrypts(User $user,$idMovie , $filter, $typeDecrypt) {
-		$monId = $user->getId();
+	public function getDecrypts($idMovie , $filter, $typeDecrypt) {
+		// $monId = $user->getId();
 
 		switch ($filter) {
         	case '-100':
         		$q = $this->getEntityManager()
-		->createQuery("SELECT d FROM UkronicBundle:Decrypt d JOIN d.user u JOIN d.movie m WHERE d.typeDecrypt = '$typeDecrypt' AND d.wordCount < 100 AND u.id = $monId AND m.id = $idMovie " );
+		->createQuery("SELECT d FROM UkronicBundle:Decrypt d  JOIN d.movie m WHERE d.typeDecrypt = '$typeDecrypt' AND d.wordCount < 100 AND m.id = $idMovie " );
         		break;
         	case '-300':
         		$q = $this->getEntityManager()
-		->createQuery("SELECT d FROM UkronicBundle:Decrypt d JOIN d.user u JOIN d.movie m WHERE d.typeDecrypt = '$typeDecrypt' AND d.wordCount < 300 AND d.wordCount >= 100 AND u.id = $monId AND m.id = $idMovie" );
+		->createQuery("SELECT d FROM UkronicBundle:Decrypt d JOIN d.movie m WHERE d.typeDecrypt = '$typeDecrypt' AND d.wordCount < 300 AND d.wordCount >= 100 AND m.id = $idMovie" );
         		break;
         	case '+300':
         		$q = $this->getEntityManager()
-		->createQuery("SELECT d FROM UkronicBundle:Decrypt d JOIN d.user u JOIN d.movie m WHERE d.typeDecrypt = '$typeDecrypt' AND d.wordCount > 300 AND u.id = $monId AND m.id = $idMovie" );
+		->createQuery("SELECT d FROM UkronicBundle:Decrypt d JOIN d.movie m WHERE d.typeDecrypt = '$typeDecrypt' AND d.wordCount > 300  AND m.id = $idMovie" );
         		break;
         	default:
         		$q = $this->getEntityManager()
-		->createQuery("SELECT d FROM UkronicBundle:Decrypt d  JOIN d.user u JOIN d.movie m WHERE d.typeDecrypt = '$typeDecrypt' AND u.id = $monId AND m.id = $idMovie ");
+		->createQuery("SELECT d FROM UkronicBundle:Decrypt d  JOIN d.movie m WHERE d.typeDecrypt = '$typeDecrypt' AND m.id = $idMovie ");
         		break;
         }
         return $q->getResult();

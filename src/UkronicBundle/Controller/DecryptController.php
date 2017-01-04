@@ -17,7 +17,7 @@ class DecryptController extends Controller
     	$em = $this->getDoctrine()->getManager();
     	$user = $this->container->get('security.token_storage')->getToken()->getUser();
         $decryptRepository = $em->getRepository("UkronicBundle:Decrypt");
-        $decrypts = $decryptRepository->getDecrypts($user, $idMovie, $filter,$typeDecrypt);
+        $decrypts = $decryptRepository->getDecrypts($idMovie, $filter,$typeDecrypt);
 
         return $this->render('UkronicBundle:Decrypt:decryptSelectedDisplay.html.twig', array(
             "decrypts" => $decrypts,
