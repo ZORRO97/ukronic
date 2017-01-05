@@ -89,7 +89,8 @@ class DecryptRepository extends \Doctrine\ORM\EntityRepository
 
         	case 'comment' : 
         	$q = $this->getEntityManager()
-		->createQuery("SELECT d FROM UkronicBundle:Decrypt d JOIN d.movie m WHERE d.typeDecrypt = '$typeDecrypt' AND d.nbLiked > 0  AND m.id = $idMovie ORDER BY d.nbLiked DESC" );
+		->createQuery("SELECT d  FROM UkronicBundle:Decrypt d JOIN d.movie m INNER JOIN d.comments c WHERE d.typeDecrypt = '$typeDecrypt' AND COUNT(DISTINCT c.id) > 0  AND m.id = $idMovie " );
+
         	break;
         	default:
         		$q = $this->getEntityManager()

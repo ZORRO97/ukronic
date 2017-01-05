@@ -232,7 +232,7 @@ class DefaultController extends Controller
         $decryptRepository = $em->getRepository('UkronicBundle:Decrypt');
         $user = $this->container->get('security.token_storage')->getToken()->getUser();
         
-        $nbComment = count($user->getDecrypts());
+        $nbComment = count($user->getComments());
         $nbSequence = $decryptRepository->sequenceDecrypted($user);
         $nbSequence100 = $decryptRepository->sequenceM100Decrypted($user);
         $nbSequence300 = $decryptRepository->sequenceM300Decrypted($user);
@@ -422,7 +422,16 @@ class DefaultController extends Controller
             $comment->setDateComment(new \DateTime('now'));
 
             $em->persist($comment);
+
+            $histo = new Histo();
+            $histo->setUser($user);
+            $histo->setAction(1);            
+            $histo->setDateAction(new \DateTime('now'));
+            $histo->setReference($decrypt->getId());
+            $em->persist($histo);
+
             $em->flush();
+
         } else {
             $nbRead = $decrypt->getNbRead();
             $decrypt->setNbRead($nbRead + 1);
@@ -459,10 +468,19 @@ class DefaultController extends Controller
             $beloved->setUser($user);
             $beloved->setDateLike(new \DateTime('now'));
             $em->persist($beloved);
+
+            $histo = new Histo();
+            $histo->setUser($user);
+            $histo->setAction(2);
+            $histo->setDateAction(new \DateTime('now'));
+            $histo->setReference($decrypt->getId());
+            $em->persist($histo);
+
             $em->flush();
         }
 
-        return $this->render("UkronicBundle:ukronic:decryptDisplay.html.twig", array("decrypt"=>$decrypt,"liked" =>true));
+        //return $this->render("UkronicBundle:ukronic:decryptDisplay.html.twig", array("decrypt"=>$decrypt,"liked" =>true));
+        return $this->redirectToRoute('decryptRead',array("id"=>$decrypt->getId()));
     }
 
 }

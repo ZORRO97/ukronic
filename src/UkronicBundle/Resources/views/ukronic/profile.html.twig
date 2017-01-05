@@ -75,15 +75,21 @@
 						{% elseif histo.action == 2 %}
 							a liké
 						{% elseif histo.action == 3 %}
+							{#
 							a décrypté la fin pour 
+							#}
+							{{ render(controller('UkronicBundle:Decrypt:detail',{'id':histo.reference,'typeDecrypt':'F'}))}}
 						{% elseif histo.action == 4 %}
+							{#
 							a décrypté la séquence pour
+							#}
+							{{ render(controller('UkronicBundle:Decrypt:detail',{'id':histo.reference,'typeDecrypt':'S'}))}}
 						{% else %}
 							action spéciale
 						{% endif %}
-						référence {{ histo.reference }}
+						
 
-						 {{ histo.dateAction | date("d/m/Y") }} 
+						 {{ histo.dateAction | date("d/m/Y H:i") }} 
 						
 					</p>
 				    
