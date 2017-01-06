@@ -15,9 +15,10 @@
 	<p> {{ decrypt.title }} </p>
 	<p> {{ decrypt.content }} 
 		{% if not liked  %}
-		<a href="{{ path('decryptLike', {'id' : decrypt.id }) }}" class="btn-like">LIKE</a>
+		<a href="{{ path('decryptLike', {'id' : decrypt.id }) }}" class="btn btn-primary btn-like">LIKE</a>
 	{% else %}
-		déja liked
+		<a href="#" class="btn btn-info">Liked</a>
+		
 	{% endif %}	
 
 	</p>

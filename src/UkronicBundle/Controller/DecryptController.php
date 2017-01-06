@@ -30,7 +30,7 @@ class DecryptController extends Controller
     /**
      * @Route("/detailDecrypt/{id}/{typeDecrypt}", name="detailDecrypt")
      */
-    public function detailAction($id,$typeDecrypt='S')
+    public function DetailAction($id,$typeDecrypt='S')
     {
         $em = $this->getDoctrine()->getManager();
         $user = $this->container->get('security.token_storage')->getToken()->getUser();
@@ -44,5 +44,43 @@ class DecryptController extends Controller
              
         ));
     }
+
+    /**
+     * @Route("/commentDecrypt/{id}", name="commentDisplayDecrypt")
+     */
+    public function CommentAction($id)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $user = $this->container->get('security.token_storage')->getToken()->getUser();
+        $decryptRepository = $em->getRepository("UkronicBundle:Decrypt");
+        $decrypt = $decryptRepository->findOneById($id);
+
+
+        return $this->render('UkronicBundle:Decrypt:decryptCommentDisplay.html.twig', array(
+            "decrypt" => $decrypt
+            
+             
+        ));
+    }
+
+    /**
+     * @Route("/likeDecrypt/{id}", name="likeDisplayDecrypt")
+     */
+    public function LikeAction($id)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $user = $this->container->get('security.token_storage')->getToken()->getUser();
+        $decryptRepository = $em->getRepository("UkronicBundle:Decrypt");
+        $decrypt = $decryptRepository->findOneById($id);
+
+
+        return $this->render('UkronicBundle:Decrypt:decryptLikeDisplay.html.twig', array(
+            "decrypt" => $decrypt
+            
+             
+        ));
+    }
+
+
 
 }

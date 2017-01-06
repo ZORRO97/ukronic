@@ -1,5 +1,27 @@
 {% extends 'UkronicBundle::layout.html.twig' %}
 
+{% macro buttonLink(idMovie,fe,typeDecrypt,texte,filter_end,filter_seq) %}
+	{% if typeDecrypt == "F" %}
+		{% if fe == filter_end %}
+			<a class="btn btn-info" href = "{{ path('dbukronic',{'id' : idMovie , 'filter_end' : fe  ,'filter_seq' : filter_seq }) }}" >{{ texte }}</a>
+		{% else %}
+			<a class="btn btn-default" href = "{{ path('dbukronic',{'id' :  idMovie , 'filter_end' : fe ,'filter_seq' : filter_seq }) }}" >{{ texte }}</a>
+		{% endif %}
+		
+	{% else %}
+		{% if fe == filter_seq %}
+			<a class="btn btn-info" href = "{{ path('dbukronic',{'id' : idMovie , 'filter_end' : filter_end ,'filter_seq' : fe }) }}" >{{ texte }}</a>
+		{% else %}
+			<a class="btn btn-default" href = "{{ path('dbukronic',{'id' : idMovie , 'filter_end' : filter_end ,'filter_seq' : fe }) }}" >{{ texte }}</a>
+		{% endif %}
+	{% endif %}
+		
+	
+{% endmacro %}
+
+{% import _self as tools %}
+
+
 {% block content %}
 	{# page du film #}
 	<div class="container-fluid">
@@ -21,15 +43,15 @@
 			<div class="col-md-4">
 				<h2 class="text-center">HYPOTHESE DE FIN</h2>
 				<div class="display-Decrypt">
-					<div>
+					<div class="btn-group">
 						
 	
-					<a class="buttond" href = "{{ path('dbukronic',{'id' : movie.id, 'filter_end' : '-100','filter_seq' : filter_seq }) }}" class="decrypt-display-change">-100</a>
-					<a class="buttond" href = "{{ path('dbukronic',{'id' : movie.id, 'filter_end' : '-300','filter_seq' : filter_seq }) }}" class="decrypt-display-change">-300</a>
-					<a class="buttond" href = "{{ path('dbukronic',{'id' : movie.id, 'filter_end' : '+300','filter_seq' : filter_seq }) }}" class="decrypt-display-change">+300</a>
-					<a class="buttond" href = "{{ path('dbukronic',{'id' : movie.id, 'filter_end' : 'read','filter_seq' : filter_seq }) }}" class="decrypt-display-change">+lus</a>
-					<a class="buttond" href = "{{ path('dbukronic',{'id' : movie.id, 'filter_end' : 'liked','filter_seq' : filter_seq }) }}" class="decrypt-display-change">+likés</a>
-					<a class="buttond" href = "{{ path('dbukronic',{'id' : movie.id, 'filter_end' : 'comment','filter_seq' : filter_seq }) }}" class="decrypt-display-change">+commentés</a>
+					{{ tools.buttonLink(movie.id,"-100","F","-100",filter_end,filter_seq) }}
+					{{ tools.buttonLink(movie.id,"-300","F","-300",filter_end,filter_seq) }}
+					{{ tools.buttonLink(movie.id,"+300","F","+300",filter_end,filter_seq) }}
+					{{ tools.buttonLink(movie.id,"read","F","+lus",filter_end,filter_seq) }}
+					{{ tools.buttonLink(movie.id,"liked","F","+likés",filter_end,filter_seq) }}
+					{{ tools.buttonLink(movie.id,"comment","F","+commentés",filter_end,filter_seq) }}
 					
 					</div>
 				
@@ -47,14 +69,14 @@
 				<h2 class="text-center">SEQUENCE</h2>
 
 				<div id="sequence-decrypt">
-					<div>
+					<div class="btn-group">
 	
-					<a class="buttond" href = "{{ path('dbukronic',{'id' : movie.id, 'filter_end' : filter_end ,'filter_seq' : "-100" }) }}" class="decrypt-display-change">-100</a>
-					<a class="buttond" href = "{{ path('dbukronic',{'id' : movie.id, 'filter_end' : filter_end,'filter_seq' : "-300" }) }}" class="decrypt-display-change">-300</a>
-					<a class="buttond" href = "{{ path('dbukronic',{'id' : movie.id, 'filter_end' : filter_end,'filter_seq' : "+300" }) }}" class="decrypt-display-change">+300</a>
-					<a class="buttond" href = "{{ path('dbukronic',{'id' : movie.id, 'filter_end' : filter_end,'filter_seq' : "read" }) }}" class="decrypt-display-change">+lus</a>
-					<a class="buttond" href = "{{ path('dbukronic',{'id' : movie.id, 'filter_end' : filter_end,'filter_seq' : "liked" }) }}" class="decrypt-display-change">+likés</a>
-					<a class="buttond" href = "{{ path('dbukronic',{'id' : movie.id, 'filter_end' : filter_end,'filter_seq' : "comment" }) }}" class="decrypt-display-change">+commentés</a>
+					{{ tools.buttonLink(movie.id,"-100","S","-100",filter_end,filter_seq) }}
+					{{ tools.buttonLink(movie.id,"-300","S","-300",filter_end,filter_seq) }}
+					{{ tools.buttonLink(movie.id,"+300","S","+300",filter_end,filter_seq) }}
+					{{ tools.buttonLink(movie.id,"read","S","+lus",filter_end,filter_seq) }}
+					{{ tools.buttonLink(movie.id,"liked","S","+likés",filter_end,filter_seq) }}
+					{{ tools.buttonLink(movie.id,"comment","S","+commentés",filter_end,filter_seq) }}
 					
 					</div>
 

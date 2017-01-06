@@ -71,19 +71,21 @@
 					<p>
 						{{ app.user.username }} 
 						{% if histo.action == 1 %}
-							a commenté
+							{# a commenté #}
+							{{ render(controller('UkronicBundle:Decrypt:Comment',{'id':histo.reference}))}}
 						{% elseif histo.action == 2 %}
-							a liké
+							{# a liké #}
+							{{ render(controller('UkronicBundle:Decrypt:Like',{'id':histo.reference}))}}
 						{% elseif histo.action == 3 %}
 							{#
 							a décrypté la fin pour 
 							#}
-							{{ render(controller('UkronicBundle:Decrypt:detail',{'id':histo.reference,'typeDecrypt':'F'}))}}
+							{{ render(controller('UkronicBundle:Decrypt:Detail',{'id':histo.reference,'typeDecrypt':'F'}))}}
 						{% elseif histo.action == 4 %}
 							{#
 							a décrypté la séquence pour
 							#}
-							{{ render(controller('UkronicBundle:Decrypt:detail',{'id':histo.reference,'typeDecrypt':'S'}))}}
+							{{ render(controller('UkronicBundle:Decrypt:Detail',{'id':histo.reference,'typeDecrypt':'S'}))}}
 						{% else %}
 							action spéciale
 						{% endif %}

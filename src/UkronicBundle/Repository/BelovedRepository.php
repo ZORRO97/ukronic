@@ -31,7 +31,7 @@ class BelovedRepository extends \Doctrine\ORM\EntityRepository
 		
 		$q = $this->getEntityManager()
 		->createQuery("SELECT COUNT(DISTINCT b.id) FROM UkronicBundle:Beloved b  JOIN b.user u WHERE u.id = $monId " );
-    	$nb = $q->getScalarResult();
+    	$nb = $q->getSingleScalarResult();
 		return $nb;
 	}
 }

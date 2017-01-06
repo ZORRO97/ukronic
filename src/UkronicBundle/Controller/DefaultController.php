@@ -252,6 +252,7 @@ class DefaultController extends Controller
 
         $likesRepository = $em->getRepository('UkronicBundle:Beloved');
         $nbLikes = $likesRepository->nbLiked($user);
+        
 
 
 
