@@ -198,16 +198,24 @@ h1, h2, h3, h4, h5, h6, figure {
 .fh5co-nav ul li.has-dropdown .dropdown li a {
   padding: 2px 0;
   display: block;
-  color: #999999;
+  color:  #999999;
+
   line-height: 1.2;
   text-transform: none;
   font-size: 15px;
 }
+
+.dropdown-menu li a {
+  color : white;
+  background-color: blue;
+}
+
 .fh5co-nav ul li.has-dropdown .dropdown li a:hover {
   color: #000;
 }
 .fh5co-nav ul li.has-dropdown:hover a, .fh5co-nav ul li.has-dropdown:focus a {
   color: #fff;
+
 }
 .fh5co-nav ul li.active > a {
   color: #fff !important;
@@ -253,7 +261,7 @@ h1, h2, h3, h4, h5, h6, figure {
 }
 
 .fh5co-cover {
-  height: 200px;
+  height: 300px;
   background-size: cover;
   background-position: top center;
   background-repeat: no-repeat;

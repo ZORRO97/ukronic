@@ -1,70 +1,111 @@
 {% extends 'UkronicBundle::layout.html.twig' %}
 
 {% block content %}
-<div class="container">
-{#<h1 class="text-center">UKRONIC</h1>
+	<div class="container">
+		<img src="{{asset("images/Image public big.png") }}" alt="">
+	</div>
 
 
-<p class= "text-center"><a href="{{ path('search') }}">Recherche</a></p>
-#}
-<div class="raw">
-	<div class="col-md-8">
-		<h2>Les derniers décryptages de films</h2>
-		<ul>
 
-			{% if lastMovieDecrypts is not empty %}
+    
+
+
+	<div id="fh5co-blog" class="fh5co-bg-section">
+		<div class="container">
+			<div class="row animate-box">
+				<div class="col-md-8 col-md-offset-2 text-center fh5co-heading">
+					<h2>Les derniers décryptages de films</h2>
+				</div>
+			</div>
+			<div class="row">
+				{% if lastMovieDecrypts is not empty %}
 				{% for decrypt in lastMovieDecrypts %}
-					{% if decrypt.movie.typeMovie == "F"  %}
-					<li><a href="{{ path('decryptRead', {'id': decrypt.id}) }}">
-						<img src="{{ decrypt.movie.posterURL }}" > par {{ decrypt.user.username }} Titre {{ decrypt.title }} 
-					</a></li>
-				    {% endif %}
+					
+					
+					
+
+					<div class="col-lg-4 col-md-4">
+						<div class="fh5co-blog animate-box">
+							<a href="{{ path('decryptRead', {'id': decrypt.id}) }}"><img class="img-responsive" src="{{ decrypt.movie.posterURL }}" alt=""></a>
+							<div class="blog-text">
+								<h3><a href="{{path('dbukronic',{'id':decrypt.movie.id})}}">{{ decrypt.movie.title }}</a></h3>
+								<p>Décrypteur : <a href="{{path('profile',{'id':decrypt.user.id})}}"> {{ decrypt.user.username }} </a></p>
+								<p>Titre décryptage : <a href="{{ path('decryptRead', {'id': decrypt.id}) }}"> {{ decrypt.title }} </a></p>
+
+							</div> 
+						</div>
+					</div>
+
+
+				    
 				{% endfor %}
-			{% else %}
-				<li>liste vide</li>
-			{% endif %}
-			
-		</ul>
-		<h2>Les derniers décryptages de séries</h2>
-		<ul>
-			{% if lastSerieDecrypts is not empty %}
+				{% endif %}
+				
+				
+			</div>
+
+			<div class="row">
+				{% if lastSerieDecrypts is not empty %}
 				{% for decrypt in lastSerieDecrypts %}
-					{% if decrypt.movie.typeMovie == "S" %}
-					<li><a href="{{ path('decryptRead', {'id': decrypt.id}) }}">
-						<img src="{{ decrypt.movie.posterURL }}" > par {{ decrypt.user.username }} Titre {{ decrypt.title }} 
-					</a></li>
-				    {% endif %}
+					
+					
+					
+
+					<div class="col-lg-4 col-md-4">
+						<div class="fh5co-blog animate-box">
+							<a href="{{ path('decryptRead', {'id': decrypt.id}) }}"><img class="img-responsive" src="{{ decrypt.movie.posterURL }}" alt=""></a>
+							<div class="blog-text">
+								<h3>Titre Serie : <a href="{{path('dbukronic',{'id':decrypt.movie.id})}}">{{ decrypt.movie.title }}</a></h3>
+								<p>Décrypteur : <a href="{{path('profile',{'id':decrypt.user.id})}}"> {{ decrypt.user.username }} </a></p>
+								<p>Titre décryptage : <a href="{{ path('decryptRead', {'id': decrypt.id}) }}"> {{ decrypt.title }} </a></p>
+
+							</div> 
+						</div>
+					</div>
+
+
+				    
 				{% endfor %}
-			{% else %}
-				<li>liste vide</li>
-			{% endif %}
-		</ul>
-	</div>
-	<div class="col-md-4">
-		<p>TOP 5 des films les plus décryptés</p>
-		{% if moreMovieDecrypts is defined %}
-			{% for item in moreMovieDecrypts %}
-			    <p>
-			    	<a href="{{ path('dbukronic', {'id': item[0].movie.id}) }}">
-			    	
-			    	{{ item[0].movie.title }} {{ item["dcount"] }}
-			    	</a>
-			    </p>
-			{% endfor %}
-		
-		{% endif %}
+				{% endif %}
+				
+				
+			</div>
 
-		<p>TOP 5 des séries les plus décryptées</p>
-		{% for item in moreSerieDecrypts %}
-			    <p>
-			    	<a href="{{ path('dbukronic', {'id': item[0].movie.id}) }}">
-			    	{{ item[0].movie.title }} {{ item["dcount"] }}
-			    	</a>
-			    </p>
-			{% endfor %}
-		<p>TOP 5</p>
-	</div>
-</div>
+			<div class="row">
+				<div class="col-md-4">
+					<p>TOP 5 des films les plus décryptés</p>
+					{% if moreMovieDecrypts is defined %}
+						{% for item in moreMovieDecrypts %}
+						    <p>
+						    	<a href="{{ path('dbukronic', {'id': item[0].movie.id}) }}">
+						    	
+						    	{{ item[0].movie.title }} {{ item["dcount"] }}
+						    	</a>
+						    </p>
+						{% endfor %}
+					
+					{% endif %}
 
-</div>    
+					
+				</div>
+				<div class="col-md-4">
+					<p>TOP 5 des séries les plus décryptées</p>
+					{% for item in moreSerieDecrypts %}
+					    <p>
+					    	<a href="{{ path('dbukronic', {'id': item[0].movie.id}) }}">
+					    	{{ item[0].movie.title }} {{ item["dcount"] }}
+					    	</a>
+					    </p>
+					{% endfor %}
+					
+				</div>
+			</div>
+
+
+
+
+
+
+		</div>
+	</div>
 {% endblock %}

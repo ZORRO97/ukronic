@@ -224,13 +224,16 @@ class DefaultController extends Controller
     }
 
     /**
-     * @Route("/profile", name="profile")
+     * @Route("/profile/{id}", name="profile")
      */
-    public function profileAction(){
+    public function profileAction($id){
 
         $em = $this->getDoctrine()->getManager();
         $decryptRepository = $em->getRepository('UkronicBundle:Decrypt');
-        $user = $this->container->get('security.token_storage')->getToken()->getUser();
+        $userRepository = $em->getRepository('UkronicBundle:User');
+        //$user = $this->container->get('security.token_storage')->getToken()->getUser();
+        $user = $userRepository->findOneById($id);
+
         
         $nbComment = count($user->getComments());
         $nbSequence = $decryptRepository->sequenceDecrypted($user);
@@ -270,7 +273,8 @@ class DefaultController extends Controller
             'preferedMovie' => $bestMovie,
             'ambiguousMovie' => $ambiguousMovie,
             'understandMovie' => $understandMovie,
-            'lastHistos' => $lastHistos
+            'lastHistos' => $lastHistos,
+            'user' => $user
 
             ));
     }

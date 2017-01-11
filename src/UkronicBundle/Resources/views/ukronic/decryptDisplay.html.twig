@@ -28,7 +28,13 @@
 		<div class="col-md-8 col-md-offset-2">
 			<h2>Commentaires</h2>
 			{{ form_start(form) }}
-			{{ form_widget(form) }}
+			
+			<p>Contenu </p>
+			<div>
+			{{ form_widget(form.content,{'id':"comContent"}) }}
+			</div>
+			<p id="nbWords">0 mots</p>
+			{{ form_widget(form.save) }}
 			{{ form_end(form) }}
 			{% if decrypt.comments is not empty  %}
 				{% for comment in decrypt.comments %}
@@ -39,5 +45,21 @@
 			{% endif %}
 		</div>
 	</div>
+    
+{% endblock %}
+
+{% block javascripts %}
+	{{ parent() }}
+	<script>
+	$(function(){
+		$("#comContent").change(function(){
+			// console.log("modif commentaire");
+			var str = $(this).value;
+			var compteur = str.split(/\b\w+\b/).length-1;
+			console.log("le compteur vaut : "+compteur);
+		});
+	});
+
+	</script>
     
 {% endblock %}

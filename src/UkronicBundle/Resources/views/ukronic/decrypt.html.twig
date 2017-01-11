@@ -7,13 +7,11 @@
 		
 		<div class="row">
 			
-			<div class="col-md-2"><img src="{{ movie.posterURL }}" alt="le film" width= 100px height= 100px></div>
+			<div class="col-md-2"><img src="{{ movie.posterURL }}" alt="le film" width= 200px height= 200px></div>
 			<div class="col-md-5">
 				<p> {{ movie.title }} </p>
 
-				<p>Ma note</p>
-				<p>Niveau d'ambiguité</p>
-				<p>Je pense avoir compris</p>
+				
 				
 			</div>
 			<div class="col-md-3">
@@ -70,8 +68,8 @@
 			<div class="row">
 				<div class="col-md-12">
 					{# formulaire pour le corps de la critique #}
-					<p>{{ form_label(form.content) }}</p>
-					{{ form_widget(form.content) }}
+					<p>{{ form_label(form.content) }} (<span id="compteur">0</span> mots)</p>
+					{{ form_widget(form.content,{'id':"decryptContent"}) }}
 					
 				</div>
 			</div>
@@ -127,8 +125,18 @@
 			
 			var myLeft = $(this).parent().prevAll().length; // position de l'étoile cliquée sur la ligne
 			$('input.'+classSelected).val(myLeft); // on met la valeur dans le champ
+
 			
 			
+		});
+
+		$("#decryptContent").keyup(function(){
+			// console.log("modif commentaire");
+			var str = $(this).val();
+			console.log(str);
+			var compteur = str.split(/\b\w+\b/).length-1;
+			console.log("le compteur vaut : "+compteur);
+			$('#compteur').html(compteur);
 		});
 	});
 	</script>
