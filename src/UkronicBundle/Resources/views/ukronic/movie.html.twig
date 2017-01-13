@@ -25,17 +25,17 @@
 {% block content %}
 	{# page du film #}
 	<div class="container-fluid">
-		<p class="text-center">TITRE : {{ movie.title }}</p>
+		
 
 		<div class="row">
 			<div class="col-md-3">
-				<img src= {{ movie.posterURL }} alt= {{ movie.title }} >
+				<img class="img-responsive img-movie" src= {{ movie.posterURL }} alt= {{ movie.title }} >
 			</div>
 			<div class="col-md-9">
 				<p>NOM DU FILM : {{ movie.title }} </p>
 				<p>DATE DE SORTIE : {{ movie.productionYear }} </p>
 				<p>CASTING : {{ movie.casting }} </p>
-				<p>SCRIPT : <pre> {{ movie.script }} </pre></p>
+				<p>SCRIPT :  {{ movie.script }} </p>
 
 				{% if is_granted("ROLE_USER") %}
 				<p><a class="btn btn-primary" href="{{ path('decrypt', {'idMovie': movie.id}) }}">Ajouter une critique</a></p>

@@ -3,7 +3,14 @@
 {% block content %}
 
 	{# page profil #}
-	<h2 class="text-center">Mon Profil</h2>
+	<h2 class="text-center">
+		{% if app.user.id == user.id %}
+			Mon Profil
+		{% else %}
+			Profil de {{ user.username }}
+		{% endif %}
+	</h2>
+	
 	<div class="row">
 		<div class="col-md-3 col-md-offset-1">
 		{% set chemin = "images/users/" ~ user.imageName %}
@@ -51,7 +58,7 @@
 		<div class="col-md-4 col-md-offset-1">
 			<h2 class="text-center">Mon activité</h2>
 			<div>
-				mes stats
+				
 				<p> {{ nbLikes | number_format }} likes postés</p>
 				<p>{{ nbComment | number_format }} commentaires postés</p>
 				<p> {{ nbSequence | number_format }} séquences décryptées</p>
@@ -68,10 +75,10 @@
 		<div class="col-md-7">
 			<h2 class="text-center">Actualités</h2>
 			<div>
-				liste des actualités
+				
 				{% for histo in lastHistos %}
 					<p>
-						{{ app.user.username }} 
+						{{ user.username }} 
 						{% if histo.action == 1 %}
 							{# a commenté #}
 							{{ render(controller('UkronicBundle:Decrypt:Comment',{'id':histo.reference}))}}

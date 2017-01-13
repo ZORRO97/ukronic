@@ -298,7 +298,7 @@ class DefaultController extends Controller
         $movie = $repository->findOneById($idMovie);
 
         $decrypt = new Decrypt();
-        // $rating = new Rating();
+        
         $repositoryRating = $em->getRepository("UkronicBundle:Rating");
         $rating = $repositoryRating->trouve($user->getId(),$movie->getId());
         if (!$rating) {
@@ -405,7 +405,12 @@ class DefaultController extends Controller
        
         $user = $this->container->get('security.token_storage')->getToken()->getUser();
         $repositoryBeloved = $em->getRepository("UkronicBundle:Beloved");
+
+        if ($user != "anon." ) {
         $liked = $repositoryBeloved->isLiked($user,$decrypt);
+    } else {
+        $liked = false;
+    }
 
         // récupérer la liste des commentaires attachés au décryptage
         // ajouter un formulaire pour la saisie des commentaires
