@@ -28,7 +28,7 @@
 						<div class="fh5co-blog animate-box decrypt">
 							<a href="{{ path('decryptRead', {'id': decrypt.id}) }}"><img class="img-responsive" src="{{ decrypt.movie.posterURL }}" alt=""></a>
 							<div class="blog-text">
-								<h3><a href="{{path('dbukronic',{'id':decrypt.movie.id})}}">{{ decrypt.movie.title }}</a></h3>
+								<h3 class="title-movie"><a href="{{path('dbukronic',{'id':decrypt.movie.id})}}">{{ decrypt.movie.title }}</a></h3>
 								<p>Décrypteur : <a href="{{path('profile',{'id':decrypt.user.id})}}"> {{ decrypt.user.username }} </a></p>
 								<p>Titre décryptage : <a href="{{ path('decryptRead', {'id': decrypt.id}) }}"> {{ decrypt.title }} </a></p>
 
@@ -58,10 +58,10 @@
 					
 
 					<div class="col-lg-4 col-md-4">
-						<div class="fh5co-blog animate-box">
+						<div class="fh5co-blog animate-box decrypt">
 							<a href="{{ path('decryptRead', {'id': decrypt.id}) }}"><img class="img-responsive" src="{{ decrypt.movie.posterURL }}" alt=""></a>
 							<div class="blog-text">
-								<h3>Titre Serie : <a href="{{path('dbukronic',{'id':decrypt.movie.id})}}">{{ decrypt.movie.title }}</a></h3>
+								<h3 class="title-movie">Titre Serie : <a href="{{path('dbukronic',{'id':decrypt.movie.id})}}">{{ decrypt.movie.title }}</a></h3>
 								<p>Décrypteur : <a href="{{path('profile',{'id':decrypt.user.id})}}"> {{ decrypt.user.username }} </a></p>
 								<p>Titre décryptage : <a href="{{ path('decryptRead', {'id': decrypt.id}) }}"> {{ decrypt.title }} </a></p>
 

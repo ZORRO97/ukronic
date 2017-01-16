@@ -442,6 +442,8 @@ class DefaultController extends Controller
 
             $em->flush();
 
+            
+
         } else {
             $nbRead = $decrypt->getNbRead();
             $decrypt->setNbRead($nbRead + 1);

@@ -37,10 +37,11 @@
 			
 			<p class="text-center"></p>
 			<div>
-			{{ form_widget(form.content,{'attr':{'id':'comContent',
+			{{ form_widget(form.content,{'value':'','attr':{'id':'comContent',
 				'placeholder':'Entrez un commentaire',
 				'class':'form-control',
 				'rows':5
+
 			}}) }}
 			</div>
 			
@@ -64,6 +65,7 @@
 	<script>
 	$(function(){
 		
+		// $('#form_control').val('bullshit lorem');
 	});
 
 	</script>

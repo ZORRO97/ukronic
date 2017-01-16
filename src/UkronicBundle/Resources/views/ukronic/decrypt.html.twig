@@ -5,23 +5,21 @@
 
 		{{ form_start(form) }}
 		
-		<div class="row">
+		<div class="row espace-form">
 			
-			<div class="col-md-2"><img src="{{ movie.posterURL }}" alt="le film" width= 200px height= 200px></div>
-			<div class="col-md-5">
-				<p> {{ movie.title }} </p>
-
+			<div class="col-md-4"><img src="{{ movie.posterURL }}" alt="le film" width= 300px height= 400px></div>
+			
+			<div class="col-md-5 col-md-offset-1">
+				<p class="title-movie espace-star"> {{ movie.title }} </p>
 				
-				
-			</div>
-			<div class="col-md-3">
 				Notes
+				<p></p>
 				{# trois rangées d'étoiles #}
 				{# Note du film #}
 				{# Etoiles niveau ambiguité #}
 				{# Etoiles je pense avoir compris #}
 				
-				<table>
+				<table class="espace-star">
 					{% for i in 1..3 %}
 						{% if i  == 1 %}
 								
@@ -41,7 +39,8 @@
 								</td>
 							{% endfor %}
 
-						</tr>  
+						</tr>
+
 					{% endfor %}
 					
 				</table>
@@ -55,10 +54,10 @@
 			{# le titre #}
 			<div class="row">
 				<div class="col-md-12">
-					<p>{{ form_label(form.typeDecrypt) }}</p>
-					{{ form_widget(form.typeDecrypt) }}
-					<p>{{ form_label(form.title) }}</p>
-					{{ form_widget(form.title) }}
+					<p>Type décryptage
+					{{ form_widget(form.typeDecrypt) }} </p>
+					<p>Titre
+					{{ form_widget(form.title,{'attr': {'placeholder': 'entrez un titre'}}) }} </p>
 				</div>
 			</div>
 		</div>
@@ -68,8 +67,15 @@
 			<div class="row">
 				<div class="col-md-12">
 					{# formulaire pour le corps de la critique #}
-					<p>{{ form_label(form.content) }} (<span id="compteur">0</span> mots)</p>
-					{{ form_widget(form.content,{'id':"decryptContent"}) }}
+					<p>Contenu (<span id="compteur">0</span> mots)</p>
+					{{ form_widget(form.content,{'id':"decryptContent",
+						'attr':{
+				'placeholder':'Entrez votre décryptage',
+				'class':'form-control',
+				'rows':5
+
+					}
+				}) }}
 					
 				</div>
 			</div>
