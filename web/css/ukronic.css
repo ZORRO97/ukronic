@@ -14,17 +14,23 @@
 	font-size:2em; 
 }
 
+.vintage {
+	font-family: cf_old_photograph_creditRg;
+	font-size:1em;
+	color: black;
+}
+
 
 .ukronic_fond {
 	margin:0;
   padding:0;
-  height: 600px;
+  height: 500px;
   width:100%;
   
 }
 
 .decrypt {
-	border : 3px solid black;
+	border : 5px solid black;
 	height : 700px;
 }
 

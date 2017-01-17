@@ -4,7 +4,7 @@ namespace UkronicBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
-// use Smallhead\UserBundle\Entity\User as User;
+
 
 /**
  * Decrypt

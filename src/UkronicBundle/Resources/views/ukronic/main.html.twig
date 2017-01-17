@@ -29,8 +29,8 @@
 							<a href="{{ path('decryptRead', {'id': decrypt.id}) }}"><img class="img-responsive" src="{{ decrypt.movie.posterURL }}" alt=""></a>
 							<div class="blog-text">
 								<h3 class="title-movie"><a href="{{path('dbukronic',{'id':decrypt.movie.id})}}">{{ decrypt.movie.title }}</a></h3>
-								<p>Décrypteur : <a href="{{path('profile',{'id':decrypt.user.id})}}"> {{ decrypt.user.username }} </a></p>
-								<p>Titre décryptage : <a href="{{ path('decryptRead', {'id': decrypt.id}) }}"> {{ decrypt.title }} </a></p>
+								<p><span class="vintage">Décrypteur : </span><a href="{{path('profile',{'id':decrypt.user.id})}}"> {{ decrypt.user.username }} </a></p>
+								<p><span class="vintage">Titre décryptage : </span><a href="{{ path('decryptRead', {'id': decrypt.id}) }}"> {{ decrypt.title }} </a></p>
 
 							</div> 
 						</div>
@@ -61,9 +61,9 @@
 						<div class="fh5co-blog animate-box decrypt">
 							<a href="{{ path('decryptRead', {'id': decrypt.id}) }}"><img class="img-responsive" src="{{ decrypt.movie.posterURL }}" alt=""></a>
 							<div class="blog-text">
-								<h3 class="title-movie">Titre Serie : <a href="{{path('dbukronic',{'id':decrypt.movie.id})}}">{{ decrypt.movie.title }}</a></h3>
-								<p>Décrypteur : <a href="{{path('profile',{'id':decrypt.user.id})}}"> {{ decrypt.user.username }} </a></p>
-								<p>Titre décryptage : <a href="{{ path('decryptRead', {'id': decrypt.id}) }}"> {{ decrypt.title }} </a></p>
+								<h3 class="title-movie"><a href="{{path('dbukronic',{'id':decrypt.movie.id})}}">{{ decrypt.movie.title }}</a></h3>
+								<p><span class="vintage">Décrypteur : </span><a href="{{path('profile',{'id':decrypt.user.id})}}"> {{ decrypt.user.username }} </a></p>
+								<p><span class="vintage">Titre décryptage : </span><a href="{{ path('decryptRead', {'id': decrypt.id}) }}"> {{ decrypt.title }} </a></p>
 
 							</div> 
 						</div>
@@ -76,36 +76,58 @@
 				
 				
 			</div>
-
+			<h3 class="text-center">TOP 5 des films les plus décryptés</h3>
 			<div class="row">
-				<div class="col-md-4">
-					<p>TOP 5 des films les plus décryptés</p>
-					{% if moreMovieDecrypts is defined %}
-						{% for item in moreMovieDecrypts %}
-						    <p>
-						    	<a href="{{ path('dbukronic', {'id': item[0].movie.id}) }}">
-						    	
-						    	{{ item[0].movie.title }} {{ item["dcount"] }}
-						    	</a>
-						    </p>
-						{% endfor %}
+				
+				{% if moreMovieDecrypts is not empty %}
+				{% for item in moreMovieDecrypts %}
 					
-					{% endif %}
+					
+					
 
-					
-				</div>
-				<div class="col-md-4">
-					<p>TOP 5 des séries les plus décryptées</p>
-					{% for item in moreSerieDecrypts %}
-					    <p>
-					    	<a href="{{ path('dbukronic', {'id': item[0].movie.id}) }}">
-					    	{{ item[0].movie.title }} {{ item["dcount"] }}
-					    	</a>
-					    </p>
-					{% endfor %}
-					
-				</div>
+					<div class="col-lg-4 col-md-4">
+						<div class="fh5co-blog animate-box decrypt">
+							<a href="{{ path('dbukronic', {'id': item[0].movie.id}) }}"><img class="img-responsive" src="{{ item[0].movie.posterURL }}" alt=""></a>
+							<div class="blog-text">
+								<h3 class="title-movie"><a href="{{path('dbukronic',{'id':item[0].movie.id})}}">{{ item[0].movie.title }}</a></h3>
+								
+
+							</div> 
+						</div>
+					</div>
+
+
+				    
+				{% endfor %}
+				{% endif %}
 			</div>
+			<h3 class="text-center">TOP 5 des séries les plus décryptées</p>
+				<div class="row">
+					{% if moreSerieDecrypts is not empty %}
+				{% for item in moreSerieDecrypts %}
+					
+					
+					
+
+					<div class="col-lg-4 col-md-4">
+						<div class="fh5co-blog animate-box decrypt">
+							<a href="{{ path('dbukronic', {'id': item[0].movie.id}) }}"><img class="img-responsive" src="{{ item[0].movie.posterURL }}" alt=""></a>
+							<div class="blog-text">
+								<h3 class="title-movie"><a href="{{path('dbukronic',{'id':item[0].movie.id})}}">{{ item[0].movie.title }}</a></h3>
+								
+								
+
+							</div> 
+						</div>
+					</div>
+
+
+				    
+				{% endfor %}
+				{% endif %}
+				</div>
+
+			
 
 
 

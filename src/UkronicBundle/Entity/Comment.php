@@ -3,6 +3,7 @@
 namespace UkronicBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Comment
@@ -34,6 +35,11 @@ class Comment
     private $decrypt;
 
     /**
+     * @ORM\OneToMany(targetEntity="LikeComment", mappedBy="comment")
+     */
+    private $commentLikes;
+
+    /**
      * @var string
      *
      * @ORM\Column(name="content", type="text")
@@ -46,6 +52,11 @@ class Comment
      * @ORM\Column(name="date_comment", type="datetime")
      */
     private $dateComment;
+
+     public function __construct()
+    {
+        $this->likeComments = new ArrayCollection();
+    }
 
 
     /**
@@ -152,5 +163,39 @@ class Comment
     public function getDecrypt()
     {
         return $this->decrypt;
+    }
+
+    /**
+     * Add commentLike
+     *
+     * @param \UkronicBundle\Entity\LikeComment $commentLike
+     *
+     * @return Comment
+     */
+    public function addCommentLike(\UkronicBundle\Entity\LikeComment $commentLike)
+    {
+        $this->commentLikes[] = $commentLike;
+
+        return $this;
+    }
+
+    /**
+     * Remove commentLike
+     *
+     * @param \UkronicBundle\Entity\LikeComment $commentLike
+     */
+    public function removeCommentLike(\UkronicBundle\Entity\LikeComment $commentLike)
+    {
+        $this->commentLikes->removeElement($commentLike);
+    }
+
+    /**
+     * Get commentLikes
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getCommentLikes()
+    {
+        return $this->commentLikes;
     }
 }

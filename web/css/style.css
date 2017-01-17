@@ -207,12 +207,12 @@ h1, h2, h3, h4, h5, h6, figure {
 
 .dropdown-menu li a {
   
-  background-color: blue;
+  background-color: gray;
 }
 
 .dropdown-menu li a:hover {
   
-  background-color: green;
+  background-color: darkgray;
 }
 
 .fh5co-nav ul li.has-dropdown .dropdown li a:hover {

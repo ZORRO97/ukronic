@@ -48,6 +48,11 @@ class User extends BaseUser
     private $comments;
 
     /**
+     * @ORM\OneToMany(targetEntity="LikeComment", mappedBy="user")
+     */
+    private $commentLikes;
+
+    /**
      * NOTE: This is not a mapped field of entity metadata, just a simple property.
      * 
      * @Vich\UploadableField(mapping="user_image", fileNameProperty="imageName")
@@ -131,6 +136,7 @@ class User extends BaseUser
         $this->histos = new ArrayCollection();
         $this->likes = new ArrayCollection();
         $this->comments = new ArrayCollection();
+        $this->likeComments = new ArrayCollection();
     }
 
     /**
@@ -326,5 +332,39 @@ class User extends BaseUser
     public function getComments()
     {
         return $this->comments;
+    }
+
+    /**
+     * Add commentLike
+     *
+     * @param \UkronicBundle\Entity\LikeComment $commentLike
+     *
+     * @return User
+     */
+    public function addCommentLike(\UkronicBundle\Entity\LikeComment $commentLike)
+    {
+        $this->commentLikes[] = $commentLike;
+
+        return $this;
+    }
+
+    /**
+     * Remove commentLike
+     *
+     * @param \UkronicBundle\Entity\LikeComment $commentLike
+     */
+    public function removeCommentLike(\UkronicBundle\Entity\LikeComment $commentLike)
+    {
+        $this->commentLikes->removeElement($commentLike);
+    }
+
+    /**
+     * Get commentLikes
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getCommentLikes()
+    {
+        return $this->commentLikes;
     }
 }

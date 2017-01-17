@@ -9,10 +9,10 @@
             
           </ul>
         </div>
-        <div class="logo text-center">
+        <div class="logo">
           <div id="fh5co-logo">
             <a href="{{ path('main') }}">
-              <img src="{{ asset("Ukronic-logo-blanc-web.png") }}" alt="" width=300px height=150px></a></div>
+              <img class="img-responsive" src="{{ asset("Ukronic-logo-blanc-web.png") }}" alt="" width=300px height=150px></a></div>
         </div>
         <div class="right-menu text-left menu-1">
           <ul>
@@ -21,7 +21,7 @@
                 <a href="{{ path('profile',{'id': app.user.id }) }}">PROFIL</a>
               {% else %}
                 <a href="{{ path('fos_user_registration_register') }}"><i class="glyphicon glyphicon-lock"></i>
-                  Inscription
+                  INSCRIPTION
                   </a>
 
               {% endif %}
@@ -30,10 +30,10 @@
             <li class="has-dropdown">
               <a class="dropdown-toggle" role="button" data-toggle="dropdown" href="#"><i class="glyphicon glyphicon-user"></i> 
               {% if app.user.username is defined %}
-                {{ app.user.username }}
+                {{ app.user.username | upper }}
               {% else %}
                    <a href="{{ path('fos_user_security_login') }}"><i class="glyphicon glyphicon-lock"></i>
-                    Login
+                    LOGIN
                   </a>   
               {% endif %} 
               <span class="caret"></span></a>
@@ -42,7 +42,7 @@
               <li>
                 {% if is_granted("ROLE_USER") %}       
                   <a href="{{ path('fos_user_security_logout') }}"><i class="glyphicon glyphicon-lock"></i>
-                  Logout
+                  LOGOUT
                   </a>
                 
                 {% endif %}

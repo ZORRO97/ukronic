@@ -50,8 +50,15 @@
 			{% endif %}
 			{% if decrypt.comments is not empty  %}
 				{% for comment in decrypt.comments %}
+
 				    <p>
-				    	{{ comment.dateComment | date("d/m/Y h:i") }} {{ comment.content }}
+				    	Le {{ comment.dateComment | date("d/m/Y h:i") }} 
+				    </p>
+				    <p> Par {{comment.user.userName | upper }} </p>
+				    <p> {{ comment.content }} </p>
+				    <p>
+
+				    	{{render(controller('UkronicBundle:Comment:IsLike',{'id':comment.id,'userId':user.id}))}}
 				    </p>
 				{% endfor %}
 			{% endif %}
