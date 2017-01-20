@@ -120,7 +120,7 @@ class DefaultController extends Controller
 
         $form = $this->createFormBuilder($movieRequest)
            
-            ->add('title',TextType::class)
+            ->add('title',TextType::class, array('required' => true))
             
             ->add('save', SubmitType::class, array('label' => 'Rechercher'))
             ->getForm();
@@ -442,7 +442,7 @@ class DefaultController extends Controller
 
             $em->flush();
 
-            
+
 
         } else {
             $nbRead = $decrypt->getNbRead();

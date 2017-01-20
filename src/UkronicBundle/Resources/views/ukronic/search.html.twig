@@ -6,11 +6,19 @@
 
 
 <div class="row">
-	<h2 class="text-center">Rechercher un Film</h2>
+	
+	<h2 class="text-center">Films</h2>
+	
+	<div></div>
 	<div class="col-md-4 col-md-push-4">
 		{{ form_start(form) }}
-		{{ form_widget(form.title) }}
+		<div class="form-group">
+			{{ form_errors(form.title) }}
+		{{ form_widget(form.title,{'value':"",'attr':{'class':'form-control','placeholder':"Entrez un nom"}}) }}
+		</div>
+		<div class="form-group">
 		{{ form_widget(form.save)}}
+		</div>
 		{{ form_end(form) }}
 	</div>
 </div>
@@ -22,18 +30,22 @@
 			{% for item in message.Search %}
 				
 				
-				<div class="col-md-4 col-lg-4 col-xs-12 decrypt">
-				<a href="{{ path("movie", {'imdbID': item["imdbID"] , 'typeMovie' : 'F'}) }}">
-					<img class="img-responsive" src= {{ item["Poster"] }} >
-					<p class ="text-center"> {{ item["Year"] }} </p>
-					<p class="text-center"> {{ item["Title"] }} </p>
-					
-				</a>
+				<div class="col-md-4 col-lg-4 col-xs-12 movie-content">
+					<div class="movie">
+						<a href="{{ path("movie", {'imdbID': item["imdbID"] , 'typeMovie' : 'F'}) }}">
+							<img class="img-responsive" src= {{ item["Poster"] }} >
+							<p class ="text-center vintage"> {{ item["Year"] }} </p>
+							<p class="text-center vintage"> {{ item["Title"] }} </p>
+							
+						</a>
+					</div>
 				</div>
 			    
 			{% endfor %}
+			{#
 		{% else %}
 			<p class="text-center">Pas de résultat</p>
+			#}
 		{% endif %}
 	</div>
 	

@@ -74,7 +74,7 @@
 
 			</div>
 		</div>
-		<div class="col-md-6">
+		<div class="col-md-4">
 			<h2 class="text-center">Actualités</h2>
 			<div>
 				
@@ -97,6 +97,9 @@
 							a décrypté la séquence pour
 							#}
 							{{ render(controller('UkronicBundle:Decrypt:Detail',{'id':histo.reference,'typeDecrypt':'S'}))}}
+						{% elseif histo.action == 5 %}
+							{# like de commentaire #}
+							like de commentaire	
 						{% else %}
 							action spéciale
 						{% endif %}

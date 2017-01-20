@@ -18,6 +18,7 @@
 	font-family: cf_old_photograph_creditRg;
 	font-size:1em;
 	color: black;
+	margin-bottom: 10px;
 }
 
 
@@ -34,13 +35,39 @@
 	height : 700px;
 }
 
+
+
 .decrypt img {
 	height : 500px;
+}
+
+.movie {
+	border : 5px solid black;
+	height: 600px;
+	padding: 20px;
+	margin : 10px;
+}
+
+.movie-content {
+	padding: 10px;
 }
 
 .img-movie {
 	width:100%;
 	height:300px;
+}
+
+.img-movie-big {
+	width : 100%;
+	height : 500px;
+}
+
+.infos-movie {
+	margin-top: 40px;
+}
+.margin-movie {
+
+	margin-bottom: 50px;
 }
 
 .comment {

@@ -5,6 +5,7 @@ namespace UkronicBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use UkronicBundle\Entity\LikeComment;
+use UkronicBundle\Entity\Histo;
 
 class CommentController extends Controller
 {
@@ -38,6 +39,14 @@ class CommentController extends Controller
     	$likeComment->setUser($user);
     	$likeComment->setComment($comment);
     	$em->persist($likeComment);
+    	$em->flush();
+    	// ajouter dans historique
+    	$histo = new Histo();
+    	$histo->setUser($user);
+    	$histo->setAction(5);
+    	$histo->setDateAction(new \DateTime('now'));
+        $histo->setReference($id);
+    	$em->persist($histo);
     	$em->flush();
     	return $this->redirectToRoute('decryptRead',array('id' =>$comment->getDecrypt()->getId()));
     }
