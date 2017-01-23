@@ -3,13 +3,7 @@
 {% block content %}
 
 	{# page profil #}
-	<h2 class="text-center">
-		{% if app.user.id == user.id %}
-			Mon Profil
-		{% else %}
-			Profil de {{ user.username }}
-		{% endif %}
-	</h2>
+	
 	
 	<div class="row">
 		<div class="col-md-3 col-md-offset-3">
@@ -22,6 +16,13 @@
 		{% endif %}
 		</div>
 		<div class="col-md-4">
+			<h2 class="text-center">
+				{% if app.user.id == user.id %}
+					Mon Profil
+				{% else %}
+					Profil de {{ user.username }}
+				{% endif %}
+			</h2>
 			
 			<p>Film préféré : 
 				{% if preferedMovie.id is defined %}
@@ -79,6 +80,8 @@
 			<div>
 				
 				{% for histo in lastHistos %}
+					<div class="histo">
+					<p>{{ histo.dateAction | date("d/m/Y H:i") }} </p>
 					<p>
 						{{ user.username }} 
 						{% if histo.action == 1 %}
@@ -105,9 +108,10 @@
 						{% endif %}
 						
 
-						 {{ histo.dateAction | date("d/m/Y H:i") }} 
+						 
 						
 					</p>
+					<div>
 				    
 				{% endfor %}
 			</div>

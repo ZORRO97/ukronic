@@ -75,8 +75,12 @@
 .movie {
 	border : 5px solid black;
 	height: 600px;
-	padding: 20px;
+	padding: 0px;
 	margin : 10px;
+}
+
+.movie img {
+	width: 100%;
 }
 
 .movie-content {
@@ -110,7 +114,8 @@
 	margin-top : 10px;
 
 	padding: 5px;
-	border: 2px solid blue;
+	border: 2px solid darkgray;
+	color : black;
 }
 
 
@@ -129,4 +134,9 @@ table.espace-star tbody tr td {
 
 p.espace-star {
 	margin-bottom: 40px;
+}
+
+.histo p {
+	line-height: 1em;
+	margin: 0 0 5px;
 }
