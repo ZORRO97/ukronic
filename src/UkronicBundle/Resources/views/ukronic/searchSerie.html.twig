@@ -24,14 +24,15 @@
 	<div class="row">
 		{% if message.Search is defined %}
 			{% for item in message.Search %}
-				<div class="col-md-4 col-lg-4 col-xs-12">
-				
-				<a href="{{ path("movie", {'imdbID': item["imdbID"] , 'typeMovie' : 'S'}) }}">
-					<img class="img-responsive" src= {{ item["Poster"] }} >
-					<p class="text-center"> {{ item["Year"] }} </p>
-					<p class="text-center"> {{ item["Title"] }} </p>
-					
-				</a>
+				<div class="col-md-4 col-lg-4 col-xs-12 movie-content">
+					<div class="movie">
+						<a href="{{ path("movie", {'imdbID': item["imdbID"] , 'typeMovie' : 'S'}) }}">
+							<img class="img-responsive" src= {{ item["Poster"] }} >
+							<p class="text-center vintage"> {{ item["Year"] }} </p>
+							<p class="text-center vintage"> {{ item["Title"] }} </p>
+							
+						</a>
+					</div>
 				</div>
 			    
 			{% endfor %}

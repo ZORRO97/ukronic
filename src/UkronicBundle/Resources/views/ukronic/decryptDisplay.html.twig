@@ -49,17 +49,19 @@
 			{{ form_end(form) }}
 			{% endif %}
 			{% if decrypt.comments is not empty  %}
-				{% for comment in decrypt.comments %}
+				{% for comment in decrypt.comments | reverse %}
+					<div class="commentaire">
 
-				    <p>
-				    	Le {{ comment.dateComment | date("d/m/Y h:i") }} 
-				    </p>
-				    <p> Par {{comment.user.userName | upper }} </p>
-				    <p> {{ comment.content }} </p>
-				    <p>
+					    </p><p>
+					    	Le {{ comment.dateComment | date("d/m/Y h:i") }} 
+					    </p>
+					    <p> Par {{comment.user.userName | upper }} </p>
+					    <p> "{{ comment.content }}" </p>
+					    <p>
 
-				    	{{render(controller('UkronicBundle:Comment:IsLike',{'id':comment.id,'userId':user.id}))}}
-				    </p>
+					    	{{render(controller('UkronicBundle:Comment:IsLike',{'id':comment.id,'userId':user.id}))}}
+					    
+					</div>
 				{% endfor %}
 			{% endif %}
 		</div>

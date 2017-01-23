@@ -25,20 +25,51 @@
 .ukronic_fond {
 	margin:0;
   padding:0;
-  height: 500px;
+  height: 300px;
   width:100%;
   
+}
+
+@media only screen and (min-width: 600px) {
+	.ukronic_fond {
+		height : 500px;
+	}
+}
+
+@media only screen and (min-width: 900px) {
+	.ukronic_fond {
+		height : 700px;
+	}
+}
+
+@media only screen and (min-width: 900px) {
+	.ukronic_fond {
+		height : 900px;
+	}
 }
 
 .decrypt {
 	border : 5px solid black;
 	height : 700px;
+	margin-bottom: 20px;
+}
+
+.decrypt-text {
+	padding : 10px;
+}
+
+.decrypt-text a {
+	color: black;
+}
+.decrypt-text a:hover {
+	color:darkgray;
 }
 
 
 
 .decrypt img {
 	height : 500px;
+	width : 100%;
 }
 
 .movie {
@@ -74,6 +105,14 @@
 	width: 100%;
 	height: 150px;
 }
+
+.commentaire {
+	margin-top : 10px;
+
+	padding: 5px;
+	border: 2px solid blue;
+}
+
 
 .espace-form {
 	margin-bottom: 30px;

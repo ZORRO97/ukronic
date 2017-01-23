@@ -17,7 +17,7 @@
 					<h2>Les derniers décryptages de films</h2>
 				</div>
 			</div>
-			<div class="row">
+			<div class="row animate-box">
 				{% if lastMovieDecrypts is not empty %}
 				{% for decrypt in lastMovieDecrypts %}
 					
@@ -25,9 +25,9 @@
 					
 
 					<div class="col-lg-4 col-md-4">
-						<div class="fh5co-blog animate-box decrypt">
+						<div class=" decrypt"> {# fh5co-blog animate-box #}
 							<a href="{{ path('decryptRead', {'id': decrypt.id}) }}"><img class="img-responsive" src="{{ decrypt.movie.posterURL }}" alt=""></a>
-							<div class="blog-text">
+							<div class="decrypt-text">
 								<h3 class="title-movie"><a href="{{path('dbukronic',{'id':decrypt.movie.id})}}">{{ decrypt.movie.title }}</a></h3>
 								<p><span class="vintage">Décrypteur : </span><a href="{{path('profile',{'id':decrypt.user.id})}}"> {{ decrypt.user.username }} </a></p>
 								<p><span class="vintage">Titre décryptage : </span><a href="{{ path('decryptRead', {'id': decrypt.id}) }}"> {{ decrypt.title }} </a></p>
@@ -58,9 +58,9 @@
 					
 
 					<div class="col-lg-4 col-md-4">
-						<div class="fh5co-blog animate-box decrypt">
+						<div class="decrypt">
 							<a href="{{ path('decryptRead', {'id': decrypt.id}) }}"><img class="img-responsive" src="{{ decrypt.movie.posterURL }}" alt=""></a>
-							<div class="blog-text">
+							<div class="decrypt-text">
 								<h3 class="title-movie"><a href="{{path('dbukronic',{'id':decrypt.movie.id})}}">{{ decrypt.movie.title }}</a></h3>
 								<p><span class="vintage">Décrypteur : </span><a href="{{path('profile',{'id':decrypt.user.id})}}"> {{ decrypt.user.username }} </a></p>
 								<p><span class="vintage">Titre décryptage : </span><a href="{{ path('decryptRead', {'id': decrypt.id}) }}"> {{ decrypt.title }} </a></p>
@@ -86,9 +86,9 @@
 					
 
 					<div class="col-lg-4 col-md-4">
-						<div class="fh5co-blog animate-box decrypt">
+						<div class="decrypt">
 							<a href="{{ path('dbukronic', {'id': item[0].movie.id}) }}"><img class="img-responsive" src="{{ item[0].movie.posterURL }}" alt=""></a>
-							<div class="blog-text">
+							<div class="decrypt-text">
 								<h3 class="title-movie"><a href="{{path('dbukronic',{'id':item[0].movie.id})}}">{{ item[0].movie.title }}</a></h3>
 								
 
@@ -110,9 +110,9 @@
 					
 
 					<div class="col-lg-4 col-md-4">
-						<div class="fh5co-blog animate-box decrypt">
+						<div class="decrypt">
 							<a href="{{ path('dbukronic', {'id': item[0].movie.id}) }}"><img class="img-responsive" src="{{ item[0].movie.posterURL }}" alt=""></a>
-							<div class="blog-text">
+							<div class="decrypt-text">
 								<h3 class="title-movie"><a href="{{path('dbukronic',{'id':item[0].movie.id})}}">{{ item[0].movie.title }}</a></h3>
 								
 								
