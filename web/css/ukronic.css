@@ -48,6 +48,10 @@
 	}
 }
 
+.presentation {
+	margin-bottom : 50px;
+}
+
 .decrypt {
 	border : 5px solid black;
 	height : 720px;
