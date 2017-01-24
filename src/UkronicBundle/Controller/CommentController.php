@@ -51,5 +51,19 @@ class CommentController extends Controller
     	return $this->redirectToRoute('decryptRead',array('id' =>$comment->getDecrypt()->getId()));
     }
 
+    /**
+     * @Route("/comment/like/display/{id}", name="commentLikeDisplay")
+     */
+    public function LikeDisplayAction($id){
+        $em = $this->getDoctrine()->getManager();
+        $comment = $em->getRepository('UkronicBundle:Comment')->findOneById($id);
+        if ($comment) {
+        return $this->render('UkronicBundle:Comment:likeDisplay.html.twig',array('comment'=>$comment));
+        } else {
+            return null;
+        }
+    }
+
+
 
 }
