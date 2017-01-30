@@ -1,12 +1,40 @@
 {% extends 'UkronicBundle::layout.html.twig' %}
 
 {% block content %}
-	<div>
+	
+	<div id="image-ukronic-salle" class="fh5co-bg-section" style="background-image:url('images/Image public big.png')">
+		{#
 		<img class="ukronic_fond" src="{{asset("images/Image public big.png") }}" alt="">
+		#}
+		<h2 class="text-center invite-title">Soyez prêt à découvrir une nouvelle dimension de vos films et séries</h2>
+		<div class="text-center invite-link">
+			<a href="#explications" class="btn btn-default">En savoir plus</a>
+		</div>
 	</div>
 
-
-
+	<div id="explications">
+		<p class="text-center">Vous avez des questions sur le film ou l'épisode de la série que vous venez de voir ?</p>
+		<p class="text-center">Vous avez des hypothèses bien tranchées sur un personnage ?</p>
+		<p class="text-center">Ici pas de critique ! Dites seulement ce que vous avez compris ... ou pas !</p>
+		<p class="text-center">Parlez de votre interprétation. Le débat est sans fin ! Tellement riche !</p>
+		<div class="row">
+			<div class="col-md-4 col-md-offset-4">
+			<img class="img-responsive center-block" src="{{ asset('images/lunettes-logo-300x155.png') }}" alt="lunettes">
+			</div>
+		</div>
+		{% if app.user.username is defined %}
+			<p class="text-center">Bienvenue dans la communauté UKRONIC</p>
+		{% else %}
+			<p class="text-center">
+				<a href="{{ path('fos_user_registration_register') }}">
+					Inscrivez vous ! Rejoignez la communauté UKRONIC
+				</a>
+			</p>
+		{% endif %}
+		
+		
+	</div>
+	
     
 
 
@@ -15,6 +43,7 @@
 			<div class="row animate-box">
 				<div class="col-md-8 col-md-offset-2 text-center fh5co-heading">
 					<h2>Les derniers décryptages de films</h2>
+					
 				</div>
 			</div>
 			<div class="row animate-box">
@@ -24,7 +53,7 @@
 					
 					
 
-					<div class="col-lg-4 col-md-4">
+					<div class="col-lg-2 col-md-2 col-xs-2">
 						<div class=" decrypt"> {# fh5co-blog animate-box #}
 							<a href="{{ path('decryptRead', {'id': decrypt.id}) }}"><img class="img-responsive" src="{{ decrypt.movie.posterURL }}" alt=""></a>
 							<div class="decrypt-text">
@@ -40,11 +69,14 @@
 				    
 				{% endfor %}
 				{% endif %}
+				<div class="col-md-2">
+					<a href="#">+</a>
+				</div>
 				
 				
 			</div>
 
-			<div class="row animate-box">
+			<div id="serie" class="row animate-box">
 				<div class="col-md-8 col-md-offset-2 text-center fh5co-heading">
 					<h2>Les derniers décryptages de séries</h2>
 				</div>
@@ -57,7 +89,7 @@
 					
 					
 
-					<div class="col-lg-4 col-md-4">
+					<div class="col-lg-2 col-md-2">
 						<div class="decrypt">
 							<a href="{{ path('decryptRead', {'id': decrypt.id}) }}"><img class="img-responsive" src="{{ decrypt.movie.posterURL }}" alt=""></a>
 							<div class="decrypt-text">
@@ -90,12 +122,12 @@
 					
 					
 
-					<div class="col-lg-4 col-md-4">
+					<div class="col-lg-2 col-md-2">
 						<div class="decrypt">
 							<a href="{{ path('dbukronic', {'id': item[0].movie.id}) }}"><img class="img-responsive" src="{{ item[0].movie.posterURL }}" alt=""></a>
 							<div class="decrypt-text">
 								<h3 class="title-movie"><a href="{{path('dbukronic',{'id':item[0].movie.id})}}">{{ item[0].movie.title }}</a></h3>
-								
+								<p>{{ item["dcount"] }} décryptage(s)</p>
 
 							</div> 
 						</div>
@@ -120,12 +152,14 @@
 					
 					
 
-					<div class="col-lg-4 col-md-4">
+					<div class="col-lg-2 col-md-2">
 						<div class="decrypt">
 							<a href="{{ path('dbukronic', {'id': item[0].movie.id}) }}"><img class="img-responsive" src="{{ item[0].movie.posterURL }}" alt=""></a>
 							<div class="decrypt-text">
 								<h3 class="title-movie"><a href="{{path('dbukronic',{'id':item[0].movie.id})}}">{{ item[0].movie.title }}</a></h3>
-								
+								<p>
+									{{ item["dcount"] }} décryptage(s)
+								</p>
 								
 
 							</div> 

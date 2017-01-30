@@ -13,7 +13,7 @@
 				<p class="title-movie espace-star"> {{ movie.title }} </p>
 				
 				
-				<p>Notes</p>
+				{# Notes #}
 				{# trois rangées d'étoiles #}
 				{# Note du film #}
 				{# Etoiles niveau ambiguité #}
@@ -38,6 +38,7 @@
 							    <img src="{{ asset("fleche_creuse.png") }}" alt="étoile" class="star">
 								</td>
 							{% endfor %}
+							<td><span></span>/10</td>
 
 						</tr>
 
@@ -96,10 +97,13 @@
 	<script>
 	$(function(){
 		var prefered = $('input.prefered').val();
+		$(".prefered td span").html(prefered);
 		
 		var nocomprendo = $('input.nocomprendo').val();
+		$(".nocomprendo td span").html(nocomprendo);
 		
 		var baleze = $('input.baleze').val();
+		$(".baleze td span").html(baleze);
 		
 
 		// on remplit l'affichage si une ancienne note existe
@@ -131,6 +135,7 @@
 			
 			var myLeft = $(this).parent().prevAll().length; // position de l'étoile cliquée sur la ligne
 			$('input.'+classSelected).val(myLeft); // on met la valeur dans le champ
+			$('.'+classSelected +" td span").html(myLeft);
 
 			
 			

@@ -1,0 +1,61 @@
+{% extends "UkronicBundle::layout.html.twig" %}
+
+{% block title %}Recherche Ukronic{% endblock %}
+
+{% block content %}
+
+	<h1 class="text-center">Résultats pour {{ title }}</h1>
+
+<h2 class="text-center">LES FILMS</h2>
+<div class="row">
+		{% if movies.Search is defined %}
+			{% for item in movies.Search %}
+				
+				
+				<div class="col-md-2 col-lg-2 col-xs-3 movie-content">
+					<div class="movie">
+						<a href="{{ path("movie", {'imdbID': item["imdbID"] , 'typeMovie' : 'F'}) }}">
+							<img class="img-responsive" src= {{ item["Poster"] }} >
+							<div class="movie-content">
+							<h3 class="title-movie"> {{ item["Title"] }} </h3>
+							<p class ="vintage"> {{ item["Year"] }} </p>
+							</div>
+						</a>
+					</div>
+				</div>
+			    
+			{% endfor %}
+			{#
+		{% else %}
+			<p class="text-center">Pas de résultat</p>
+			#}
+		{% endif %}
+	</div>
+
+<h2 class="text-center">LES SERIES</h2>
+<div class="row">
+		{% if series.Search is defined %}
+			{% for item in series.Search %}
+				
+				
+				<div class="col-md-2 col-lg-2 col-xs-3 movie-content">
+					<div class="movie">
+						<a href="{{ path("movie", {'imdbID': item["imdbID"] , 'typeMovie' : 'S'}) }}">
+							<img class="img-responsive" src= {{ item["Poster"] }} >
+							<div class="movie-content">
+							<h3 class="title-movie"> {{ item["Title"] }} </h3>
+							<p class ="vintage"> {{ item["Year"] }} </p>
+							</div>
+						</a>
+					</div>
+				</div>
+			    
+			{% endfor %}
+			{#
+		{% else %}
+			<p class="text-center">Pas de résultat</p>
+			#}
+		{% endif %}
+	</div>
+
+{% endblock %}

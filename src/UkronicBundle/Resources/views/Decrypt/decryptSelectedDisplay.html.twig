@@ -3,7 +3,7 @@
 <ul>
 	{% for decrypt in decrypts %}
 		
-		<li>
+		<li class="text-center decrypt-link">
 			<a href="{{ path('decryptRead',{'id' : decrypt.id }) }}">{{ decrypt.title }} </a>(
 			{% if decrypt.wordCount < 100 %}
 				-100
@@ -12,6 +12,7 @@
 			{% else %}
 				+300
 			{% endif %}
+			 mots
 			)
 			
 		</li>	

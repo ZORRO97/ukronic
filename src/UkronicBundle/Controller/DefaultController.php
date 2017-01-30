@@ -66,90 +66,36 @@ class DefaultController extends Controller
    /**
      * @Route("/search", name="search")
      */
-    public function searchAction(Request $request)
+    public function searchAction()
     {
-        // page de recherche
-        // mettre en place un formulaire
-        // prévoir l'affichage des réponses
-        $movieRequest = new MovieQuery();
-
-        $form = $this->createFormBuilder($movieRequest)
-           
-            ->add('title',TextType::class)
-            
-            ->add('save', SubmitType::class, array('label' => 'Rechercher'))
-            ->getForm();
+        $em = $this->getDoctrine()->getManager();
+        $repository = $em->getRepository("UkronicBundle:Movie");
         
-        $form->handleRequest($request);
+        $movies = $repository->allMovies();
         
-        if ($form->isSubmitted() && $form->isValid()) {
-        // $form->getData() holds the submitted values
-        // but, the original `$task` variable has also been updated
-            $movieRequest = $form->getData();
-            $message = "formulaire validé";
-            // faire l'appel de l'API allociné
-            $serviceMovie = $this->get('ukronic.infomovie');
-            $myTitle = $movieRequest->getTitle();
-
-            $reponse = $serviceMovie->listeMovies($myTitle);
-            $message = $reponse;
-        
-
-        
-        } else {
-            $message = "en cours de saisie";
-        }
 
         
         return $this->render('UkronicBundle:ukronic:search.html.twig',array(
-            'form'=>$form->createView(),
-            'movieRequest'=> $movieRequest,
-            'message'=>$message
+            
+            'movies'=>$movies
             ));
     }
 
     /**
      * @Route("/search/serie", name="searchSerie")
      */
-    public function searchSerieAction(Request $request)
+    public function searchSerieAction()
     {
-        // page de recherche
-        // mettre en place un formulaire
-        // prévoir l'affichage des réponses
-        $movieRequest = new MovieQuery();
-
-        $form = $this->createFormBuilder($movieRequest)
-           
-            ->add('title',TextType::class, array('required' => true))
-            
-            ->add('save', SubmitType::class, array('label' => 'Rechercher'))
-            ->getForm();
+        $em = $this->getDoctrine()->getManager();
+        $repository = $em->getRepository("UkronicBundle:Movie");
         
-        $form->handleRequest($request);
+        $series = $repository->allSeries();
         
-        if ($form->isSubmitted() && $form->isValid()) {
-        // $form->getData() holds the submitted values
-        // but, the original  variable has also been updated
-            $movieRequest = $form->getData();
-            $message = "formulaire validé";
-            // faire l'appel de l'API allociné
-            $serviceMovie = $this->get('ukronic.infomovie');
-            $myTitle = $movieRequest->getTitle();
-
-            $reponse = $serviceMovie->listeSeries($myTitle);
-            $message = $reponse;
-        
-
-        
-        } else {
-            $message = "en cours de saisie";
-        }
 
         
         return $this->render('UkronicBundle:ukronic:searchSerie.html.twig',array(
-            'form'=>$form->createView(),
-            'movieRequest'=> $movieRequest,
-            'message'=>$message
+            
+            'series'=>$series
             ));
     }
 

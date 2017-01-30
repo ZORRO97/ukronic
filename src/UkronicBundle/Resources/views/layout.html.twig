@@ -24,7 +24,10 @@
     
 
 {% block topnav %}
+	{#
     {% include 'UkronicBundle:ukronic:topnav.html.twig'  %}
+	#}
+	{{ render(controller("UkronicBundle:User:Banner"))}}
 {% endblock %}
 
 	{% block content %}

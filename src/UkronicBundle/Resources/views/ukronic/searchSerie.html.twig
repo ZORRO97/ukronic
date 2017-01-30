@@ -7,36 +7,30 @@
 
 <div class="row">
 	<h2 class="text-center">Séries</h2>
-	<div class="col-md-4 col-md-push-4">
-		{{ form_start(form) }}
-		<div class="form-group">
-		{{ form_widget(form.title,{'attr':{'placeholder':"Entrez un nom de série",'class':'form-control','value':""}}) }}
-		</div>
-		<div class="form-group">
-		{{ form_widget(form.save)}}
-		</div>
-		{{ form_end(form) }}
-	</div>
+	
 </div>
 <div>
 	
 	
 	<div class="row">
-		{% if message.Search is defined %}
-			{% for item in message.Search %}
-				<div class="col-md-4 col-lg-4 col-xs-12 movie-content">
+		{% if series is defined %}
+			{% for item in series %}
+				
+				
+				<div class="col-md-2 col-lg-2 col-xs-3 movie-content">
 					<div class="movie">
-						<a href="{{ path("movie", {'imdbID': item["imdbID"] , 'typeMovie' : 'S'}) }}">
-							<img class="img-responsive" src= {{ item["Poster"] }} >
-							<div class="movie-content">								
-								<h3 class="title-movie"> {{ item["Title"] }} </h3>
-								<p class="vintage"> {{ item["Year"] }} </p>
+						<a href="{{ path("dbukronic", {'id': item.id}) }}">
+							<img class="img-responsive" src= {{ item.posterURL }} >
+							<div class="movie-content">
+							<h3 class="title-movie"> {{ item.title }} </h3>
+							<p class ="vintage"> {{ item.productionYear }} </p>
 							</div>
 						</a>
 					</div>
 				</div>
 			    
 			{% endfor %}
+		
 		{% endif %}
 	</div>
 	

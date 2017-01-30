@@ -2,41 +2,29 @@
 
 {% block content %}
 <div class="container">
-{#<h1 class="text-center">UKRONIC</h1> #}
+
 
 
 <div class="row">
 	
 	<h2 class="text-center">Films</h2>
 	
-	<div></div>
-	<div class="col-md-4 col-md-push-4">
-		{{ form_start(form) }}
-		<div class="form-group">
-			{{ form_errors(form.title) }}
-		{{ form_widget(form.title,{'value':"",'attr':{'class':'form-control','placeholder':"Entrez un nom"}}) }}
-		</div>
-		<div class="form-group">
-		{{ form_widget(form.save)}}
-		</div>
-		{{ form_end(form) }}
-	</div>
-</div>
+	
 <div>
 	
 	
 	<div class="row">
-		{% if message.Search is defined %}
-			{% for item in message.Search %}
+		{% if movies is defined %}
+			{% for item in movies %}
 				
 				
-				<div class="col-md-4 col-lg-4 col-xs-12 movie-content">
+				<div class="col-md-2 col-lg-2 col-xs-3 movie-content">
 					<div class="movie">
-						<a href="{{ path("movie", {'imdbID': item["imdbID"] , 'typeMovie' : 'F'}) }}">
-							<img class="img-responsive" src= {{ item["Poster"] }} >
+						<a href="{{ path("dbukronic", {'id': item.id}) }}">
+							<img class="img-responsive" src= {{ item.posterURL }} >
 							<div class="movie-content">
-							<h3 class="title-movie"> {{ item["Title"] }} </h3>
-							<p class ="vintage"> {{ item["Year"] }} </p>
+							<h3 class="title-movie"> {{ item.title }} </h3>
+							<p class ="vintage"> {{ item.productionYear }} </p>
 							</div>
 						</a>
 					</div>

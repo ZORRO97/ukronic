@@ -6,6 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
 use UkronicBundle\Entity\User;
+use UkronicBundle\Entity\MovieQuery;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
@@ -77,10 +78,18 @@ class UserController extends Controller
             $em->flush();
             return $this->redirectToRoute('profile');
         }
-        return $this->render("UkronicBundle:user:imageUser.html.twig",array(
+        return $this->render("UkronicBundle:User:imageUser.html.twig",array(
                 "form" => $form->createView(),
                 "user" => $user
             ));
+    }
+
+    /**
+     * @Route("/Banner",name="UkronicBanner")
+     */
+    public function BannerAction(){
+        
+        return $this->render("UkronicBundle:user:banner.html.twig");
     }
 
 }
