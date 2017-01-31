@@ -1,0 +1,10 @@
+{# alldecrypts.html.twig #}
+{% extends 'UkronicBundle::layout.html.twig' %}
+
+{% block content %}
+<h2>Tous les décryptages</h2>
+{% for decrypt in decrypts %}
+	<p>{{ decrypt.movie.title }}</p>
+    
+{% endfor %}
+{% endblock %}

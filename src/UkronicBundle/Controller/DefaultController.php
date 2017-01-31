@@ -64,20 +64,27 @@ class DefaultController extends Controller
     }
 
    /**
-     * @Route("/search", name="search")
+     * @Route("/search/movie", name="movieSearch")
      */
-    public function searchAction()
+    public function movieSearchAction()
     {
         $em = $this->getDoctrine()->getManager();
-        $repository = $em->getRepository("UkronicBundle:Movie");
-        
-        $movies = $repository->allMovies();
+        $decryptRepository = $em->getRepository("UkronicBundle:Decrypt");        
+        $lastMovieDecrypts = $decryptRepository->movieLastDecrypted();        
+        $moreMovieDecrypts = $decryptRepository->movieMoreDecrypted(); 
+        $moreReadMovieDecrypts = $decryptRepository->moreReadMovieDecrypts();
+        $moreLikeDecrypts = $decryptRepository->moreLikedDecrypts(); 
+        $moreCommentMovieDecrypts = $decryptRepository->moreCommentMovieDecrypts();     
         
 
         
-        return $this->render('UkronicBundle:ukronic:search.html.twig',array(
+        return $this->render('UkronicBundle:ukronic:mainMovie.html.twig',array(
             
-            'movies'=>$movies
+            'lastMovieDecrypts'=>$lastMovieDecrypts,
+            'moreMovieDecrypts'=>$moreMovieDecrypts,
+            'moreReadMovieDecrypts'=>$moreReadMovieDecrypts,
+            'moreLikeDecrypts'=>$moreLikeDecrypts,
+            'moreCommentMovieDecrypts'=>$moreCommentMovieDecrypts
             ));
     }
 

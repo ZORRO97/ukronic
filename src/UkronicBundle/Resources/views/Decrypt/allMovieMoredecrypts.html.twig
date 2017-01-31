@@ -1,0 +1,63 @@
+{% extends 'UkronicBundle::layout.html.twig' %}
+
+{% block content %}
+	
+	
+	
+    
+
+
+	<div id="fh5co-blog" class="fh5co-bg-section">
+		<div class="container">
+			
+			
+
+			
+
+			
+			<div class="row animate-box">
+				<div class="col-md-8 col-md-offset-2 text-center fh5co-heading">
+					<h2>Les films décryptés</h2>
+				</div>
+			</div>
+			
+			<div class="row">
+				
+				{% if results is not empty %}
+				{% for item in results %}
+					
+					
+					
+
+					<div class="col-lg-2 col-md-2">
+						<div class="decrypt">
+							<a href="{{ path('dbukronic', {'id': item[0].movie.id}) }}"><img class="img-responsive" src="{{ item[0].movie.posterURL }}" alt=""></a>
+							<div class="decrypt-text">
+								<h3 class="title-movie"><a href="{{path('dbukronic',{'id':item[0].movie.id})}}">{{ item[0].movie.title }}</a></h3>
+								<p>{{ item["dcount"] }} décryptage(s)</p>
+
+							</div> 
+						</div>
+					</div>
+
+
+				    
+				{% endfor %}
+				{% endif %}
+				
+			</div>
+
+			
+			
+				
+
+			
+
+
+
+
+
+
+		</div>
+	</div>
+{% endblock %}

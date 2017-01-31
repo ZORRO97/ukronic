@@ -2,38 +2,7 @@
 
 {% block content %}
 	
-	<div id="image-ukronic-salle" class="fh5co-bg-section" style="background-image:url('images/Image public big.png')">
-		{#
-		<img class="ukronic_fond" src="{{asset("images/Image public big.png") }}" alt="">
-		#}
-		<h2 class="text-center invite-title">Soyez prêt à découvrir une nouvelle dimension de vos films et séries</h2>
-		<div class="text-center invite-link">
-			<a href="#explications" class="btn btn-default">En savoir plus</a>
-		</div>
-	</div>
-
-	<div id="explications">
-		<p class="text-center">Vous avez des questions sur le film ou l'épisode de la série que vous venez de voir ?</p>
-		<p class="text-center">Vous avez des hypothèses bien tranchées sur un personnage ?</p>
-		<p class="text-center">Ici pas de critique ! Dites seulement ce que vous avez compris ... ou pas !</p>
-		<p class="text-center">Parlez de votre interprétation. Le débat est sans fin ! Tellement riche !</p>
-		<div class="row">
-			<div class="col-md-4 col-md-offset-4">
-			<img class="img-responsive center-block" src="{{ asset('images/lunettes-logo-300x155.png') }}" alt="lunettes">
-			</div>
-		</div>
-		{% if app.user.username is defined %}
-			<p class="text-center">Bienvenue dans la communauté UKRONIC</p>
-		{% else %}
-			<p class="text-center">
-				<a href="{{ path('fos_user_registration_register') }}">
-					Inscrivez vous ! Rejoignez la communauté UKRONIC
-				</a>
-			</p>
-		{% endif %}
-		
-		
-	</div>
+	
 	
     
 
@@ -81,44 +50,9 @@
 				</div>
 				
 				
-			</div>
-
-			<div id="serie" class="row animate-box">
-				<div class="col-md-8 col-md-offset-2 text-center fh5co-heading">
-					<h2>Les derniers décryptages de séries</h2>
-				</div>
-			</div>
-
-			<div class="row">
-				{% if lastSerieDecrypts is not empty %}
-				{% for decrypt in lastSerieDecrypts %}
-					
-					
-					
-
-					<div class="col-lg-2 col-md-2">
-						<div class="decrypt">
-							<a href="{{ path('decryptRead', {'id': decrypt.id}) }}"><img class="img-responsive" src="{{ decrypt.movie.posterURL }}" alt=""></a>
-							<div class="decrypt-text">
-								<h3 class="title-movie"><a href="{{path('dbukronic',{'id':decrypt.movie.id})}}">{{ decrypt.movie.title }}</a></h3>
-								<p><span class="vintage">Décrypteur : </span><a href="{{path('profile',{'id':decrypt.user.id})}}"> {{ decrypt.user.username }} </a></p>
-								<p><span class="vintage">Titre décryptage : </span><a href="{{ path('decryptRead', {'id': decrypt.id}) }}"> {{ decrypt.title }} </a></p>
-
-							</div> 
-						</div>
-					</div>
-
-
-				    
-				{% endfor %}
-				{% endif %}
+			</div>	
 				
-				<div class="col-md-2">
-					<a class="text-center" href="{{ path('decryptSerieDateAll') }}">TOUS</a>
-				</div>
-				
-				
-			</div>
+			
 			<div class="row animate-box">
 				<div class="col-md-8 col-md-offset-2 text-center fh5co-heading">
 					<h2>TOP 5 des films les plus décryptés</h2>
@@ -130,9 +64,6 @@
 				{% if moreMovieDecrypts is not empty %}
 				{% for item in moreMovieDecrypts %}
 					
-					
-					
-
 					<div class="col-lg-2 col-md-2">
 						<div class="decrypt">
 							<a href="{{ path('dbukronic', {'id': item[0].movie.id}) }}"><img class="img-responsive" src="{{ item[0].movie.posterURL }}" alt=""></a>
@@ -145,8 +76,6 @@
 						</div>
 					</div>
 
-
-				    
 				{% endfor %}
 				{% endif %}
 				<div class="col-md-2">
@@ -156,27 +85,33 @@
 
 			<div class="row animate-box">
 				<div class="col-md-8 col-md-offset-2 text-center fh5co-heading">
-					<h2>TOP 5 des séries les plus décryptées</h2>
+					<h2>TOP 5 des films les plus lus</h2>
 				</div>
 			</div>
-			
-				<div class="row">
-					{% if moreSerieDecrypts is not empty %}
-				{% for item in moreSerieDecrypts %}
+
+			<div class="row animate-box">
+				{% if moreReadMovieDecrypts is not empty %}
+				{% for decrypt in moreReadMovieDecrypts %}
 					
 					
 					
 
-					<div class="col-lg-2 col-md-2">
-						<div class="decrypt">
-							<a href="{{ path('dbukronic', {'id': item[0].movie.id}) }}"><img class="img-responsive" src="{{ item[0].movie.posterURL }}" alt=""></a>
+					<div class="col-lg-2 col-md-2 col-xs-2">
+						<div class=" decrypt"> {# fh5co-blog animate-box #}
+							<a href="{{ path('decryptRead', {'id': decrypt.id}) }}"><img class="img-responsive" src="{{ decrypt.movie.posterURL }}" alt=""></a>
 							<div class="decrypt-text">
-								<h3 class="title-movie"><a href="{{path('dbukronic',{'id':item[0].movie.id})}}">{{ item[0].movie.title }}</a></h3>
-								<p> {{ item[0].movie.productionYear }} </p>
+								<h3 class="title-movie"><a href="{{path('dbukronic',{'id':decrypt.movie.id})}}">{{ decrypt.movie.title }}</a></h3>
+								<p><span class="vintage">Décrypteur : </span><a href="{{path('profile',{'id':decrypt.user.id})}}"> {{ decrypt.user.username }} </a></p>
 								<p>
-									{{ item["dcount"] }} décryptage(s)
+									{% if decrypt.typeDecrypt == "S" %}
+										Séquence
+									{% else %}
+										Hypothèse de Fin
+									{% endif %}
+								<a href="{{ path('decryptRead', {'id': decrypt.id}) }}"> {{ decrypt.title }} </a></p>
+								<p>
+									{{ decrypt.nbRead }} Lectures
 								</p>
-								
 
 							</div> 
 						</div>
@@ -187,15 +122,93 @@
 				{% endfor %}
 				{% endif %}
 				<div class="col-md-2">
-					<a class="text-center" href="{{ path('decryptSerieMoreAll') }}">TOUS</a>
+					<a class="text-center" href="{{ path('decryptMovieDateAll') }}">TOUS</a>
 				</div>
+				
+				
+			</div>	
+			
+			<div class="row animate-box">
+				<div class="col-md-8 col-md-offset-2 text-center fh5co-heading">
+					<h2>TOP 5 des films les plus likés</h2>
 				</div>
-
+			</div>
 			
 
 
 
+			
+			<div class="row animate-box">
+				{% if moreLikeDecrypts is not empty %}
+				{% for decrypt in moreLikeDecrypts %}
+					
+					
+					
 
+					<div class="col-lg-2 col-md-2 col-xs-2">
+						<div class=" decrypt"> {# fh5co-blog animate-box #}
+							<a href="{{ path('decryptRead', {'id': decrypt.id}) }}"><img class="img-responsive" src="{{ decrypt.movie.posterURL }}" alt=""></a>
+							<div class="decrypt-text">
+								<h3 class="title-movie"><a href="{{path('dbukronic',{'id':decrypt.movie.id})}}">{{ decrypt.movie.title }}</a></h3>
+								<p><span class="vintage">Par : </span><a href="{{path('profile',{'id':decrypt.user.id})}}"> {{ decrypt.user.username }} </a></p>
+								<p>
+									{% if decrypt.typeDecrypt == "S" %}
+										Séquence
+									{% else %}
+										Hypothèse de Fin
+									{% endif %}
+								 : </span><a href="{{ path('decryptRead', {'id': decrypt.id}) }}"> {{ decrypt.title }} </a></p>
+								<p>
+									{{ decrypt.nbLiked }} LIKE
+								</p>
+
+							</div> 
+						</div>
+					</div>
+
+
+				    
+				{% endfor %}
+				{% endif %}
+				<div class="col-md-2">
+					<a class="text-center" href="{{ path('decryptMovieDateAll') }}">TOUS</a>
+				</div>
+				
+				
+			</div>	
+
+			<div class="row animate-box">
+				<div class="col-md-8 col-md-offset-2 text-center fh5co-heading">
+					<h2>TOP 5 des films les plus commentés</h2>
+				</div>
+			</div>
+
+			
+
+			<div class="row">
+				
+				{% if moreCommentMovieDecrypts is not empty %}
+				{% for item in moreCommentMovieDecrypts %}
+					
+					<div class="col-lg-2 col-md-2">
+						<div class="decrypt">
+							<a href="{{ path('dbukronic', {'id': item[0].movie.id}) }}"><img class="img-responsive" src="{{ item[0].movie.posterURL }}" alt=""></a>
+							<div class="decrypt-text">
+								<h3 class="title-movie"><a href="{{path('dbukronic',{'id':item[0].movie.id})}}">{{ item[0].movie.title }}</a></h3>
+								<p> {{ item[0].movie.productionYear }} </p>
+								<p>par {{ item[0].user.username }}</p>
+								<p>" {{ item[0].title }} "</p>
+								<p>{{ item["ccount"] }} commentaire(s)</p>
+
+							</div> 
+						</div>
+					</div>
+
+				{% endfor %}
+				{% endif %}
+				<div class="col-md-2">
+					<a class="text-center" href="{{ path('decryptMovieMoreAll') }}">TOUS</a>
+				</div>
 
 
 		</div>

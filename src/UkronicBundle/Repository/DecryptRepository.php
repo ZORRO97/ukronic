@@ -33,10 +33,24 @@ class DecryptRepository extends \Doctrine\ORM\EntityRepository
     	return $decrypts;
 	}
 
+	public function movieMoreAllDecrypted(){
+		$q = $this->getEntityManager()
+		->createQuery("SELECT d , COUNT(DISTINCT d.id) as dcount FROM UkronicBundle:Decrypt d JOIN d.movie m WHERE m.typeMovie = 'F' GROUP BY m.id ORDER BY dcount DESC" );
+    	$decrypts = $q->getResult();
+    	return $decrypts;
+	}
+
 	public function serieMoreDecrypted() {
 		$q = $this->getEntityManager()
 		->createQuery("SELECT d , COUNT(DISTINCT d.id) as dcount FROM UkronicBundle:Decrypt d JOIN d.movie m WHERE m.typeMovie = 'S' GROUP BY m.id ORDER BY dcount DESC" )
 		->setMaxresults(5);
+    	$decrypts = $q->getResult();
+    	return $decrypts;
+	}
+
+	public function serieMoreAllDecrypted() {
+		$q = $this->getEntityManager()
+		->createQuery("SELECT d , COUNT(DISTINCT d.id) as dcount FROM UkronicBundle:Decrypt d JOIN d.movie m WHERE m.typeMovie = 'S' GROUP BY m.id ORDER BY dcount DESC" );
     	$decrypts = $q->getResult();
     	return $decrypts;
 	}
@@ -49,11 +63,28 @@ class DecryptRepository extends \Doctrine\ORM\EntityRepository
 		return $decrypts;
 
 	}
+	
+	public function movieDateDecrypted() {
+		$q = $this->getEntityManager()
+		->createQuery("SELECT d FROM UkronicBundle:Decrypt d  JOIN d.movie m WHERE m.typeMovie = 'F' ORDER BY d.dateDecrypt DESC" );
+    	$decrypts = $q->getResult();
+		return $decrypts;
+
+	}
+
 
 	public function serieLastDecrypted() {
 		$q = $this->getEntityManager()
 		->createQuery("SELECT d FROM UkronicBundle:Decrypt d JOIN d.movie m WHERE m.typeMovie = 'S' ORDER BY d.dateDecrypt DESC" )
 		->setMaxresults(5);
+    	$decrypts = $q->getResult();
+		return $decrypts;
+
+	}
+
+	public function serieDateDecrypted() {
+		$q = $this->getEntityManager()
+		->createQuery("SELECT d FROM UkronicBundle:Decrypt d JOIN d.movie m WHERE m.typeMovie = 'S' ORDER BY d.dateDecrypt DESC" );
     	$decrypts = $q->getResult();
 		return $decrypts;
 
@@ -99,6 +130,28 @@ class DecryptRepository extends \Doctrine\ORM\EntityRepository
         }
         return $q->getResult();
 
+	}
+
+	public function moreLikedDecrypts(){
+			$q = $this->getEntityManager()
+		->createQuery("SELECT d FROM UkronicBundle:Decrypt d JOIN d.movie m WHERE m.typeMovie = 'F' AND d.nbLiked > 0  ORDER BY d.nbLiked DESC" )
+		->setMaxresults(5);
+		return $q->getResult();
+	}
+
+
+	public function moreReadMovieDecrypts(){
+		$q = $this->getEntityManager()
+		->createQuery("SELECT d FROM UkronicBundle:Decrypt d JOIN d.movie m WHERE m.typeMovie = 'F' AND d.nbRead > 0  ORDER BY d.nbRead DESC" )
+		->setMaxresults(5);
+		return $q->getResult();
+	}
+
+	public function moreCommentMovieDecrypts(){
+		$q = $this->getEntityManager()
+		->createQuery("SELECT d , COUNT(DISTINCT c.id) as ccount  FROM UkronicBundle:Decrypt d JOIN d.movie m INNER JOIN d.comments c WHERE m.typeMovie='F' GROUP BY d.id ORDER BY ccount DESC " )
+		->setMaxresults(5);
+		return $q->getResult();
 	}
 
 	public function sequenceDecrypted(User $user){

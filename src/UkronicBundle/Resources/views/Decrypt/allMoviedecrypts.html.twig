@@ -1,0 +1,39 @@
+{# alldecrypts.html.twig #}
+{% extends 'UkronicBundle::layout.html.twig' %}
+
+{% block content %}
+<div id="fh5co-blog" class="fh5co-bg-section">
+		<div class="container">
+			<div class="row animate-box">
+				<div class="col-md-8 col-md-offset-2 text-center fh5co-heading">
+					<h2>Les décryptages de films</h2>
+					
+				</div>
+			</div>
+			<div class="row animate-box">
+				{% if decrypts is not empty %}
+				{% for decrypt in decrypts %}
+					
+					
+					
+
+					<div class="col-lg-2 col-md-2 col-xs-2">
+						<div class=" decrypt"> {# fh5co-blog animate-box #}
+							<a href="{{ path('decryptRead', {'id': decrypt.id}) }}"><img class="img-responsive" src="{{ decrypt.movie.posterURL }}" alt=""></a>
+							<div class="decrypt-text">
+								<h3 class="title-movie"><a href="{{path('dbukronic',{'id':decrypt.movie.id})}}">{{ decrypt.movie.title }}</a></h3>
+								<p><span class="vintage">Décrypteur : </span><a href="{{path('profile',{'id':decrypt.user.id})}}"> {{ decrypt.user.username }} </a></p>
+								<p><span class="vintage">Titre décryptage : </span><a href="{{ path('decryptRead', {'id': decrypt.id}) }}"> {{ decrypt.title }} </a></p>
+
+							</div> 
+						</div>
+					</div>
+
+
+				    
+				{% endfor %}
+				{% endif %}
+			</div>
+		</div>
+</div>
+{% endblock %}
