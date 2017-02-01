@@ -90,6 +90,15 @@ class DecryptRepository extends \Doctrine\ORM\EntityRepository
 
 	}
 
+	public function movieLikeAllDecrypted(){
+		//
+		//$q = $this->getEntityManager()
+		//->createQuery("SELECT d , COUNT(DISTINCT b.id) AS clike FROM UkronicBundle:Decrypt d  INNER JOIN d b.decrypt  GROUP BY d.id ORDER BY clike DESC" );
+    	//$decrypts = $q->getResult();
+		//return $decrypts;
+		return "en cours de debug";
+	}
+
 
 
 	public function getDecrypts($idMovie , $filter, $typeDecrypt) {
@@ -144,6 +153,12 @@ class DecryptRepository extends \Doctrine\ORM\EntityRepository
 		$q = $this->getEntityManager()
 		->createQuery("SELECT d FROM UkronicBundle:Decrypt d JOIN d.movie m WHERE m.typeMovie = 'F' AND d.nbRead > 0  ORDER BY d.nbRead DESC" )
 		->setMaxresults(5);
+		return $q->getResult();
+	}
+
+	public function movieMoreReadAllDecrypted(){
+		$q = $this->getEntityManager()
+		->createQuery("SELECT d FROM UkronicBundle:Decrypt d JOIN d.movie m WHERE m.typeMovie = 'F' AND d.nbRead > 0  ORDER BY d.nbRead DESC" );
 		return $q->getResult();
 	}
 

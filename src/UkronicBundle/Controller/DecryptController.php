@@ -113,6 +113,16 @@ class DecryptController extends Controller
     }
 
     /**
+     * @Route("/decrypt/movie/moreRead/all", name="decryptMovieMoreReadAll")
+     */
+    public function DecryptMovieMoreReadAllAction($id){
+        $em = $this->getDoctrine()->getManager();
+        $decryptRepository = $em->getRepository('UkronicBundle:Decrypt');
+        $results = $decryptRepository->movieMoreReadAllDecrypted();
+        return $this->render('UkronicBundle:Decrypt:allMovieMoreReadDecrypts.html.twig',array('results'=>$results));
+    }
+
+    /**
      * @Route("/decrypt/serie/more/all", name="decryptSerieMoreAll")
      */
     public function DecryptSerieMoreAllAction($id){
@@ -120,6 +130,16 @@ class DecryptController extends Controller
         $decryptRepository = $em->getRepository('UkronicBundle:Decrypt');
         $results = $decryptRepository->serieMoreAllDecrypted();
         return $this->render('UkronicBundle:Decrypt:allSerieMoredecrypts.html.twig',array('results'=>$results));
+    }
+
+    /**
+     * @Route("/decrypt/movie/like/all", name="decryptMovieLikeAll")
+     */
+    public function DecryptMovieLikeAllAction($id){
+        $em = $this->getDoctrine()->getManager();
+        $decryptRepository = $em->getRepository('UkronicBundle:Decrypt');
+        $results = $decryptRepository->movieLikeAllDecrypted();
+        return $this->render('UkronicBundle:Decrypt:allMovieLikeDecrypts.html.twig',array('results'=>$results));
     }
 
 }

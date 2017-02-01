@@ -365,6 +365,8 @@ class DefaultController extends Controller
         $liked = false;
     }
 
+        $nbLiked = $repositoryBeloved->nbLikedDecrypt($id);
+
         // récupérer la liste des commentaires attachés au décryptage
         // ajouter un formulaire pour la saisie des commentaires
         $comment = new Comment();
@@ -409,6 +411,7 @@ class DefaultController extends Controller
         return $this->render("UkronicBundle:ukronic:decryptDisplay.html.twig", array(
             "decrypt"=>$decrypt,
             "liked" => $liked,
+            'nbLiked' => $nbLiked,
             "user" => $user,            
             "form" => $form->createView()
             ));

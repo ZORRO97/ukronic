@@ -27,5 +27,11 @@ class LikeCommentRepository extends \Doctrine\ORM\EntityRepository
 		}
 	}
 
+	function nbLiked($id){
+		$q = $this->getEntityManager()
+		->createQuery("SELECT COUNT(DISTINCT b.id) FROM UkronicBundle:LikeComment b JOIN b.comment c WHERE c.id = $id");
+		return $q->getSingleScalarResult();
+	}
+
 	
 }

@@ -1,6 +1,7 @@
 {% extends 'UkronicBundle::layout.html.twig' %}
 
 {% block content %}
+	<div class="presentation"></div>
 	<div class="row">
 
 		
@@ -8,13 +9,21 @@
 
 		
 		<div class="col-md-3 col-md-offset-3">
-			<p><a href=" {{ path("dbukronic",{'id':decrypt.movie.id}) }} "><img class="img-responsive center-block" src="{{ decrypt.movie.posterURL }}" alt="image Film"></a></p>
+			<p><a href=" {{ path("dbukronic",{'id':decrypt.movie.id}) }} "><img class="img-responsive center-block img-decrypt-big" src="{{ decrypt.movie.posterURL }}" alt="image Film"></a></p>
 		</div>
 	
 		<div class="col-md-3">
-			<h2 class="text-center infos-movie">Décryptage</h2>
-			<p class=""> {{ decrypt.movie.title }}</p>
-			<p class=""> Titre : {{ decrypt.title }} </p>
+			
+			<p class="">Décryptage de  {{ decrypt.movie.title }}</p>
+			<p>
+				{% if decrypt.typeDecrypt == "F" %}
+					Hypothèse de fin
+				{% else %}
+					Séquence
+				{% endif %}
+				"{{ decrypt.title }}"
+			</p>
+			<p class="">  par {{ decrypt.user.username }} </p>
 			
 		</div>
 	</div>
@@ -30,7 +39,8 @@
 					{% else %}
 						<a href="#" class="btn btn-warning">Liked</a>
 					
-					{% endif %}	
+					{% endif %}
+					{{ nbLiked }}	
 				{% endif %}
 			</p>
 		</div>

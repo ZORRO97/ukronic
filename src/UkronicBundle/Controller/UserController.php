@@ -89,7 +89,7 @@ class UserController extends Controller
      */
     public function BannerAction(){
         
-        return $this->render("UkronicBundle:user:banner.html.twig");
+        return $this->render("UkronicBundle:User:banner.html.twig");
     }
 
 }

@@ -34,4 +34,12 @@ class BelovedRepository extends \Doctrine\ORM\EntityRepository
     	$nb = $q->getSingleScalarResult();
 		return $nb;
 	}
+
+	function nbLikedDecrypt($decryptId){
+		$q = $this->getEntityManager()
+		->createQuery("SELECT COUNT(DISTINCT b.id) FROM UkronicBundle:Beloved b  JOIN b.decrypt d WHERE d.id = $decryptId " );
+    	$nb = $q->getSingleScalarResult();
+		return $nb;
+
+	}
 }

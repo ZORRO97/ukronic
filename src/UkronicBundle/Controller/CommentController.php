@@ -18,9 +18,11 @@ class CommentController extends Controller
     	
         $likeCommentRepository = $em->getRepository("UkronicBundle:LikeComment");
         $liked = $likeCommentRepository->isLiked($id,$userId);
+        $nbLiked = $likeCommentRepository->nbLiked($id);
        
         return $this->render('UkronicBundle:Comment:like.html.twig', array(
         	'liked' => $liked,
+            'nbLiked' => $nbLiked,
         	'commentId' => $id,
         	'userId' => $userId
             // ...

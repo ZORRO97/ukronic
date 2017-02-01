@@ -3,16 +3,16 @@
 {% macro buttonLink(idMovie,fe,typeDecrypt,texte,filter_end,filter_seq) %}
 	{% if typeDecrypt == "F" %}
 		{% if fe == filter_end %}
-			<a class="btn btn-info" href = "{{ path('dbukronic',{'id' : idMovie , 'filter_end' : fe  ,'filter_seq' : filter_seq }) }}" >{{ texte }}</a>
+			<a class="btn btn-info btn-ukronic-filter" href = "{{ path('dbukronic',{'id' : idMovie , 'filter_end' : fe  ,'filter_seq' : filter_seq }) }}" >{{ texte }}</a>
 		{% else %}
-			<a class="btn btn-default" href = "{{ path('dbukronic',{'id' :  idMovie , 'filter_end' : fe ,'filter_seq' : filter_seq }) }}" >{{ texte }}</a>
+			<a class="btn btn-default btn-ukronic-filter" href = "{{ path('dbukronic',{'id' :  idMovie , 'filter_end' : fe ,'filter_seq' : filter_seq }) }}" >{{ texte }}</a>
 		{% endif %}
 		
 	{% else %}
 		{% if fe == filter_seq %}
-			<a class="btn btn-info" href = "{{ path('dbukronic',{'id' : idMovie , 'filter_end' : filter_end ,'filter_seq' : fe }) }}" >{{ texte }}</a>
+			<a class="btn btn-info btn-ukronic-filter" href = "{{ path('dbukronic',{'id' : idMovie , 'filter_end' : filter_end ,'filter_seq' : fe }) }}" >{{ texte }}</a>
 		{% else %}
-			<a class="btn btn-default" href = "{{ path('dbukronic',{'id' : idMovie , 'filter_end' : filter_end ,'filter_seq' : fe }) }}" >{{ texte }}</a>
+			<a class="btn btn-default btn-ukronic-filter" href = "{{ path('dbukronic',{'id' : idMovie , 'filter_end' : filter_end ,'filter_seq' : fe }) }}" >{{ texte }}</a>
 		{% endif %}
 	{% endif %}
 		
