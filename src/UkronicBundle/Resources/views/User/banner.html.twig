@@ -9,7 +9,7 @@
   </div>
   <div class="col-md-9">
     <div class="row">
-      <nav class="navbar navbar-default" style="background-color:#149BDE" height=150px>
+      <nav id="banner" class="navbar navbar-default" style="background-color:#149BDE" height=150px>
   <div class="container-fluid">
     <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-header">
@@ -104,11 +104,13 @@
 		$('#valid-search').click(function(){
 			console.log($('#title-search').val());
 			var myTitle = $('#title-search').val();
-			var myRoute = Routing.generate('ukronic-recherche',{'title': myTitle});
-			console.log("Route -> "+myRoute);
+      var route = "{{ path('ukronic-recherche', {'title': 'myTitle'})|escape('js') }}";
+      route = route.replace('myTitle',myTitle);
+			// var myRoute = Routing.generate('ukronic-recherche',{'title': myTitle});
+			// console.log("Route -> "+myRoute);
 			
 
-			location.href = myRoute;
+			location.href = route;
 		});
 		
 	});

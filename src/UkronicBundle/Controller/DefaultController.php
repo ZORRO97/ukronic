@@ -55,7 +55,7 @@ class DefaultController extends Controller
         $moreMovieDecrypts = $decryptRepository->movieMoreDecrypted();
         $moreSerieDecrypts = $decryptRepository->serieMoreDecrypted();
 
-        return $this->render('UkronicBundle:ukronic:main.html.twig', array(
+        return $this->render('UkronicBundle:Ukronic:main.html.twig', array(
                 "lastMovieDecrypts" => $lastMovieDecrypts,
                 "lastSerieDecrypts" => $lastSerieDecrypts,
                 "moreMovieDecrypts" => $moreMovieDecrypts,
@@ -78,7 +78,7 @@ class DefaultController extends Controller
         
 
         
-        return $this->render('UkronicBundle:ukronic:mainMovie.html.twig',array(
+        return $this->render('UkronicBundle:Ukronic:mainMovie.html.twig',array(
             
             'lastMovieDecrypts'=>$lastMovieDecrypts,
             'moreMovieDecrypts'=>$moreMovieDecrypts,
@@ -100,7 +100,7 @@ class DefaultController extends Controller
         
 
         
-        return $this->render('UkronicBundle:ukronic:searchSerie.html.twig',array(
+        return $this->render('UkronicBundle:Ukronic:searchSerie.html.twig',array(
             
             'series'=>$series
             ));
@@ -143,7 +143,7 @@ class DefaultController extends Controller
         if ($movie == null) {
             return $this->redirect(path("main"));
         }
-        return $this->render("UkronicBundle:ukronic:movie.html.twig",array(
+        return $this->render("UkronicBundle:Ukronic:movie.html.twig",array(
             "movie"=>$movie,
             "filter_end" => "-100",
             "filter_seq" => "-100"
@@ -169,7 +169,7 @@ class DefaultController extends Controller
             return $this->redirectToRoute("main");
         }
 
-        return $this->render("UkronicBundle:ukronic:movie.html.twig",array(
+        return $this->render("UkronicBundle:Ukronic:movie.html.twig",array(
             "movie"=>$movie,
             "filter_end" => $filter_end,
             "filter_seq" => $filter_seq
@@ -212,7 +212,7 @@ class DefaultController extends Controller
 
 
 
-        return $this->render("UkronicBundle:ukronic:profile.html.twig",array(
+        return $this->render("UkronicBundle:Ukronic:profile.html.twig",array(
             'nbLikes' => $nbLikes,
             'nbComment' => $nbComment,
             'nbSequence' => $nbSequence,
@@ -343,7 +343,7 @@ class DefaultController extends Controller
         } 
 
        
-        return $this->render("UkronicBundle:ukronic:decrypt.html.twig", array("movie"=>$movie, "form"=>$form->createView()));
+        return $this->render("UkronicBundle:Ukronic:decrypt.html.twig", array("movie"=>$movie, "form"=>$form->createView()));
     }
 
      /**
@@ -408,7 +408,7 @@ class DefaultController extends Controller
 
 
 
-        return $this->render("UkronicBundle:ukronic:decryptDisplay.html.twig", array(
+        return $this->render("UkronicBundle:Ukronic:decryptDisplay.html.twig", array(
             "decrypt"=>$decrypt,
             "liked" => $liked,
             'nbLiked' => $nbLiked,

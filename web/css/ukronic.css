@@ -9,6 +9,14 @@
 
 }
 
+#banner ul li a {
+	color: white;
+}
+
+#banner {
+	border: none;
+}
+
 .title-movie {
 	font-family: cf_old_photograph_creditRg;
 	font-size:1em; 
@@ -44,8 +52,8 @@
 }
 
 .invite-link {
-	margin-bottom: 20px;
-	padding-top: 250px;
+	margin-bottom: 80px;
+	padding-top: 130px;
 
 }
 
@@ -84,7 +92,7 @@
 
 
 .decrypt {
-	border : 5px solid black;
+	border : 2px solid darkgray;
 	height : 500px;
 	margin-bottom: 20px;
 	background-color: #F5F5F5;
