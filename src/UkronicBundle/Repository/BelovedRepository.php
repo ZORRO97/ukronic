@@ -4,6 +4,7 @@ namespace UkronicBundle\Repository;
 
 use UkronicBundle\Entity\User;
 use UkronicBundle\Entity\Decrypt;
+use UkronicBundle\Entity\Beloved;
 
 /**
  * BelovedRepository
@@ -42,4 +43,22 @@ class BelovedRepository extends \Doctrine\ORM\EntityRepository
 		return $nb;
 
 	}
+
+	function allLikedDecrypt(){
+		$q = $this->getEntityManager()
+		->createQuery("SELECT b , COUNT(DISTINCT b.id) AS bcount FROM UkronicBundle:Beloved b JOIN b.decrypt d GROUP BY d.id ORDER BY bcount DESC"); 
+		
+		$results = $q->getResult();
+		return $results;
+	}
+	
+	function moreLikedDecrypt(){
+		$q = $this->getEntityManager()
+		->createQuery("SELECT b , COUNT(DISTINCT b.id) AS bcount FROM UkronicBundle:Beloved b JOIN b.decrypt d GROUP BY d.id ORDER BY bcount DESC")
+		->setMaxresults(5); 
+		
+		$results = $q->getResult();
+		return $results;
+	}
+
 }

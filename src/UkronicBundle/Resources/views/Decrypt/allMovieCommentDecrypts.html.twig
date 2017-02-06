@@ -1,28 +1,17 @@
 {% extends 'UkronicBundle::layout.html.twig' %}
 
 {% block content %}
-	
-	
-	
-    
 
 
-	<div id="fh5co-blog" class="fh5co-bg-section">
+<div id="fh5co-blog" class="fh5co-bg-section">
 		<div class="container">
-			
-			
-
-			
-
-			
 			<div class="row animate-box">
 				<div class="col-md-8 col-md-offset-2 text-center fh5co-heading">
-					<h2>Les films décryptés</h2>
+					<h2>Les décryptages commentés</h2>
+					
 				</div>
 			</div>
-			
-			<div class="row">
-				
+			<div class="row animate-box">
 				{% if results is not empty %}
 				{% for item in results %}
 					
@@ -34,10 +23,10 @@
 							<a href="{{ path('dbukronic', {'id': item[0].movie.id}) }}"><img class="img-responsive" src="{{ item[0].movie.posterURL }}" alt=""></a>
 							<div class="decrypt-text">
 								<h3 class="title-movie"><a href="{{path('dbukronic',{'id':item[0].movie.id})}}">{{ item[0].movie.title }}</a></h3>
-								<p>
-									{{ item[0].movie.productionYear }}
-								</p>
-								<p>{{ item["dcount"] }} décryptage(s)</p>
+								<p> {{ item[0].movie.productionYear }} </p>
+								<p>par <a href="{{path('profile',{'id':item[0].user.id})}}"> {{ item[0].user.username }} </a></p>
+								<p><a href="{{ path('decryptRead', {'id': item[0].id}) }}">" {{ item[0].title }} "</a></p>
+								<p>{{ item["ccount"] }} <img class="icon-ukronic" src="{{ asset('images/Comment-edit-icon.png') }}" alt="commentaire">{# commentaire(s) #}</p>
 
 							</div> 
 						</div>
@@ -47,20 +36,7 @@
 				    
 				{% endfor %}
 				{% endif %}
-				
 			</div>
-
-			
-			
-				
-
-			
-
-
-
-
-
-
 		</div>
-	</div>
+</div>
 {% endblock %}

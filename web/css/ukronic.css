@@ -57,6 +57,16 @@
 
 }
 
+.icon-ukronic {
+	height : 20px;
+	width : 20px;
+}
+
+.icon-ukronic-big {
+	height: 40px;
+	width:40px;
+}
+
 @media only screen and (min-width: 600px) {
 	.ukronic_fond {
 		height : 500px;
@@ -116,19 +126,19 @@
 
 .img-decrypt-big {
 	width: 50%;
-	height: 200px;
+	height: 300px;
 }
 
 
 
-.decrypt img {
+.decrypt a img {
 	height : 250px;
 	width : 100%;
 }
 
 .decrypt-link {
 	list-style-type:none;
-	font-size:1.5em; 
+	font-size:1.2em; 
 }
 
 .movie {
@@ -215,7 +225,7 @@ p.espace-star {
 }
 
 .btn-ukronic-filter {
-	font-size : 12px;
-	padding: 3px 2px;
-	margin-right : 2px;
+	font-size : 16px;
+	padding: 3px 4px;
+	margin-right : 4px;
 }

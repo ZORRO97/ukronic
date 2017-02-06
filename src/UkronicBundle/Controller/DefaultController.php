@@ -73,7 +73,9 @@ class DefaultController extends Controller
         $lastMovieDecrypts = $decryptRepository->movieLastDecrypted();        
         $moreMovieDecrypts = $decryptRepository->movieMoreDecrypted(); 
         $moreReadMovieDecrypts = $decryptRepository->moreReadMovieDecrypts();
-        $moreLikeDecrypts = $decryptRepository->moreLikedDecrypts(); 
+
+        $belovedRepository = $em->getRepository("UkronicBundle:Beloved");
+        $moreLikeDecrypts = $belovedRepository->moreLikedDecrypt(); 
         $moreCommentMovieDecrypts = $decryptRepository->moreCommentMovieDecrypts();     
         
 

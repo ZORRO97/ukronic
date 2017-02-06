@@ -137,9 +137,20 @@ class DecryptController extends Controller
      */
     public function DecryptMovieLikeAllAction($id){
         $em = $this->getDoctrine()->getManager();
-        $decryptRepository = $em->getRepository('UkronicBundle:Decrypt');
-        $results = $decryptRepository->movieLikeAllDecrypted();
+        $belovedRepository = $em->getRepository('UkronicBundle:Beloved');
+        $results = $belovedRepository->allLikedDecrypt();
         return $this->render('UkronicBundle:Decrypt:allMovieLikeDecrypts.html.twig',array('results'=>$results));
     }
+
+/**
+     * @Route("/decrypt/movie/comment/all", name="decryptMovieCommentAll")
+     */
+    public function DecryptMovieCommentAllAction($id){
+        $em = $this->getDoctrine()->getManager();
+        $decryptRepository = $em->getRepository('UkronicBundle:Decrypt');
+        $results = $decryptRepository->allCommentMovieDecrypts();
+        return $this->render('UkronicBundle:Decrypt:allMovieCommentDecrypts.html.twig',array('results'=>$results));
+    }
+
 
 }

@@ -35,9 +35,9 @@
 			<p class="text-right">
 			{% if user != "anon." %}
 					{% if not liked  %}
-					<a href="{{ path('decryptLike', {'id' : decrypt.id }) }}" class="btn btn-primary btn-like">LIKE</a>
+					<a href="{{ path('decryptLike', {'id' : decrypt.id }) }}" class="btn btn-primary btn-like"><img class="icon-ukronic-big" src="{{ asset("images/FBLike-Icon_300_v2.png") }}" alt="like"></a>
 					{% else %}
-						<a href="#" class="btn btn-warning">Liked</a>
+						<a href="#" class="btn btn-warning"><img class="icon-ukronic-big" src="{{ asset("images/Like-2-icon.png")}}" alt="liked"></a>
 					
 					{% endif %}
 					{{ nbLiked }}	

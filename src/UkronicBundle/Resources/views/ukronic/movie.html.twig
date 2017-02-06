@@ -52,12 +52,14 @@
 			<div class="col-md-4 col-md-offset-2">
 				<h2 class="text-center">HYPOTHESE DE FIN</h2>
 				<div class="display-Decrypt">
-					<div class="btn-group">
+					<div class="btn-group btn-group-justified">
 						
 	
 					{{ tools.buttonLink(movie.id,"-100","F","-100 mots",filter_end,filter_seq) }}
 					{{ tools.buttonLink(movie.id,"-300","F","-300 mots",filter_end,filter_seq) }}
 					{{ tools.buttonLink(movie.id,"+300","F","+300 mots",filter_end,filter_seq) }}
+					</div>
+					<div class="btn-group btn-group-justified">
 					{{ tools.buttonLink(movie.id,"read","F","+lus",filter_end,filter_seq) }}
 					{{ tools.buttonLink(movie.id,"liked","F","+likés",filter_end,filter_seq) }}
 					{{ tools.buttonLink(movie.id,"comment","F","+commentés",filter_end,filter_seq) }}
@@ -76,17 +78,22 @@
 				<h2 class="text-center">SEQUENCE</h2>
 
 				<div id="sequence-decrypt">
-					<div class="btn-group">
-	
-					{{ tools.buttonLink(movie.id,"-100","S","-100 mots",filter_end,filter_seq) }}
-					{{ tools.buttonLink(movie.id,"-300","S","-300 mots",filter_end,filter_seq) }}
-					{{ tools.buttonLink(movie.id,"+300","S","+300 mots",filter_end,filter_seq) }}
-					{{ tools.buttonLink(movie.id,"read","S","+lus",filter_end,filter_seq) }}
-					{{ tools.buttonLink(movie.id,"liked","S","+likés",filter_end,filter_seq) }}
-					{{ tools.buttonLink(movie.id,"comment","S","+commentés",filter_end,filter_seq) }}
-					
+					<div class="row">
+						<div class="btn-group btn-group-justified">
+		
+						{{ tools.buttonLink(movie.id,"-100","S","-100 mots",filter_end,filter_seq) }}
+						{{ tools.buttonLink(movie.id,"-300","S","-300 mots",filter_end,filter_seq) }}
+						{{ tools.buttonLink(movie.id,"+300","S","+300 mots",filter_end,filter_seq) }}
+						</div>
 					</div>
-
+					<div class="row">
+						<div class="btn-group btn-group-justified">
+						{{ tools.buttonLink(movie.id,"read","S","+lus",filter_end,filter_seq) }}
+						{{ tools.buttonLink(movie.id,"liked","S","+likés",filter_end,filter_seq) }}
+						{{ tools.buttonLink(movie.id,"comment","S","+commentés",filter_end,filter_seq) }}
+						
+						</div>
+					</div>
 				{{render(controller('UkronicBundle:Decrypt:display',{'idMovie': movie.id,'filter': filter_seq ,'typeDecrypt':'S'})) }}
 
 				</div>
