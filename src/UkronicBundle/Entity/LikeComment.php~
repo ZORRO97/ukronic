@@ -74,5 +74,52 @@ class LikeComment
     {
         return $this->dateLikeComment;
     }
-}
 
+    /**
+     * Set user
+     *
+     * @param \UkronicBundle\Entity\User $user
+     *
+     * @return LikeComment
+     */
+    public function setUser(\UkronicBundle\Entity\User $user = null)
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * Get user
+     *
+     * @return \UkronicBundle\Entity\User
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }
+
+    /**
+     * Set comment
+     *
+     * @param \UkronicBundle\Entity\Comment $comment
+     *
+     * @return LikeComment
+     */
+    public function setComment(\UkronicBundle\Entity\Comment $comment = null)
+    {
+        $this->comment = $comment;
+
+        return $this;
+    }
+
+    /**
+     * Get comment
+     *
+     * @return \UkronicBundle\Entity\Comment
+     */
+    public function getComment()
+    {
+        return $this->comment;
+    }
+}

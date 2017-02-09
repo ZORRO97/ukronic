@@ -1,0 +1,188 @@
+<?php
+
+namespace UkronicBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Signalement
+ *
+ * @ORM\Table(name="signalement")
+ * @ORM\Entity(repositoryClass="UkronicBundle\Repository\SignalementRepository")
+ */
+class Signalement
+{
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="signalements")
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
+     */
+    private $user;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="date_sig", type="datetime")
+     */
+    private $dateSig;
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="ref", type="integer")
+     */
+    private $ref;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="type", type="string", length=1)
+     */
+    private $type;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="status", type="string", length=1)
+     */
+    private $status;
+
+
+    /**
+     * Get id
+     *
+     * @return int
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set dateSig
+     *
+     * @param \DateTime $dateSig
+     *
+     * @return Signalement
+     */
+    public function setDateSig($dateSig)
+    {
+        $this->dateSig = $dateSig;
+
+        return $this;
+    }
+
+    /**
+     * Get dateSig
+     *
+     * @return \DateTime
+     */
+    public function getDateSig()
+    {
+        return $this->dateSig;
+    }
+
+    /**
+     * Set ref
+     *
+     * @param integer $ref
+     *
+     * @return Signalement
+     */
+    public function setRef($ref)
+    {
+        $this->ref = $ref;
+
+        return $this;
+    }
+
+    /**
+     * Get ref
+     *
+     * @return int
+     */
+    public function getRef()
+    {
+        return $this->ref;
+    }
+
+    /**
+     * Set type
+     *
+     * @param string $type
+     *
+     * @return Signalement
+     */
+    public function setType($type)
+    {
+        $this->type = $type;
+
+        return $this;
+    }
+
+    /**
+     * Get type
+     *
+     * @return string
+     */
+    public function getType()
+    {
+        return $this->type;
+    }
+
+    /**
+     * Set status
+     *
+     * @param string $status
+     *
+     * @return Signalement
+     */
+    public function setStatus($status)
+    {
+        $this->status = $status;
+
+        return $this;
+    }
+
+    /**
+     * Get status
+     *
+     * @return string
+     */
+    public function getStatus()
+    {
+        return $this->status;
+    }
+
+    /**
+     * Set user
+     *
+     * @param \UkronicBundle\Entity\User $user
+     *
+     * @return Signalement
+     */
+    public function setUser(\UkronicBundle\Entity\User $user = null)
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * Get user
+     *
+     * @return \UkronicBundle\Entity\User
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }
+}

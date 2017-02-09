@@ -1,0 +1,45 @@
+{% extends "UkronicBundle::layout.html.twig" %}
+
+{% block title %}UkronicBundle:Admin:users{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+	<div class="col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-2">
+<h1>Welcome to the Admin:users page</h1>
+<table class="table table-bordered">
+	<tr>
+		<th>Id</th>
+		<th>Nom</th>
+		<th>Décryptages</th>
+		<th>Commentaires</th>
+		<th>Likes</th>
+		<th>CommentLikes</th>
+	</tr>
+	{% for user in users %}
+		<tr>
+			<td>
+				{{ user.id}}
+			</td>
+			<td>
+				{{ user.username }}
+			</td>
+			<td>
+				{{ user.decrypts | length}}
+			</td>
+			<td>
+				{{ user.comments | length }}
+			</td>
+			<td>
+				{{ user.likes | length }}
+			</td>
+			<td>
+				{{ user.commentLikes | length }}
+			</td>
+
+			
+		</tr>
+	{% endfor %}
+</table>
+</div>
+</div>
+{% endblock %}

@@ -1,7 +1,7 @@
 {% if liked %}
 <a class="btn btn-warning" href="#"><img class="icon-ukronic" src="{{ asset("images/Like-2-icon.png")}}" alt="liked"></a>
 
-{% else %}
+{% else  %}
 	
 	<a class="btn btn-primary btn-like" href="{{ path('commentLike',{'id':commentId,'userId':userId}) }}"><img class="icon-ukronic" src="{{ asset("images/FBLike-Icon_300_v2.png") }}" alt="like"></a>
 	

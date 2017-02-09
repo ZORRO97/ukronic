@@ -6,18 +6,24 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use UkronicBundle\Entity\LikeComment;
 use UkronicBundle\Entity\Histo;
+use UkronicBundle\Entity\Signalement;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\JsonResponse;
 
 class CommentController extends Controller
 {
     /**
      * @Route("/comment/islike/{id}/{userId}")
      */
-    public function IsLikeAction($id, $userId)
+    public function IsLikeAction($id, $userId=null)
     {
         $em = $this->getDoctrine()->getManager();
     	
         $likeCommentRepository = $em->getRepository("UkronicBundle:LikeComment");
+        
         $liked = $likeCommentRepository->isLiked($id,$userId);
+        
         $nbLiked = $likeCommentRepository->nbLiked($id);
        
         return $this->render('UkronicBundle:Comment:like.html.twig', array(
@@ -25,6 +31,27 @@ class CommentController extends Controller
             'nbLiked' => $nbLiked,
         	'commentId' => $id,
         	'userId' => $userId
+            
+            // ...
+        ));
+    }
+
+    /**
+     * @Route("/comment/islike/anonymous/{id}/",name="commentIslikeAnonymous")
+     */
+    public function IsLikeAnonymousAction($id)
+    {
+        $em = $this->getDoctrine()->getManager();
+        
+        $likeCommentRepository = $em->getRepository("UkronicBundle:LikeComment");
+        
+        $nbLiked = $likeCommentRepository->nbLiked($id);
+       
+        return $this->render('UkronicBundle:Comment:anonymous.html.twig', array(
+            
+            'nbLiked' => $nbLiked,
+            'commentId' => $id,
+            
             // ...
         ));
     }
@@ -64,6 +91,27 @@ class CommentController extends Controller
         } else {
             return null;
         }
+    }
+
+    /**
+     * @Route("/comment/signaler/{id}", name="commentSignalement")
+     */
+    public function commentSignalementAction($id, Request $request){
+        $user = $this->container->get('security.token_storage')->getToken()->getUser(); 
+        if ($request->isXmlHttpRequest() and $user) {
+            // traiter la requête
+            $signalement = new Signalement();
+            $signalement->setDateSig(new \DateTime('now'));
+            $signalement->setRef($id);
+            $signalement->setType("C");
+            $signalement->setStatus("A");
+            $signalement->setUser($user);
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($signalement);
+            $em->flush();
+            return new JsonResponse(array('reponse' => "Enfin une réponse de l'ajax"));
+        }
+        return 'ajax lessivé';
     }
 
 

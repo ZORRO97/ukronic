@@ -8,13 +8,13 @@
 	
 
 		
-		<div class="col-md-3 col-md-offset-3">
+		<div class="col-md-3 col-md-offset-3 col-sm-4 col-sm-offset-2 col-xs-6">
 			<p><a href=" {{ path("dbukronic",{'id':decrypt.movie.id}) }} "><img class="img-responsive center-block img-decrypt-big" src="{{ decrypt.movie.posterURL }}" alt="image Film"></a></p>
 		</div>
 	
-		<div class="col-md-3">
+		<div class="col-md-3 col-sm-4 col-xs-6">
 			
-			<p class="">Décryptage de  {{ decrypt.movie.title }}</p>
+			<p class="">Décryptage de  <a href="{{ path('dbukronic',{'id':decrypt.movie.id}) }}"> {{ decrypt.movie.title }}  </a></p>
 			<p>
 				{% if decrypt.typeDecrypt == "F" %}
 					Hypothèse de fin
@@ -23,24 +23,26 @@
 				{% endif %}
 				"{{ decrypt.title }}"
 			</p>
-			<p class="">  par {{ decrypt.user.username }} </p>
+			<p class="">  par <a href="{{ path('profile',{'id':decrypt.user.id}) }}"> {{ decrypt.user.username }} </a></p>
 			
 		</div>
 	</div>
 	<div class="row">
-		<div class="col-md-6 col-md-offset-3">
+		<div class="col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
 			<p class="commentaire">
 			{{ decrypt.content }} 
 			</p>
 			<p class="text-right">
-			{% if user != "anon." %}
+				{% if user != "anon." %}
 					{% if not liked  %}
 					<a href="{{ path('decryptLike', {'id' : decrypt.id }) }}" class="btn btn-primary btn-like"><img class="icon-ukronic-big" src="{{ asset("images/FBLike-Icon_300_v2.png") }}" alt="like"></a>
 					{% else %}
 						<a href="#" class="btn btn-warning"><img class="icon-ukronic-big" src="{{ asset("images/Like-2-icon.png")}}" alt="liked"></a>
 					
 					{% endif %}
-					{{ nbLiked }}	
+					{{ nbLiked }}
+					<button id="signaler" data-button="{{ decrypt.id }}">Signaler</button>	
+					<div id="notif"></div>
 				{% endif %}
 			</p>
 		</div>
@@ -66,6 +68,7 @@
 			{{ form_end(form) }}
 			{% endif %}
 			{% if decrypt.comments is not empty  %}
+				{% set userId = user.id is defined ? user.id : null %}
 				{% for comment in decrypt.comments | reverse %}
 					<div class="commentaire">
 
@@ -74,10 +77,14 @@
 					    
 					     Par {{comment.user.userName | upper }} </p>
 					    <p> "{{ comment.content }}" </p>
-					    <p>
-
-					    	{{render(controller('UkronicBundle:Comment:IsLike',{'id':comment.id,'userId':user.id}))}}
-					    
+					    <p>	
+					    	{% if userId is null %}
+					    		{{render(controller('UkronicBundle:Comment:IsLikeAnonymous',{'id':comment.id}))}}
+							{% else %}				    	
+						    	{{render(controller('UkronicBundle:Comment:IsLike',{'id':comment.id,'userId':userId}))}}
+						    	<button class="signalComment" data-button="{{ comment.id }}">Signaler</button>	
+					    	{% endif %}
+						</p>
 					</div>
 				{% endfor %}
 			{% endif %}
@@ -91,7 +98,63 @@
 	<script>
 	$(function(){
 		
-		// $('#form_control').val('bullshit lorem');
+		$('#signaler').click(function(e){
+			e.preventDefault();
+			console.log("bouton signaler cliqué");
+			var myButton = $(this);
+			var monId = $(this).attr('data-button');
+			// console.log("monId : "+monId);
+			var monUrl = "{{ path('decryptSignalement',{'id': 'monId'}) }}";
+			monUrl = monUrl.replace('monId',monId);
+			// console.log("MonUrl : "+monUrl);
+			$.ajax({
+				url : monUrl ,
+				dataType: "json" 
+				
+				
+
+				}).done(function(data){
+					// console.log(data);
+					$("#notif").html('décryptage signalé');
+					myButton.hide();
+				}
+			).fail(function(err){
+				// console.log('Echec ajax');
+				// console.log(err);
+				$("#notif").html("erreur technique impossible de signaler ce contenu");
+			});
+			
+		});
+
+		$('.signalComment').click(function(e){
+			e.preventDefault();
+			var myButton = $(this);
+			console.log("bouton signaler cliqué");
+			
+			var monId = $(this).attr('data-button');
+			// console.log("monId : "+monId);
+			var monUrl = "{{ path('commentSignalement',{'id': 'monId'}) }}";
+			monUrl = monUrl.replace('monId',monId);
+			// console.log("MonUrl : "+monUrl);
+			$.ajax({
+				url : monUrl ,
+				dataType: "json" 
+				
+				
+
+				}).done(function(data){
+					// console.log(data);
+					$('<span>décryptage signalé</span>').insertAfter(myButton);
+					myButton.hide();
+				
+				}
+			).fail(function(err){
+				// console.log('Echec ajax');
+				// console.log(err);
+				$('<span>erreur traitement</span>').insertAfter(myButton);
+			});
+			
+		});
 	});
 
 	</script>
