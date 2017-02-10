@@ -1,0 +1,47 @@
+{#  signalement.html.twig #}
+{% extends 'UkronicBundle::layout.html.twig' %}
+
+{% block content %}
+	<h2 class="text-center">SIGNALEMENTS</h2>
+	
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-md-10 col-md-offset-1">
+				<table class="table">
+					<tr>
+						<th>Id</th>
+						<th>Date</th>
+						<th>Support</th>
+						<th>Titre</th>
+						<th>Contenu</th>
+						<th>Action</th>
+					</tr>
+					
+					{% for signal in signalements %}
+						<tr>
+							<td> {{ signal.id }} </td>
+							<td>  {{ signal.dateSig | date("d/m/Y") }} </td>
+							{% if signal.type == "D" %}
+								{{render(controller('UkronicBundle:Admin:renduDecryptAdmin',{'id':signal.ref,'idSig':signal.id}))}}
+							{% elseif signal.type == "C" %}
+
+								{{render(controller('UkronicBundle:Admin:renduCommentAdmin',{'id':signal.ref,'idSig':signal.id}))}}
+							{% endif %}
+
+							
+						</tr>
+
+					{% endfor %}
+					
+				</table>
+			</div>
+		</div>
+		
+	</div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+   
+    
+{% endblock %}

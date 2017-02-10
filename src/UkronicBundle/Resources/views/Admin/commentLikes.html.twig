@@ -1,0 +1,31 @@
+{% extends 'UkronicBundle::layout.html.twig' %}
+
+{% block content %}
+	<h2>LIKES DE COMMENTAIRES</h2>
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-md-8 col-md-offset-2">
+				<table class="table">
+					<tr>
+						<th>Id</th>
+						<th>Film</th>
+						<th>Décryptage</th>
+						<th>Date</th>
+						<th>Contenu</th>
+						<th>Action</th>
+					</tr>
+					{% for like in likeComments %}
+						<tr>
+							<td> {{ like.id }} </td>
+							<td> {{ like.comment.decrypt.movie.title }} </td>
+							<td> {{ like.comment.decrypt.title }} </td>
+							<td> {{ like.dateLikeComment | date('d/m/Y') }} </td>
+							<td> {{  like.comment.content }} </td>
+							<td>Supp</td>
+						</tr>
+					{% endfor %}
+				</table>
+			</div>
+		</div>
+	</div>
+{% endblock %}

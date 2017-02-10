@@ -1,0 +1,32 @@
+{% extends 'UkronicBundle::layout.html.twig' %}
+
+{% block content %}
+	<h2 class="text-center">FILMS</h2>
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-md-10 col-md-offset-1">
+				<table class="table">
+					
+					<tr>
+						<th>Id</th>
+						<th>Titre</th>
+						<th>Année</th>
+						<th>décryptages</th>
+						
+					</tr>
+					{% for movie in series %}
+						<tr>
+							<td> {{ movie.id }} </td>
+							<td> {{ movie.title }} </td>
+							<td> {{ movie.productionYear }} </td>
+							<td> {{ movie.decrypts | length }}</td>
+
+						</tr>
+					{% endfor %}
+				</table>
+				
+			</div>
+		</div>
+		
+	</div>
+{% endblock %}

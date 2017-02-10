@@ -35,7 +35,7 @@ class Comment
     private $decrypt;
 
     /**
-     * @ORM\OneToMany(targetEntity="LikeComment", mappedBy="comment")
+     * @ORM\OneToMany(targetEntity="LikeComment", mappedBy="comment", cascade={"remove"})
      */
     private $commentLikes;
 

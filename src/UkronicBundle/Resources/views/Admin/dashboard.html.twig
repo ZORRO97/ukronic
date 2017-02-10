@@ -1,0 +1,76 @@
+{% extends 'UkronicBundle::layout.html.twig' %}
+
+{% block content %}
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-md-9 col-md-offset-1 col-xs-10 col-xs-offset-1">
+			<div class="col-md-3 col-xs-5">
+				<h2 class="text-center">
+					<a href="{{ path('usersAdmin') }}">
+					USERS
+					</a>
+				</h2>
+				<p class="text-center">
+					{{ nbUsers }}
+				</p>
+			</div>
+			<div class="col-md-3">
+				<h2 class="text-center">
+					<a href="{{ path('signalementAdmin') }}">
+					SIGNALEMENTS
+					</a>
+				</h2>
+				<p class="text-center"> {{ nbSignalements }}</p>
+			</div>
+			<div class="col-md-3">
+				<h2 class="text-center">
+					<a href="{{ path('moviesAdmin') }}">
+					FILMS
+					</a>
+				</h2>
+				<p class="text-center"> {{ nbMovies }} </p>
+			</div>
+			<div class="col-md-3">
+				<h2 class="text-center">
+					<a href="{{ path('seriesAdmin') }}">
+					SERIES
+					</a>
+				</h2>
+				<p class="text-center"> {{ nbSeries }} </p>
+			</div>
+			<div class="col-md-3">
+				<h2 class="text-center">
+					<a href="{{ path('decryptAdmin') }}">
+					DECRYPTAGES
+					</a>
+				</h2>
+				<p class="text-center"> {{ nbDecrypts }} </p>
+			</div>
+			<div class="col-md-3">
+				<h2 class="text-center">
+					<a href="{{ path('commentAdmin') }}">
+					COMMENTAIRES
+					</a>
+				</h2>
+				<p class="text-center"> {{ nbComments }} </p>
+			</div>
+			<div class="col-md-3">
+				<h2 class="text-center">
+					<a href="{{ path('likesAdmin') }}">
+					lIKES
+					</a>
+				</h2>
+				<p class="text-center">  {{ nbLikes }} </p>
+			</div>
+			<div class="col-md-3">
+				<h2 class="text-center">
+					<a href="{{ path('commentLikesAdmin') }}">
+					COMMENTLIKES
+					</a>
+				</h2>
+				<p class="text-center"> {{ nbLikeComments }} </p>
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock %}

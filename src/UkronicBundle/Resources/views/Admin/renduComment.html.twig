@@ -1,0 +1,14 @@
+{# renduComment.html.twig #}
+{% if comment is not null %}
+<td>Commentaire</td>
+<td>
+	{{ comment.decrypt.title }}
+</td>
+<td> {{ comment.content }}</td>
+<td>
+	<button class="supprimer-comment" data-button = {{ comment.id }} data-sig= {{idSig}} >DEL</button>
+	<button class="ignorer-comment" data-button = {{ comment.id }} data-sig= {{idSig}} >IGNORER</button>
+</td>
+{% else %}
+	<td>données supprimées</td>
+{% endif %}

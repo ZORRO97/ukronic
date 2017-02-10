@@ -19,12 +19,12 @@
 					{% for item in results %}
 						
 
-						<div class="col-lg-2 col-md-2">
+						<div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
 							<div class="decrypt">
 								<a href="{{ path('dbukronic', {'id': item.movie.id}) }}"><img class="img-responsive" src="{{ item.movie.posterURL }}" alt=""></a>
 								<div class="decrypt-text">
 									<h3 class="title-movie"><a href="{{path('dbukronic',{'id':item.movie.id})}}">{{ item.movie.title }}</a></h3>
-									<p>{{ item.nbRead }} lecture(s)</p>
+									<p>{{ item.nbRead }} <img class="icon-ukronic" src="{{ asset('images/side-view-of-sitting-man-reading_318-29449.jpg') }}" alt="lecture">{#lecture(s)#}</p>
 
 								</div> 
 							</div>

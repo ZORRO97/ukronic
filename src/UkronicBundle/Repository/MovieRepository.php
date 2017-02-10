@@ -24,5 +24,21 @@ class MovieRepository extends \Doctrine\ORM\EntityRepository
     	$series = $q->getResult();
 		return $series;
 	}
+
+	public function countMovies(){
+		$q = $this->getEntityManager()
+		->createQuery("SELECT COUNT(DISTINCT u.id) FROM UkronicBundle:Movie u WHERE u.typeMovie = 'F'");
+    	$nb = $q->getSingleScalarResult();
+
+		return $nb;
+	}
+	
+	public function countSeries(){
+		$q = $this->getEntityManager()
+		->createQuery("SELECT COUNT(DISTINCT u.id) FROM UkronicBundle:Movie u WHERE u.typeMovie = 'S'");
+    	$nb = $q->getSingleScalarResult();
+
+		return $nb;
+	}
 	
 }

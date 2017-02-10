@@ -10,4 +10,12 @@ namespace UkronicBundle\Repository;
  */
 class UserRepository extends \Doctrine\ORM\EntityRepository
 {
+
+	public function countUsers(){
+		$q = $this->getEntityManager()
+		->createQuery("SELECT COUNT(DISTINCT u.id) FROM UkronicBundle:User u WHERE u.enabled = 1");
+    	$nb = $q->getSingleScalarResult();
+
+		return $nb;
+	}
 }

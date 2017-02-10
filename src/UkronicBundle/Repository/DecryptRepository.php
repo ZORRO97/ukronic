@@ -24,6 +24,13 @@ class DecryptRepository extends \Doctrine\ORM\EntityRepository
 
 	}
 */
+	public function countDecrypts(){
+		$q = $this->getEntityManager()
+		->createQuery("SELECT COUNT(DISTINCT u.id) FROM UkronicBundle:Decrypt u");
+    	$nb = $q->getSingleScalarResult();
+
+		return $nb;
+	}
 
 	public function movieMoreDecrypted() {
 		$q = $this->getEntityManager()

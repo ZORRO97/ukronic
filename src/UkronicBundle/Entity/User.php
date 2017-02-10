@@ -11,6 +11,7 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
 /**
  * @ORM\Entity
  * @ORM\Table(name="fos_user")
+ * @ORM\Entity(repositoryClass="UkronicBundle\Repository\UserRepository")
  * @Vich\Uploadable
  */
 class User extends BaseUser
@@ -51,6 +52,11 @@ class User extends BaseUser
      * @ORM\OneToMany(targetEntity="LikeComment", mappedBy="user")
      */
     private $commentLikes;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Signalement", mappedBy="user")
+     */
+    private $signalements;
 
     /**
      * NOTE: This is not a mapped field of entity metadata, just a simple property.
@@ -137,6 +143,7 @@ class User extends BaseUser
         $this->likes = new ArrayCollection();
         $this->comments = new ArrayCollection();
         $this->likeComments = new ArrayCollection();
+        $this->signalements = new ArrayCollection();
     }
 
     /**
@@ -366,5 +373,39 @@ class User extends BaseUser
     public function getCommentLikes()
     {
         return $this->commentLikes;
+    }
+
+    /**
+     * Add signalement
+     *
+     * @param \UkronicBundle\Entity\Signalement $signalement
+     *
+     * @return User
+     */
+    public function addSignalement(\UkronicBundle\Entity\Signalement $signalement)
+    {
+        $this->signalements[] = $signalement;
+
+        return $this;
+    }
+
+    /**
+     * Remove signalement
+     *
+     * @param \UkronicBundle\Entity\Signalement $signalement
+     */
+    public function removeSignalement(\UkronicBundle\Entity\Signalement $signalement)
+    {
+        $this->signalements->removeElement($signalement);
+    }
+
+    /**
+     * Get signalements
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getSignalements()
+    {
+        return $this->signalements;
     }
 }

@@ -5,6 +5,9 @@ namespace UkronicBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use UkronicBundle\Entity\Decrypt;
+use UkronicBundle\Entity\Signalement;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\JsonResponse;
 
 class DecryptController extends Controller
 {
@@ -153,4 +156,25 @@ class DecryptController extends Controller
     }
 
 
+    /**
+     * @Route("/decrypt/signaler/{id}", name="decryptSignalement")
+     */
+    public function decryptSignalementAction($id, Request $request){
+        $user = $this->container->get('security.token_storage')->getToken()->getUser(); 
+        if ($request->isXmlHttpRequest() and $user) {
+            // traiter la requête
+            $signalement = new Signalement();
+
+            $signalement->setDateSig(new \DateTime('now'));
+            $signalement->setRef($id);
+            $signalement->setType("D");
+            $signalement->setStatus("A");
+            $signalement->setUser($user);
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($signalement);
+            $em->flush();
+            return new JsonResponse(array('reponse' => "Enfin une réponse de l'ajax"));
+        }
+        return new JsonResponse(array('reponse'=>'vous devez être identifié'));
+    }
 }

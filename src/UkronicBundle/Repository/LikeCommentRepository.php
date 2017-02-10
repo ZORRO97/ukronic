@@ -33,5 +33,13 @@ class LikeCommentRepository extends \Doctrine\ORM\EntityRepository
 		return $q->getSingleScalarResult();
 	}
 
+	public function countLikeComments(){
+		$q = $this->getEntityManager()
+		->createQuery("SELECT COUNT(DISTINCT u.id) FROM UkronicBundle:LikeComment u");
+    	$nb = $q->getSingleScalarResult();
+
+		return $nb;
+	}
+
 	
 }

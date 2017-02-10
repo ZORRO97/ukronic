@@ -10,7 +10,7 @@
 	<div id="fh5co-blog" class="fh5co-bg-section">
 		<div class="container">
 			<div class="row animate-box">
-				<div class="col-md-8 col-md-offset-2 text-center fh5co-heading">
+				<div class="col-md-8 col-md-offset-2 col-xs-12 text-center fh5co-heading">
 					<h2>Les derniers décryptages de films</h2>
 					
 				</div>
@@ -22,7 +22,7 @@
 					
 					
 
-					<div class="col-lg-2 col-md-2 col-xs-2">
+					<div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
 						<div class=" decrypt"> {# fh5co-blog animate-box #}
 							<a href="{{ path('decryptRead', {'id': decrypt.id}) }}"><img class="img-responsive" src="{{ decrypt.movie.posterURL }}" alt=""></a>
 							<div class="decrypt-text">
@@ -54,7 +54,7 @@
 				
 			
 			<div class="row animate-box">
-				<div class="col-md-8 col-md-offset-2 text-center fh5co-heading">
+				<div class="col-md-8 col-md-offset-2 col-xs-12 text-center fh5co-heading">
 					<h2>TOP 5 des films les plus décryptés</h2>
 				</div>
 			</div>
@@ -64,7 +64,7 @@
 				{% if moreMovieDecrypts is not empty %}
 				{% for item in moreMovieDecrypts %}
 					
-					<div class="col-lg-2 col-md-2">
+					<div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
 						<div class="decrypt">
 							<a href="{{ path('dbukronic', {'id': item[0].movie.id}) }}"><img class="img-responsive" src="{{ item[0].movie.posterURL }}" alt=""></a>
 							<div class="decrypt-text">
@@ -96,7 +96,7 @@
 					
 					
 
-					<div class="col-lg-2 col-md-2 col-xs-2">
+					<div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
 						<div class=" decrypt"> {# fh5co-blog animate-box #}
 							<a href="{{ path('decryptRead', {'id': decrypt.id}) }}"><img class="img-responsive" src="{{ decrypt.movie.posterURL }}" alt=""></a>
 							<div class="decrypt-text">
@@ -129,7 +129,7 @@
 			</div>	
 			
 			<div class="row animate-box">
-				<div class="col-md-8 col-md-offset-2 text-center fh5co-heading">
+				<div class="col-md-8 col-md-offset-2 col-xs-12 text-center fh5co-heading">
 					<h2>TOP 5 des films les plus likés</h2>
 				</div>
 			</div>
@@ -145,7 +145,7 @@
 					
 					
 
-					<div class="col-lg-2 col-md-2 col-xs-2">
+					<div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
 						<div class=" decrypt"> {# fh5co-blog animate-box #}
 							<a href="{{ path('decryptRead', {'id': item[0].decrypt.id}) }}"><img class="img-responsive" src="{{ item[0].decrypt.movie.posterURL }}" alt=""></a>
 							<div class="decrypt-text">
@@ -178,7 +178,7 @@
 			</div>	
 
 			<div class="row animate-box">
-				<div class="col-md-8 col-md-offset-2 text-center fh5co-heading">
+				<div class="col-md-8 col-md-offset-2 col-xs-12 text-center fh5co-heading">
 					<h2>TOP 5 des films les plus commentés</h2>
 				</div>
 			</div>
@@ -190,7 +190,7 @@
 				{% if moreCommentMovieDecrypts is not empty %}
 				{% for item in moreCommentMovieDecrypts %}
 					
-					<div class="col-lg-2 col-md-2">
+					<div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
 						<div class="decrypt">
 							<a href="{{ path('dbukronic', {'id': item[0].movie.id}) }}"><img class="img-responsive" src="{{ item[0].movie.posterURL }}" alt=""></a>
 							<div class="decrypt-text">

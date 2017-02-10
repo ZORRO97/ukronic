@@ -1,0 +1,11 @@
+{# rendu Decrypt.html.twig #}
+<td>Décryptage</td>
+<td> 
+	 {{ decrypt.title }} 
+
+</td>
+<td>  {{ decrypt.content }} </td>
+<td>
+	<button class="supprimer-decrypt" data-button= {{ decrypt.id }} data-sig= {{idSig}} >DEL</button> 
+	<button class="ignorer-decrypt" data-button= {{ decrypt.id }} data-sig= {{idSig}} >IGNORER</button>
+</td>

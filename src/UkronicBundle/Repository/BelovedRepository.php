@@ -4,7 +4,7 @@ namespace UkronicBundle\Repository;
 
 use UkronicBundle\Entity\User;
 use UkronicBundle\Entity\Decrypt;
-use UkronicBundle\Entity\Beloved;
+// use UkronicBundle\Entity\Beloved;
 
 /**
  * BelovedRepository
@@ -59,6 +59,14 @@ class BelovedRepository extends \Doctrine\ORM\EntityRepository
 		
 		$results = $q->getResult();
 		return $results;
+	}
+
+	public function countLikes(){
+		$q = $this->getEntityManager()
+		->createQuery("SELECT COUNT(DISTINCT u.id) FROM UkronicBundle:Beloved u");
+    	$nb = $q->getSingleScalarResult();
+
+		return $nb;
 	}
 
 }
