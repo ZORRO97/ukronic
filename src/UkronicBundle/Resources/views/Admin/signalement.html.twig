@@ -42,6 +42,78 @@
 
 {% block javascripts %}
     {{ parent() }}
-   
+   <script>
+   $(function(){
+   	console.log("Jquery actif");
+   	$('.ignorer-decrypt,.ignorer-comment').click(function(){
+   		console.log("ignorer décryptage cliqué");
+   		var myButton = $(this);
+		var trButton = myButton.parent().parent();
+		var monId = $(this).attr('data-button');
+		console.log("monId : "+monId);
+		var monIdSig = $(this).attr('data-sig');
+		console.log("signalement : "+monIdSig);
+		var monUrl = "{{ path('ignoreSignalementAdmin',{ 'idSig': 'monIdSig'}) }}";
+		monUrl = monUrl.replace('monIdSig',monIdSig);
+		console.log(monUrl);
+		$.ajax({
+			url: monUrl,
+			datatype: "json"
+		}).done(function(){
+			console.log("Ignore réussi");
+			trButton.hide();
+		}).fail(function(){
+			console.log("Ignore ajax échec");
+		});
+   	});
+
+   	$('.supprimer-decrypt').click(function(){
+   		console.log("supprimer décryptage cliqué");
+   		var myButton = $(this);
+		var trButton = myButton.parent().parent();
+		var monId = $(this).attr('data-button');
+		console.log("monId : "+monId);
+		var monIdSig = $(this).attr('data-sig');
+		console.log("signalement : "+monIdSig);
+		var monUrl = "{{ path('delDecryptAdmin',{'id': 'monId','idSig': 'monIdSig'}) }}";
+		monUrl = monUrl.replace('monId',monId);
+		monUrl = monUrl.replace('monIdSig',monIdSig);
+		console.log(monUrl);
+		$.ajax({
+			url: monUrl,
+			datatype: "json"
+		}).done(function(){
+			console.log("Suppression décryptage réussi");
+			trButton.hide();
+		}).fail(function(){
+			console.log("Suppression décryptage ajax échec");
+		});
+   	});
+
+   	$('.supprimer-comment').click(function(){
+   		console.log("supprimer commentaire cliqué");
+   		var myButton = $(this);
+		var trButton = myButton.parent().parent();
+		var monId = $(this).attr('data-button');
+		var monIdSig = $(this).attr('data-sig');
+		console.log("monId : "+monId);
+		var monUrl = "{{ path('delCommentAdmin',{'id': 'monId', 'idSig': 'monIdSig'}) }}";
+		monUrl = monUrl.replace('monId',monId);
+		monUrl = monUrl.replace('monIdSig',monIdSig);
+		console.log("MonUrl : "+monUrl);
+		$.ajax({
+			url: monUrl,
+			datatype: "json"
+		}).done(function(){
+			console.log("Suppression commentaire réussi");
+			trButton.hide();
+		}).fail(function(){
+			console.log("Suppression commentaire ajax échec");
+		});
+   	});
+
+
+   });
+   </script>
     
 {% endblock %}
