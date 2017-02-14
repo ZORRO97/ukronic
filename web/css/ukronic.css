@@ -1,5 +1,21 @@
 /* CSS propre au projet UKRONIC */
 
+body {
+	font-family: 'Lora', serif;
+	color: #222222;
+}
+
+/* Fonts */
+
+h2, h3 {
+	font-family: 'Jaldi', sans-serif;
+}
+
+h1 {
+	font-size: 36px;
+	font-weigth: 600;
+}
+
 @font-face {
     font-family: 'cf_old_photograph_creditRg';
     src: url('cfoldphotographcredit-webfont.woff2') format('woff2'),
@@ -9,6 +25,38 @@
 
 }
 
+.block-first {
+	margin-top: 138px;
+}
+
+/* Global Form */
+input {
+	padding: 4px 8px;
+	/*border-radius: 8px;
+	/*border: 2px solid #fff;*/
+	border: none;
+}
+
+/* Classes specifiques */
+.blue {
+	color: #149bde;
+}
+.bg-blue {
+	background-color: #149bde;
+	color: #fff;
+}
+.bg-blue a {
+	color: #fff;
+}
+.text-underline {
+	text-decoration: underline;
+}
+.text-underline:hover {
+	text-decoration: underline;
+}
+
+/* NAVIGATION */
+
 #banner ul li a {
 	color: white;
 }
@@ -17,8 +65,68 @@
 	border: none;
 }
 
+.navbar-default {
+	background-color: #149bde;
+	border-color: #149bde;
+	font-family: 'Jaldi', sans-serif;
+	font-size: 18px;
+	letter-spacing: 1px;
+}
+nav {
+	padding-top: 30px;
+}
+header .form-group {
+	max-width : 90%;
+}
+header input {
+	width     : 630px;
+	max-width: 95%;
+	background-color: rgba(0, 0, 0, 0.2);
+}
+.nav-films {
+	display: inline-block;
+	margin: 0 0 0 23%;
+}
+nav li {
+	min-width: 40px;
+	margin-right: 25px;
+}
+.nav-films li a {
+	text-decoration:none;
+	line-height: 10px;
+	padding-bottom: 0 !important;
+}
+.nav-films li a:after {
+	content: '';
+	display: block;
+	margin: 10px auto;
+	height: 2px;
+	width: 0;
+	background: transparent;
+	transition: width .5s ease, background-color .5s ease;
+}
+.nav-films li a:hover:after {
+	width: 90%;
+	background: #fff;
+}
+.nav-login li:first-child {
+	border: 2px solid white;
+	padding: 0px 8px;
+}
+
+@media screen and (max-width: 1024px) {
+	header .form-inline .form-group {
+		display: inline-block;
+	}
+}
+.navbar-default .navbar-toggle .icon-bar { /* Menu toggle mobile */
+	background-color: #ffffff;
+}
+
 .title-movie {
-	font-family: cf_old_photograph_creditRg;
+	/*font-family: cf_old_photograph_creditRg;*/
+	font-family: 'Jaldi', sans-serif;
+	font-weight: 800;
 	font-size:1em; 
 }
 
@@ -29,32 +137,33 @@
 	margin-bottom: 10px;
 }
 
-
 .ukronic_fond {
 	margin:0;
-  padding:0;
-  height: 300px;
-  width:100%;
-  
+  	padding:0;
+  	height: 300px;
+  	width:100%;
 }
 
 #image-ukronic-salle {
-	height: 600px;
+	/*height: 600px;*/
+	background: url('../images/Image-public-big.png') no-repeat;
+	height: 100vh;
 	width: 100%;
-	
-
+	background-size: cover;
 }
 
 .invite-title {
-	padding-top : 150px;
-	
+	padding-top : calc(130px + 25vh);
 	color: white;
+	width: 80%;
+	margin: 0 auto;
+	line-height: 60px;
+	font-size: 46px;
 }
 
 .invite-link {
 	margin-bottom: 80px;
 	padding-top: 130px;
-
 }
 
 .icon-ukronic {
@@ -85,60 +194,78 @@
 	}
 }
 
+/* Page profil */
+.profile img {
+	width: 100px;
+	height: 100px;
+	object-fit: cover;
+	margin: 0 auto;
+	display: block;
+}
 .presentation {
 	margin-bottom : 50px;
 	
 	visibility: hidden;
 }
-
-#explications p:first-child {
-	margin-top: 50px;
+#explications {
+	padding-top: 60px;
 }
 
-#explications p:last-child {
+#explications p {
 	margin-top : 50px;
 	margin-bottom: 50px;
+	max-width: 90%;
 }
-
-
+#explications h3 {
+	margin-top: 11%;
+}
 .decrypt {
-	border : 2px solid darkgray;
-	height : 500px;
+	height : 320px;
 	margin-bottom: 20px;
-	background-color: #F5F5F5;
+	background-color: #fff;
+	width: 150px;
 }
-
 .decrypt-text {
-	padding : 10px;
-	/* background-color: gray; */
+	padding: 5px 10px;
 }
-
+.decrypt-text p {
+	font-size: 0.8em;
+	color: darkgray;
+}
+.decrypt h3 {
+	margin-bottom: 5px;
+}
 .decrypt-text h3 a {
 	color: black;
 }
 
 .decrypt-text p a {
-	color: #2599D5;
+	color: darkgray;
 }
 .decrypt-text a:hover {
 	color:darkgray;
 }
 
-.img-decrypt-big {
-	width: 50%;
-	height: 300px;
+.img-decrypt-big,
+.img-movie-big {
+	width : 100%;
+	height: auto;
+	object-fit:cover;
 }
 
-
-
 .decrypt a img {
-	height : 250px;
-	width : 100%;
+	width: 150px;
+	height: 200px;
+	object-fit:cover;
 }
 
 .decrypt-link {
 	list-style-type:none;
-	font-size:1.2em; 
+	font-size: 1em;
+	margin-top: 10px;
+}
+.decrypt-display {
+	padding-top: 60px;
 }
 
 .movie {
@@ -161,11 +288,6 @@
 .img-movie {
 	width:100%;
 	height:300px;
-}
-
-.img-movie-big {
-	width : 100%;
-	height : 500px;
 }
 
 .infos-movie {
@@ -228,4 +350,15 @@ p.espace-star {
 	font-size : 16px;
 	padding: 3px 4px;
 	margin-right : 4px;
+}
+
+/* Page Movie */
+.hypothese-block .btn, .sequence-block .btn {
+	color: #149bde;
+	border-color: #149bde;
+}
+
+/* Series & Login Pages */
+.login, .series {
+	padding-top: 30px;
 }

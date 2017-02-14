@@ -1,9 +1,8 @@
 {% trans_default_domain 'FOSUserBundle' %}
+<section class="block-first login">
+    <h2 class="text-center">INSCRIPTION</h2>
 
-<h2 class="text-center">INSCRIPTION</h2>
-
-{{ form_start(form, {'method': 'post', 'action': path('fos_user_registration_register'), 'attr': {'class': 'fos_user_registration_register'}}) }}
-    
+    {{ form_start(form, {'method': 'post', 'action': path('fos_user_registration_register'), 'attr': {'class': 'fos_user_registration_register'}}) }}
 
     <div class="form-group">
     	{{ form_label(form.username) }}
@@ -14,7 +13,6 @@
     	{{ form_label(form.email) }}
     	{{ form_widget(form.email,{'attr':{'class':"form-control"}})}}
     </div>
-   
 
     {% for passwordField in form.plainPassword %}
     <div class="form-group">
@@ -27,3 +25,5 @@
         <input type="submit" value="{{ 'registration.submit'|trans }}" />
     </div>
 {{ form_end(form) }}
+
+</section>

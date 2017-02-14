@@ -24,7 +24,7 @@
 
 {% block content %}
 	{# page du film #}
-	<div class="container-fluid">
+	<div class="container-fluid block-first">
 		
 		<div class="presentation">
 			<h2>Le Film</h2>
@@ -32,12 +32,12 @@
 
 		<div class="row margin-movie">
 			<div class="col-md-4 col-md-offset-2">
-				<img class="img-responsive center-block" src= {{ movie.posterURL }} alt= {{ movie.title }} >
+				<img class="img-responsive center-block img-movie-big" src= {{ movie.posterURL }} alt= {{ movie.title }} >
 			</div>
 		
 		
-			<div class="col-md-4  infos-movie">
-				<p>NOM DU FILM : {{ movie.title }} </p>
+			<div class="col-md-4 infos-movie">
+				<h1>{{ movie.title }} </h1>
 				<p>DATE DE SORTIE : {{ movie.productionYear }} </p>
 				<p>CASTING : {{ movie.casting }} </p>
 				<p>SCRIPT :  {{ movie.script }} </p>
@@ -49,8 +49,8 @@
 
 		</div>
 		<div class="row">
-			<div class="col-md-4 col-md-offset-2">
-				<h2 class="text-center">HYPOTHESE DE FIN</h2>
+			<div class="col-md-4 col-md-offset-2 hypothese-block">
+				<h2 class="text-center text-uppercase">Hypothèse de fin</h2>
 				<div class="display-Decrypt">
 					<div class="btn-group btn-group-justified">
 						
@@ -74,8 +74,8 @@
 
 				
 			</div>
-			<div class="col-md-4 ">
-				<h2 class="text-center">SEQUENCE</h2>
+			<div class="col-md-4 sequence-block">
+				<h2 class="text-center text-uppercase">Séquence</h2>
 
 				<div id="sequence-decrypt">
 					<div class="row">

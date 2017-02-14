@@ -207,6 +207,11 @@
 		loaderPage();
 		counterWayPoint();
 	});
-
+	var topExplications = $("#explications").offset().top;
+	$(".btn-explications").click(function() {
+		$('html, body').animate({
+			scrollTop: $("#explications").offset().top - 140
+		}, 1000);
+	});
 
 }());

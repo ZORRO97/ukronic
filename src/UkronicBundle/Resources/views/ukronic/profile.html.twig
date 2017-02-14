@@ -4,10 +4,10 @@
 
 	{# page profil #}
 	
-	<div class="presentation">
+	<div class="presentation profile block-first">
 		<h4>Profil Ukronic</h4>
 	</div>
-	<div class="row">
+	<div class="row profile ">
 		<div class="col-md-3 col-md-offset-3">
 		{% set chemin = "images/users/" ~ user.imageName %}
 		<img src="{{ asset(chemin) }}" alt="{{ user.username }}" width=300px height=300px >
@@ -37,7 +37,7 @@
 					non renseigné
 				{% endif %}
 			 </p>
-			<p>Film ou j'ai rien compris : 
+			<p>Perdu dans ce film... :
 				{% if ambiguousMovie.id is defined %}
 					<a href="{{ path('dbukronic',{'id': ambiguousMovie.id}) }}">
 						{{ ambiguousMovie.title }}
@@ -47,7 +47,7 @@
 				{% endif %}
 				
 			</p>
-			<p>Film balaise où j'ai (peut être) tout compris : 
+			<p>J'ai (normalement) tout compris :
 				{% if understandMovie.id is defined %}
 					<a href="{{ path('dbukronic',{'id': understandMovie.id}) }}">
 						{{ understandMovie.title }}
@@ -85,8 +85,7 @@
 				
 				{% for histo in lastHistos %}
 					<div class="histo">
-					<p>{{ histo.dateAction | date("d/m/Y H:i") }} </p>
-					<p>
+					<p>-
 						{{ user.username }} 
 						{% if histo.action == 1 %}
 							{# a commenté #}
@@ -111,10 +110,7 @@
 						{% else %}
 							action spéciale
 						{% endif %}
-						
-
-						 
-						
+					- <span>{{ histo.dateAction | date("d/m/Y H:i") }} </span>
 					</p>
 					</div>
 				    

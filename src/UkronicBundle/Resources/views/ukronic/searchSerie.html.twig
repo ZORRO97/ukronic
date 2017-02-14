@@ -1,39 +1,32 @@
 {% extends 'UkronicBundle::layout.html.twig' %}
 
 {% block content %}
-<div class="container">
+<div class="block-first fh5co-bg-section series">
+	<div class="container">
+		<h2>Séries</h2>
 
+		<div class="row">
+			{% if series is defined %}
+				{% for item in series %}
 
-
-<div class="row">
-	<h2 class="text-center">Séries</h2>
-	
-</div>
-<div>
-	
-	
-	<div class="row">
-		{% if series is defined %}
-			{% for item in series %}
-				
-				
-				<div class="col-md-2 col-lg-2 col-xs-3 movie-content">
-					<div class="movie">
-						<a href="{{ path("dbukronic", {'id': item.id}) }}">
-							<img class="img-responsive" src= {{ item.posterURL }} >
-							<div class="movie-content">
-							<h3 class="title-movie"> {{ item.title }} </h3>
-							<p class ="vintage"> {{ item.productionYear }} </p>
-							</div>
-						</a>
+					<div class="col-md-2 col-lg-2 col-xs-3 movie-content">
+						<div class="decrypt">
+							<a href="{{ path("dbukronic", {'id': item.id}) }}">
+								<img class="img-responsive img-movie-big" src= {{ item.posterURL }} >
+								<div class="movie-content">
+								<h3 class="title-movie"> {{ item.title }} </h3>
+								<p> {{ item.productionYear }} </p>
+								</div>
+							</a>
+						</div>
 					</div>
-				</div>
-			    
-			{% endfor %}
-		
-		{% endif %}
+
+				{% endfor %}
+
+			{% endif %}
+		</div>
 	</div>
 	
 </div>
-</div>    
+
 {% endblock %}

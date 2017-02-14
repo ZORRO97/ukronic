@@ -14,7 +14,6 @@ body {
   font-family: "Work Sans", Arial, sans-serif;
   font-weight: 400;
   font-size: 16px;
-  line-height: 1.7;
   color: black; /* #828282; */
   background: #fff;
 }
@@ -58,9 +57,9 @@ a:hover, a:active, a:focus {
   text-decoration: none;
 }
 
-p {
+/*p {
   margin-bottom: 20px;
-}
+}*/
 
 h1, h2, h3, h4, h5, h6, figure {
   color: #000;
@@ -417,7 +416,7 @@ h1, h2, h3, h4, h5, h6, figure {
   background: rgba(0, 0, 0, 0.05);
 }
 
-#fh5co-services,
+/*#fh5co-services,
 #fh5co-started,
 #fh5co-testimonial,
 #fh5co-blog,
@@ -439,7 +438,7 @@ h1, h2, h3, h4, h5, h6, figure {
   #fh5co-footer {
     padding: 3em 0;
   }
-}
+}*/
 
 .about-content {
   margin-bottom: 7em;
@@ -769,6 +768,7 @@ h1, h2, h3, h4, h5, h6, figure {
 .fh5co-heading h2 {
   font-size: 40px;
   margin-bottom: 20px;
+  margin-top: 40px;
   line-height: 1.5;
   color: #000;
 }
@@ -1181,7 +1181,7 @@ h1, h2, h3, h4, h5, h6, figure {
 }
 
 .btn {
-  margin-right: 4px;
+  /*margin-right: 4px;
   margin-bottom: 4px;
   font-family: "Work Sans", Arial, sans-serif;
   font-size: 16px;
@@ -1193,7 +1193,18 @@ h1, h2, h3, h4, h5, h6, figure {
   -webkit-transition: 0.5s;
   -o-transition: 0.5s;
   transition: 0.5s;
-  padding: 8px 20px;
+  padding: 8px 20px;*/
+  border-radius: 8px;
+  -webkit-border-radius: 8px;
+  -moz-border-radius: 8px;
+  -ms-border-radius: 8px;
+  padding: 8px 12px;
+  border: 2px solid #fff;
+  background-color: transparent;
+  color: #fff;
+  -webkit-transition: 0.5s;
+  -o-transition: 0.5s;
+  transition: 0.5s;
 }
 .btn.btn-md {
   padding: 8px 20px !important;
@@ -1204,9 +1215,15 @@ h1, h2, h3, h4, h5, h6, figure {
 .btn:hover, .btn:active, .btn:focus {
   box-shadow: none !important;
   outline: none !important;
+  color: #149BDE;
+  border-color: #149BDE;
+  background-color: transparent;
 }
 
-.btn-primary {
+.btn-primary:hover, .btn-primary:active, .btn-primary:focus {
+  background-color: #fff;
+}
+/*.btn-primary {
   background: #F36363;
   color: #fff;
   border: 2px solid #F36363;
@@ -1223,7 +1240,7 @@ h1, h2, h3, h4, h5, h6, figure {
 .btn-primary.btn-outline:hover, .btn-primary.btn-outline:focus, .btn-primary.btn-outline:active {
   background: #F36363;
   color: #fff;
-}
+}*/
 
 .btn-success {
   background: #5cb85c;
