@@ -15,12 +15,12 @@
 				
 				
 				<div class="col-md-2 col-lg-2 col-xs-3 movie-content">
-					<div class="movie">
+					<div class="decrypt">
 						<a href="{{ path("movie", {'imdbID': item["imdbID"] , 'typeMovie' : 'F'}) }}">
 							<img class="img-responsive" src= {{ item["Poster"] }} >
 							<div class="movie-content">
 							<h3 class="title-movie"> {{ item["Title"] }} </h3>
-							<p class ="vintage"> {{ item["Year"] }} </p>
+							<p> {{ item["Year"] }} </p>
 							</div>
 						</a>
 					</div>
@@ -41,7 +41,7 @@
 				
 				
 				<div class="col-md-2 col-lg-2 col-xs-3 movie-content">
-					<div class="movie">
+					<div class="decrypt">
 						<a href="{{ path("movie", {'imdbID': item["imdbID"] , 'typeMovie' : 'S'}) }}">
 							<img class="img-responsive" src= {{ item["Poster"] }} >
 							<div class="movie-content">

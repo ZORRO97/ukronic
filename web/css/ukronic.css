@@ -362,3 +362,8 @@ p.espace-star {
 .login, .series {
 	padding-top: 30px;
 }
+@media screen and (max-width: 980px) {
+	.block-first, .login, .series {
+		padding-top : 220px;
+	}
+}
