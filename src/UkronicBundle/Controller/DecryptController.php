@@ -87,7 +87,7 @@ class DecryptController extends Controller
     /**
      * @Route("/decrypt/movie/all", name="decryptMovieDateAll")
      */
-    public function DecryptMovieAllAction($id){
+    public function DecryptMovieAllAction(){
         $em = $this->getDoctrine()->getManager();
         $decryptRepository = $em->getRepository('UkronicBundle:Decrypt');
         $decrypts = $decryptRepository->movieDateDecrypted();
@@ -97,7 +97,7 @@ class DecryptController extends Controller
     /**
      * @Route("/decrypt/serie/all", name="decryptSerieDateAll")
      */
-    public function DecryptSerieAllAction($id){
+    public function DecryptSerieAllAction(){
         $em = $this->getDoctrine()->getManager();
         $decryptRepository = $em->getRepository('UkronicBundle:Decrypt');
         $decrypts = $decryptRepository->serieDateDecrypted();
@@ -108,7 +108,7 @@ class DecryptController extends Controller
     /**
      * @Route("/decrypt/movie/more/all", name="decryptMovieMoreAll")
      */
-    public function DecryptMovieMoreAllAction($id){
+    public function DecryptMovieMoreAllAction(){
         $em = $this->getDoctrine()->getManager();
         $decryptRepository = $em->getRepository('UkronicBundle:Decrypt');
         $results = $decryptRepository->movieMoreAllDecrypted();
@@ -118,7 +118,7 @@ class DecryptController extends Controller
     /**
      * @Route("/decrypt/movie/moreRead/all", name="decryptMovieMoreReadAll")
      */
-    public function DecryptMovieMoreReadAllAction($id){
+    public function DecryptMovieMoreReadAllAction(){
         $em = $this->getDoctrine()->getManager();
         $decryptRepository = $em->getRepository('UkronicBundle:Decrypt');
         $results = $decryptRepository->movieMoreReadAllDecrypted();
@@ -128,7 +128,7 @@ class DecryptController extends Controller
     /**
      * @Route("/decrypt/serie/more/all", name="decryptSerieMoreAll")
      */
-    public function DecryptSerieMoreAllAction($id){
+    public function DecryptSerieMoreAllAction(){
         $em = $this->getDoctrine()->getManager();
         $decryptRepository = $em->getRepository('UkronicBundle:Decrypt');
         $results = $decryptRepository->serieMoreAllDecrypted();
@@ -138,7 +138,7 @@ class DecryptController extends Controller
     /**
      * @Route("/decrypt/movie/like/all", name="decryptMovieLikeAll")
      */
-    public function DecryptMovieLikeAllAction($id){
+    public function DecryptMovieLikeAllAction(){
         $em = $this->getDoctrine()->getManager();
         $belovedRepository = $em->getRepository('UkronicBundle:Beloved');
         $results = $belovedRepository->allLikedDecrypt();
@@ -148,7 +148,7 @@ class DecryptController extends Controller
 /**
      * @Route("/decrypt/movie/comment/all", name="decryptMovieCommentAll")
      */
-    public function DecryptMovieCommentAllAction($id){
+    public function DecryptMovieCommentAllAction(){
         $em = $this->getDoctrine()->getManager();
         $decryptRepository = $em->getRepository('UkronicBundle:Decrypt');
         $results = $decryptRepository->allCommentMovieDecrypts();
