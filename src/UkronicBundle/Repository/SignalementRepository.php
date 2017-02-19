@@ -11,6 +11,7 @@ namespace UkronicBundle\Repository;
 class SignalementRepository extends \Doctrine\ORM\EntityRepository
 {
 
+
 	public function countSignalements(){
 		$q = $this->getEntityManager()
 		->createQuery("SELECT COUNT(DISTINCT u.id) FROM UkronicBundle:Signalement u WHERE u.status = 'A'");
@@ -26,4 +27,5 @@ class SignalementRepository extends \Doctrine\ORM\EntityRepository
 
 		return $tab;
 	}
+
 }

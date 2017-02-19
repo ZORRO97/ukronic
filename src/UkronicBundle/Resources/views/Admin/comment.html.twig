@@ -1,8 +1,29 @@
 {% extends 'UkronicBundle::layout.html.twig' %}
 
 {% block content %}
-	<h2>COMMENTAIRES</h2>
+	<div class="container-fluid block-first">
+	<h2 class="text-center">COMMENTAIRES</h2>
 	<div>
-		{{ dump(comments) }}
+		
+		<table class="table">
+			<tr>
+				<th>Id</th>
+				<th>Film</th>
+				<th>Décryptage</th>
+				<th>Par</th>
+				<th>Contenu</th>
+			</tr>
+			{% for comment in comments %}
+				<tr>
+					<td> {{ comment.id }} </td>
+					<td> {{ comment.decrypt.movie.title }} </td>
+					<td> {{ comment.decrypt.title }} </td>
+					<td> {{ comment.user.username }} </td>
+					<td> {{ comment.content }} </td>
+
+				</tr>
+			{% endfor %}
+		</table>
+	</div>
 	</div>
 {% endblock %}

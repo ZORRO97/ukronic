@@ -1,97 +1,93 @@
 {# banner.html.twig #}
-<div class="container-fluid" style="background-color:#149BDE">
-<div class="row">
-  
-  <div class="col-md-3 logo">
-    <a  href="{{ path('main') }}">
-              <img class="img-responsive center-block" src="{{ asset("Ukronic-logo-blanc-web.png") }}" alt="" width=200px height=150px>
-      </a>
-  </div>
-  <div class="col-md-9">
-    <div class="row">
-      <nav id="banner" class="navbar navbar-default" style="background-color:#149BDE" height=150px>
-  <div class="container-fluid">
-    <!-- Brand and toggle get grouped for better mobile display -->
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      
+
+<header class="container-fluid" style="background-color:#149BDE">
+    <div class="row navbar navbar-default navbar-fixed-top">
+
+      <div class="col-md-3 logo">
+        <a  href="{{ path('main') }}">
+            <img class="img-responsive center-block" src="{{ asset("Ukronic-logo-blanc-web.png") }}" alt="" width=200px height=150px>
+        </a>
+      </div>
+      <div class="col-md-8">
+        <div>
+          <nav id="banner" class="text-uppercase">
+             <div>
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
+                  <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                  </button>
+             </div>
+             <!-- Collect the nav links, forms, and other content for toggling -->
+             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="list-inline nav-films">
+                  <li class=""><a href="{{ path('movieSearch') }}">Films<span class="sr-only">(current)</span></a></li>
+                  <li><a href="{{ path('searchSerie') }}">Séries</a></li>
+                </ul>
+                 <ul class="list-inline nav-login pull-right">
+                     <li>
+                         {% if is_granted("ROLE_USER") %}
+                             <a href="{{ path('profile',{'id': app.user.id }) }}">Profil</a>
+                         {% else %}
+                             <a href="{{ path('fos_user_registration_register') }}"><i class="glyphicon glyphicon-lock"></i>
+                                 Inscription
+                             </a>
+
+                         {% endif %}
+                     </li>
+
+                     {% if app.user.username is defined %}
+                     <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+
+                            {{ app.user.username | upper }}
+                            <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                           <li>
+                              <a href="{{ path('fos_user_security_logout') }}"><i class="glyphicon glyphicon-lock"></i>
+                                 Déconnexion
+                              </a>
+                           </li>
+                        </ul>
+                      </li>
+
+                      {% if is_granted('ROLE_ADMIN') %}
+                        <li>
+                          <a href="{{ path('dashboardAdmin') }}">Tableau de bord</a>
+                        </li>
+                      {% endif %}
+
+                        {% else %}
+
+                      <li>
+                        <a href="{{ path('fos_user_security_login') }}">Se connecter</a>
+                      </li>
+                        {% endif %}
+                    </ul>
+                  </ul>
+                </div><!-- /.navbar-collapse -->
+              </div><!-- /.container-fluid -->
+            </nav>
+        </div>
+          <div class="text-center">
+              <ul class="list-inline">
+                  <li class="form-group">
+                      <input type="text" name="title" id="title-search" placeholder="Entrez le nom du film ou de la série que vous cherchez à décrypter" class="form-input">
+                  </li>
+                  <li>
+                    <button type="submit" class="btn btn-primary" id="valid-search"><i class="fa fa-search" aria-hidden="true"></i></button>
+                  </li>
+              </ul>
+          </div>
+      </div>
+
+
     </div>
 
-    <!-- Collect the nav links, forms, and other content for toggling -->
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      <ul class="nav navbar-nav">
-        <li class=""><a href="{{ path('movieSearch') }}">FILMS<span class="sr-only">(current)</span></a></li>
-        <li><a href="{{ path('searchSerie') }}">SERIES</a></li>
-        <li>
-          {% if is_granted("ROLE_USER") %}
-                <a href="{{ path('profile',{'id': app.user.id }) }}">PROFIL</a>
-              {% else %}
-                <a href="{{ path('fos_user_registration_register') }}"><i class="glyphicon glyphicon-lock"></i>
-                  INSCRIPTION
-                  </a>
-
-              {% endif %}
-        </li>
-
-        {% if app.user.username is defined %}
-      <li class="dropdown">
-        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-            
-                {{ app.user.username | upper }}
-             
-            <span class="caret"></span></a>
-            <ul class="dropdown-menu">
-              <li>                   
-                  <a href="{{ path('fos_user_security_logout') }}"><i class="glyphicon glyphicon-lock"></i>
-                    DECONNEXION  
-                  </a>    
-              </li>
-            </ul>
-        
-      </li>
-
-      {% if is_granted('ROLE_ADMIN') %}
-        <li>
-          <a href="{{ path('dashboardAdmin') }}">Tableau de bord</a>
-        </li>
-      {% endif %}
-
-        {% else %}
-
-      <li>
-        <a href="{{ path('fos_user_security_login') }}">SE CONNECTER</a>
-      </li>
-        {% endif %}
-      
-
-      </ul>
-  
-      
-      
-      
-      
-    </div><!-- /.navbar-collapse -->
-  </div><!-- /.container-fluid -->
-</nav>
-    </div>
-    <div class="row">
-      <input type="text" name="title" id="title-search" placeholder="Entrez un titre" class="form-input">
-      <button id="valid-search">Rechercher</button>
-     
-    </div>
-  </div>
-</div>
-
-
-
-</div>
-
-
+</header>
 
 
 
@@ -102,14 +98,10 @@
 	<script>
 	$(function(){
 		$('#valid-search').click(function(){
-			console.log($('#title-search').val());
+			// console.log($('#title-search').val());
 			var myTitle = $('#title-search').val();
       var route = "{{ path('ukronic-recherche', {'title': 'myTitle'})|escape('js') }}";
       route = route.replace('myTitle',myTitle);
-			// var myRoute = Routing.generate('ukronic-recherche',{'title': myTitle});
-			// console.log("Route -> "+myRoute);
-			
-
 			location.href = route;
 		});
 		

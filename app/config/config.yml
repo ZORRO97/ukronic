@@ -73,7 +73,7 @@ fos_user:
     db_driver: orm # other valid values are 'mongodb', 'couchdb' and 'propel'
     firewall_name: main
     user_class: UkronicBundle\Entity\User
-    
+
 
 # vich File upload
 vich_uploader:

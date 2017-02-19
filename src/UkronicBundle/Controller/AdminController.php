@@ -4,6 +4,7 @@ namespace UkronicBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use UkronicBundle\Entity\User;
@@ -15,12 +16,14 @@ use UkronicBundle\Entity\LikeComment;
 use UkronicBundle\Entity\Signalement;
 
 
+
 class AdminController extends Controller
 {
     /**
      * @Route("/admin/users",name="usersAdmin")
      */
     public function usersAdminAction()    
+
     {
     	$em = $this->getDoctrine()->getManager();
     	$repository = $em->getRepository('UkronicBundle:User');
@@ -249,6 +252,7 @@ class AdminController extends Controller
         }
         return false;
     } 
+
 
 
 }

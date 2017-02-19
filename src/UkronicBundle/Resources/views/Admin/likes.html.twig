@@ -1,6 +1,7 @@
 {% extends 'UkronicBundle::layout.html.twig' %}
 
 {% block content %}
+	<div class="block-first"></div>
 	<h2 class="text-center">LIKES</h2>
 	<div class="container-fluid">
 		<div class="row">
@@ -10,6 +11,7 @@
 						<th>Id</th>
 						<th>Film</th>
 						<th>Décryptage</th>
+						<th>Auteur</th>
 						<th>Date</th>
 					</tr>
 					{% for like in likes %}
@@ -17,6 +19,7 @@
 							<td> {{ like.id }} </td>
 							<td> {{ like.decrypt.movie.title }} </td>
 							<td> {{ like.decrypt.title }} </td>
+							<td> {{ like.user.username }} </td>
 							<td> {{ like.dateLike | date('d/m/Y') }} </td>
 						</tr>
 					{% endfor %}
