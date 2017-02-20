@@ -100,9 +100,13 @@
 		$('#valid-search').click(function(){
 			// console.log($('#title-search').val());
 			var myTitle = $('#title-search').val();
+      if (myTitle.length > 2) {
       var route = "{{ path('ukronic-recherche', {'title': 'myTitle'})|escape('js') }}";
       route = route.replace('myTitle',myTitle);
 			location.href = route;
+      } else {
+        console.log("recherche impossible");
+      }
 		});
 		
 	});
