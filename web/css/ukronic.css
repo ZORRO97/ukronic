@@ -270,6 +270,11 @@ nav li {
 	padding-top: 60px;
 }
 
+.decrypt-item {
+	border : 1px solid black;
+	margin: 2px;
+}
+
 .movie {
 	border : 5px solid black;
 	height: 350px;
@@ -295,6 +300,8 @@ nav li {
 .infos-movie {
 	margin-top: 40px;
 }
+
+
 .margin-movie {
 
 	margin-bottom: 50px;

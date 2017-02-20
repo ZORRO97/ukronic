@@ -22,14 +22,18 @@
 							<div class="decrypt-text">
 								<h3 class="title-movie"><a href="{{path('dbukronic',{'id':decrypt.movie.id})}}">{{ decrypt.movie.title }}</a></h3>
 								<p>Par : <a class="text-underline" href="{{path('profile',{'id':decrypt.user.id})}}"> {{ decrypt.user.username }} </a></p>
-								<!--<p>
+								
+								<p><i class="fa fa-quote-left" aria-hidden="true"></i> <a href="{{ path('decryptRead', {'id': decrypt.id}) }}"> 
 									{% if decrypt.typeDecrypt == "S" %}
-										Séquence
+										La séquence
 									{% else %}
 										Hypothèse de Fin
 									{% endif %}
-								</p>-->
-								<p><i class="fa fa-quote-left" aria-hidden="true"></i> <a href="{{ path('decryptRead', {'id': decrypt.id}) }}"> {{ decrypt.title }} </a> <i class="fa fa-quote-right" aria-hidden="true"></i></p>
+									{{ decrypt.title }} 
+									</a> <i class="fa fa-quote-right" aria-hidden="true"></i>
+								</p>
+								<p> {{ decrypt.wordCount }} mots - {{ decrypt.dateDecrypt | date("d/m/Y") }} 
+								</p>
 
 							</div> 
 						</div>

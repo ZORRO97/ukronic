@@ -43,7 +43,7 @@
 				<p>SCRIPT :  {{ movie.script }} </p>
 
 				{% if is_granted("ROLE_USER") %}
-				<p><a class="btn btn-primary" href="{{ path('decrypt', {'idMovie': movie.id}) }}">Ajouter un décryptage</a></p>
+				<p><a class="btn btn-primary bg-blue" href="{{ path('decrypt', {'idMovie': movie.id}) }}">Ajouter un décryptage</a></p>
 				{% endif %}
 			</div>
 
@@ -65,9 +65,10 @@
 					{{ tools.buttonLink(movie.id,"comment","F","+commentés",filter_end,filter_seq) }}
 					
 					</div>
+					<div class="row">
 				
-				{{render(controller('UkronicBundle:Decrypt:display',{'idMovie': movie.id ,'filter': filter_end ,'typeDecrypt':'F'})) }}
-
+						{{render(controller('UkronicBundle:Decrypt:display',{'idMovie': movie.id ,'filter': filter_end ,'typeDecrypt':'F'})) }}
+					</div>
 				</div>
 				
 				
@@ -94,7 +95,9 @@
 						
 						</div>
 					</div>
-				{{render(controller('UkronicBundle:Decrypt:display',{'idMovie': movie.id,'filter': filter_seq ,'typeDecrypt':'S'})) }}
+					<div class="row">
+						{{render(controller('UkronicBundle:Decrypt:display',{'idMovie': movie.id,'filter': filter_seq ,'typeDecrypt':'S'})) }}
+					</div>
 
 				</div>
 				

@@ -2,6 +2,7 @@
 
 <ul>
 	{% for decrypt in decrypts %}
+		{#
 		
 		<li class="text-center decrypt-link">
 			<a href="{{ path('decryptRead',{'id' : decrypt.id }) }}">{{ decrypt.title }} </a>(
@@ -15,8 +16,26 @@
 			 mots
 			) par {{ decrypt.user.username }}
 			
-		</li>	
-		
+		</li>
+		#}
+		<div class="col-md-12 decrypt-item">
+			<div class="col-md-3">
+				<div>
+				{% if decrypt.user.imageName is defined %}
+				{% set chemin = "images/users/" ~ decrypt.user.imageName %}
+				<img src="{{ asset(chemin) }}" alt="" width=30px height=30px>
+				{% else %}
+					<img src="{{ asset("lunettes-logo-300x155.png") }}" alt="" height=30px width=30px>
+				{% endif %}
+				</div>
+				<p> <a href="{{ path('profile',{'id':decrypt.user.id })}}">{{ decrypt.user.username }}</a> </p>
+			</div>
+			<div class="col-md-9">
+				<p> <a href="{{ path('decryptRead',{'id' : decrypt.id }) }}">{{ decrypt.title }} </a> </p>
+				<p> {{ decrypt.content }} </p>
+				<p> {{ decrypt.wordCount }} mots - {{ decrypt.nbRead }} <img class="icon-ukronic" src="{{ asset('images/side-view-of-sitting-man-reading_318-29449.jpg') }}" alt="lecture"> - {{ decrypt.likes | length }} <img class="icon-ukronic" src="{{ asset('images/FBLike-Icon_300_v2.png') }}" alt="like"> - {{ decrypt.comments | length }} <img class="icon-ukronic" src="{{ asset('images/Comment-edit-icon.png') }}" alt="commentaire"> </p>
+			</div>	
+		</div>
 		
 	{% endfor %}
 </ul>
