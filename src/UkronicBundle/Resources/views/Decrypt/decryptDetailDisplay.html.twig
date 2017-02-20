@@ -1,1 +1,5 @@
+{% if decrypt is not null %}
 a décrypté la{% if decrypt.typeDecrypt == "S" %} séquence {% else %} fin {% endif %} {{ decrypt.title }} pour {{ decrypt.movie.title }}
+{% else %}
+	a émis un décryptage supprimé par l'administrateur
+{% endif %}
