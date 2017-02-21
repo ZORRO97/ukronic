@@ -13,8 +13,8 @@
 		<img src="{{ asset(chemin) }}" alt="{{ user.username }}" width=300px height=300px >
 		{% if app.user.id is defined %}
 			{% if app.user.id == user.id %}
-				<p>
-				<a href="{{ path('imageUser',{'id' : app.user.id }) }}">Modifier la photo</a>
+				<p class="text-center">
+				<a class="btn-blue" href="{{ path('imageUser',{'id' : app.user.id }) }}">Modifier la photo</a>
 				</p>
 			{% endif %}
 		{% endif %}

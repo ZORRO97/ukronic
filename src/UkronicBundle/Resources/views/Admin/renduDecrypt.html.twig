@@ -7,8 +7,8 @@
 </td>
 <td>  {{ decrypt.content }} </td>
 <td>
-	<button class="supprimer-decrypt" data-button= {{ decrypt.id }} data-sig= {{idSig}} >DEL</button> 
-	<button class="ignorer-decrypt" data-button= {{ decrypt.id }} data-sig= {{idSig}} >IGNORER</button>
+	<button class="supprimer-decrypt btn-blue" data-button= {{ decrypt.id }} data-sig= {{idSig}} >DEL</button>
+	<button class="ignorer-decrypt btn-blue" data-button= {{ decrypt.id }} data-sig= {{idSig}} >IGNORER</button>
 </td>
 {% else %}
 	<td>Données supprimées</td>

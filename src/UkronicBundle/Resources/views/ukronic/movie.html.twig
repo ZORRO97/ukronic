@@ -43,7 +43,7 @@
 				<p>SCRIPT :  {{ movie.script }} </p>
 
 				{% if is_granted("ROLE_USER") %}
-				<p><a class="btn btn-primary bg-blue" href="{{ path('decrypt', {'idMovie': movie.id}) }}">Ajouter un décryptage</a></p>
+				<p><a class="btn-blue" href="{{ path('decrypt', {'idMovie': movie.id}) }}">Ajouter un décryptage</a></p>
 				{% endif %}
 			</div>
 
