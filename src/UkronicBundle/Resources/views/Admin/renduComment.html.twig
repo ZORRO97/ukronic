@@ -6,8 +6,8 @@
 </td>
 <td> {{ comment.content }}</td>
 <td>
-	<button class="supprimer-comment" data-button = {{ comment.id }} data-sig= {{idSig}} >DEL</button>
-	<button class="ignorer-comment" data-button = {{ comment.id }} data-sig= {{idSig}} >IGNORER</button>
+	<button class="supprimer-comment btn-blue" data-button = {{ comment.id }} data-sig= {{idSig}} >DEL</button>
+	<button class="ignorer-comment btn-blue" data-button = {{ comment.id }} data-sig= {{idSig}} >IGNORER</button>
 </td>
 {% else %}
 	<td>données supprimées</td>

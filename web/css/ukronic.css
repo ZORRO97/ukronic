@@ -26,7 +26,7 @@ h1 {
 }
 
 .block-first {
-	margin-top: 138px;
+	margin-top: 150px;
 }
 
 /* Global Form */
@@ -53,6 +53,15 @@ input {
 }
 .text-underline:hover {
 	text-decoration: underline;
+}
+.btn-blue {
+	border: none;
+	background-color: #149BDE;
+	color: white;
+	padding: 5px 15px;
+}
+.btn-blue:hover {
+	color: white;
 }
 
 /* NAVIGATION */
@@ -222,7 +231,7 @@ nav li {
 	margin-top: 11%;
 }
 .decrypt {
-	height : 320px;
+	height : 350px;
 	margin-bottom: 20px;
 	background-color: #fff;
 	width: 150px;
@@ -253,6 +262,7 @@ nav li {
 	width : 100%;
 	height: auto;
 	object-fit:cover;
+	max-width: 420px;
 }
 
 .decrypt a img {

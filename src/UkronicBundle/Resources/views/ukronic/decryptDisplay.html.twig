@@ -19,9 +19,6 @@
 					{% else %}
 						Séquence
 					{% endif %}
-
-					
-					
 				</p>
 
 					"{{ decrypt.title }}"
@@ -29,7 +26,7 @@
 				<p>  par <a href="{{ path('profile',{'id':decrypt.user.id}) }}"> {{ decrypt.user.username }} </a></p>
 				<p>
 					{{ nbLiked }}
-					<button id="signaler" data-button="{{ decrypt.id }}">Signaler</button>	
+					<button id="signaler" class="btn-blue" data-button="{{ decrypt.id }}">Signaler</button>
 					<div id="notif"></div>
 				</p>
 
@@ -50,7 +47,7 @@
 
 						{% endif %}
 						{{ nbLiked }}
-						<button id="signaler" data-button="{{ decrypt.id }}">Signaler</button>
+						<button id="signaler" class="btn-blue" data-button="{{ decrypt.id }}">Signaler</button>
 						<div id="notif"></div>
 					{% endif %}
 				</p>
@@ -91,7 +88,7 @@
 									{{render(controller('UkronicBundle:Comment:IsLikeAnonymous',{'id':comment.id}))}}
 								{% else %}
 									{{render(controller('UkronicBundle:Comment:IsLike',{'id':comment.id,'userId':userId}))}}
-									<button class="signalComment" data-button="{{ comment.id }}">Signaler</button>
+									<button class="signalComment btn-blue" data-button="{{ comment.id }}">Signaler</button>
 								{% endif %}
 							</p>
 						</div>
@@ -108,7 +105,7 @@
 	{{ parent() }}
 	<script>
 	$(function(){
-		
+
 		$('#signaler').click(function(e){
 			e.preventDefault();
 			console.log("bouton signaler cliqué");
@@ -120,9 +117,9 @@
 			// console.log("MonUrl : "+monUrl);
 			$.ajax({
 				url : monUrl ,
-				dataType: "json" 
-				
-				
+				dataType: "json"
+
+
 
 				}).done(function(data){
 					// console.log(data);
@@ -134,14 +131,14 @@
 				// console.log(err);
 				$("#notif").html("erreur technique impossible de signaler ce contenu");
 			});
-			
+
 		});
 
 		$('.signalComment').click(function(e){
 			e.preventDefault();
 			var myButton = $(this);
 			console.log("bouton signaler cliqué");
-			
+
 			var monId = $(this).attr('data-button');
 			// console.log("monId : "+monId);
 			var monUrl = "{{ path('commentSignalement',{'id': 'monId'}) }}";
@@ -149,25 +146,25 @@
 			// console.log("MonUrl : "+monUrl);
 			$.ajax({
 				url : monUrl ,
-				dataType: "json" 
-				
-				
+				dataType: "json"
+
+
 
 				}).done(function(data){
 					// console.log(data);
 					$('<span>décryptage signalé</span>').insertAfter(myButton);
 					myButton.hide();
-				
+
 				}
 			).fail(function(err){
 				// console.log('Echec ajax');
 				// console.log(err);
 				$('<span>erreur traitement</span>').insertAfter(myButton);
 			});
-			
+
 		});
 	});
 
 	</script>
-    
+
 {% endblock %}
