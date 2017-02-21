@@ -1,4 +1,4 @@
-
+{% import 'UkronicBundle::macros.html.twig' as macros %}
 
 <ul>
 	{% for decrypt in decrypts %}
@@ -32,7 +32,9 @@
 			</div>
 			<div class="col-md-9">
 				<p> <a href="{{ path('decryptRead',{'id' : decrypt.id }) }}">{{ decrypt.title }} </a> </p>
-				<p> {{ decrypt.content }} </p>
+				
+				<p> {{ macros.contentTruncate(decrypt.content,10) }} </p>
+				
 				<p> {{ decrypt.wordCount }} mots - {{ decrypt.nbRead }} <img class="icon-ukronic" src="{{ asset('images/side-view-of-sitting-man-reading_318-29449.jpg') }}" alt="lecture"> - {{ decrypt.likes | length }} <img class="icon-ukronic" src="{{ asset('images/FBLike-Icon_300_v2.png') }}" alt="like"> - {{ decrypt.comments | length }} <img class="icon-ukronic" src="{{ asset('images/Comment-edit-icon.png') }}" alt="commentaire"> </p>
 			</div>	
 		</div>

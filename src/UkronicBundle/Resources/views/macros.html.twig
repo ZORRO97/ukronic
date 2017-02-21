@@ -1,0 +1,29 @@
+{% macro contentTruncate(phrase,limit) %}
+	{% if phrase | length < limit %}
+		{{ phrase }}
+	{% else %}
+		{% set myArray = phrase | split(' ') %}
+		{% set destArray = myArray[:limit] %}
+		{% set cutPhrase = destArray|join(' ') ~ '...'%}
+			{{ cutPhrase }}
+	{% endif %}
+{% endmacro %}
+
+{% macro finContent(content,max) %}
+	{% set myContent = "hypothèse de fin " ~ content %}
+	{% if myContent|length < max %}
+		{{ myContent }}
+	{% else %}
+		{{ myContent[:max] }}
+	{% endif %}
+{% endmacro %}
+
+
+{% macro sequenceContent(content,max) %}
+	{% set myContent = "Séquence " ~ content %}
+	{% if myContent|length < max %}
+		{{ myContent }}
+	{% else %}
+		{{ myContent[:max] }}
+	{% endif %}
+{% endmacro %}

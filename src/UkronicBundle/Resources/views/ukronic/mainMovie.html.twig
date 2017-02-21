@@ -1,3 +1,4 @@
+{% import 'UkronicBundle::macros.html.twig' as macros %}
 {% extends 'UkronicBundle::layout.html.twig' %}
 
 {% block content %}
@@ -25,11 +26,13 @@
 								
 								<p><i class="fa fa-quote-left" aria-hidden="true"></i> <a href="{{ path('decryptRead', {'id': decrypt.id}) }}"> 
 									{% if decrypt.typeDecrypt == "S" %}
-										La séquence
+										{# La séquence #}
+										{{ macros.sequenceContent(decrypt.title,20) }}
 									{% else %}
-										Hypothèse de Fin
+										{# Hypothèse de Fin #}
+										{{ macros.finContent(decrypt.title,15) }}
 									{% endif %}
-									{{ decrypt.title }} 
+									{# {{ decrypt.title }} #}
 									</a> <i class="fa fa-quote-right" aria-hidden="true"></i>
 								</p>
 								<p> {{ decrypt.wordCount }} mots - {{ decrypt.dateDecrypt | date("d/m/Y") }} 
