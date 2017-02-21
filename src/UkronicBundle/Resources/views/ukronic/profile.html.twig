@@ -85,7 +85,7 @@
 				
 				{% for histo in lastHistos %}
 					<div class="histo">
-					<p>-
+					<p>- <span>{{ histo.dateAction | date("d/m/Y H:i") }} </span>
 						{{ user.username }} 
 						{% if histo.action == 1 %}
 							{# a commenté #}
@@ -110,7 +110,7 @@
 						{% else %}
 							action spéciale
 						{% endif %}
-					- <span>{{ histo.dateAction | date("d/m/Y H:i") }} </span>
+					
 					</p>
 					</div>
 				    

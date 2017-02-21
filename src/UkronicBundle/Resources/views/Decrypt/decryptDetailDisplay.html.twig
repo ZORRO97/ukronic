@@ -1,5 +1,17 @@
 {% if decrypt is not null %}
-a décrypté la{% if decrypt.typeDecrypt == "S" %} séquence {% else %} fin {% endif %} {{ decrypt.title }} pour {{ decrypt.movie.title }}
+a décrypté la{% if decrypt.typeDecrypt == "S" %} séquence {% else %} fin {% endif %} {{ decrypt.title }} pour {{ decrypt.movie.title }} 
+{% if decrypt.comments is not empty %}
+	{% for comment in decrypt.comments %}
+		<p class= "text-right"> {{ comment.user.username }} a commenté le {{ comment.dateComment | date("d/m/Y H:i") }}</p>
+	{% endfor %}
+{% endif %}
+{% if decrypt.likes is not empty %}
+	{% for like in decrypt.likes %}
+		<p class="text-right">
+			{{ like.user.username }} a liké le  {{ like.dateLike | date("d/m/Y H:i") }}
+		</p>
+	{% endfor %}
+{% endif %}
 {% else %}
 	a émis un décryptage supprimé par l'administrateur
 {% endif %}
