@@ -4,16 +4,18 @@
 	
 	<p><i class="fa fa-quote-left" aria-hidden="true"></i> <a href="{{ path('decryptRead', {'id': decrypt.id}) }}"> 
 		{% if decrypt.typeDecrypt == "S" %}
-			{# La séquence #}
-			{{ macros.sequenceContent(decrypt.title,30) }}
+			La séquence 
+			{# {{ macros.sequenceContent(decrypt.title,30) }} #}
+			
 		{% else %}
-			{# Hypothèse de Fin #}
-			{{ macros.finContent(decrypt.title,30) }}
+			 Hypothèse de Fin 
+			{# {{ macros.finContent(decrypt.title,30) }} #}
+
 		{% endif %}
-		{# {{ decrypt.title }} #}
+		{{ decrypt.title }} 
 		</a> <i class="fa fa-quote-right" aria-hidden="true"></i>
 	</p>
-	<p> {{ decrypt.wordCount }} mots - {{ decrypt.dateDecrypt | date("d/m/Y") }} 
+	<p> {{ decrypt.wordCount }} mots {#- {{ decrypt.dateDecrypt | date("d/m/Y") }} #}
 	</p>
 
 </div> 

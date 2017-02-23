@@ -96,15 +96,24 @@ class DefaultController extends Controller
     public function searchSerieAction()
     {
         $em = $this->getDoctrine()->getManager();
-        $repository = $em->getRepository("UkronicBundle:Movie");
-        
-        $series = $repository->allSeries();
+        $decryptRepository = $em->getRepository("UkronicBundle:Decrypt");        
+        $lastSerieDecrypts = $decryptRepository->serieLastDecrypted();        
+        $moreSerieDecrypts = $decryptRepository->serieMoreDecrypted(); 
+        $moreReadSerieDecrypts = $decryptRepository->moreReadSerieDecrypts();
+
+        $belovedRepository = $em->getRepository("UkronicBundle:Beloved");
+        $moreLikeSerieDecrypts = $belovedRepository->moreLikedSerieDecrypt(); 
+        $moreCommentSerieDecrypts = $decryptRepository->moreCommentSerieDecrypts();     
         
 
         
-        return $this->render('UkronicBundle:Ukronic:searchSerie.html.twig',array(
+        return $this->render('UkronicBundle:Ukronic:mainSerie.html.twig',array(
             
-            'series'=>$series
+            'lastSerieDecrypts'=>$lastSerieDecrypts,
+            'moreSerieDecrypts'=>$moreSerieDecrypts,
+            'moreReadSerieDecrypts'=>$moreReadSerieDecrypts,
+            'moreLikeSerieDecrypts'=>$moreLikeSerieDecrypts,
+            'moreCommentSerieDecrypts'=>$moreCommentSerieDecrypts
             ));
     }
 
@@ -292,7 +301,7 @@ class DefaultController extends Controller
                         "value" => $rating->getUnderstand())
                 ))
             
-            ->add('save', SubmitType::class, array('label' => 'Enregistrer'))
+            ->add('save', SubmitType::class, array('label' => 'Publier'))
             ->getForm();
         
         $form->handleRequest($request);
@@ -375,7 +384,7 @@ class DefaultController extends Controller
         $form = $this->createFormBuilder($comment)
             ->add('content',TextareaType::class)
                        
-            ->add('save', SubmitType::class, array('label' => 'Enregistrer'))
+            ->add('save', SubmitType::class, array('label' => 'Publier'))
             ->getForm();
         
         $form->handleRequest($request);

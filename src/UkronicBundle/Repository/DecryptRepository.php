@@ -106,6 +106,15 @@ class DecryptRepository extends \Doctrine\ORM\EntityRepository
 		// return "en cours de debug";
 	}
 
+	public function serieLikeAllDecrypted(){
+		//
+		$q = $this->getEntityManager()
+		->createQuery("SELECT d , COUNT(DISTINCT b.id) AS clike FROM UkronicBundle:Decrypt d UkronicBundle:Beloved b INNER JOIN b.decrypt d JOIN decrypt.movie m WHERE m.typeMovie='S' GROUP BY d.id ORDER BY clike DESC" );
+    	$decrypts = $q->getResult();
+		return $decrypts;
+		
+	}
+
 
 
 	public function getDecrypts($idMovie , $filter, $typeDecrypt) {
@@ -155,10 +164,24 @@ class DecryptRepository extends \Doctrine\ORM\EntityRepository
 		return $q->getResult();
 	}
 
+	public function moreLikedSerieDecrypts(){
+			$q = $this->getEntityManager()
+		->createQuery("SELECT d FROM UkronicBundle:Decrypt d JOIN d.movie m WHERE m.typeMovie = 'S' AND d.nbLiked > 0  ORDER BY d.nbLiked DESC" )
+		->setMaxresults(5);
+		return $q->getResult();
+	}
+
 
 	public function moreReadMovieDecrypts(){
 		$q = $this->getEntityManager()
 		->createQuery("SELECT d FROM UkronicBundle:Decrypt d JOIN d.movie m WHERE m.typeMovie = 'F' AND d.nbRead > 0  ORDER BY d.nbRead DESC" )
+		->setMaxresults(5);
+		return $q->getResult();
+	}
+
+	public function moreReadSerieDecrypts(){
+		$q = $this->getEntityManager()
+		->createQuery("SELECT d FROM UkronicBundle:Decrypt d JOIN d.movie m WHERE m.typeMovie = 'S' AND d.nbRead > 0  ORDER BY d.nbRead DESC" )
 		->setMaxresults(5);
 		return $q->getResult();
 	}
@@ -169,6 +192,12 @@ class DecryptRepository extends \Doctrine\ORM\EntityRepository
 		return $q->getResult();
 	}
 
+	public function serieMoreReadAllDecrypted(){
+		$q = $this->getEntityManager()
+		->createQuery("SELECT d FROM UkronicBundle:Decrypt d JOIN d.movie m WHERE m.typeMovie = 'S' AND d.nbRead > 0  ORDER BY d.nbRead DESC" );
+		return $q->getResult();
+	}
+
 	public function moreCommentMovieDecrypts(){
 		$q = $this->getEntityManager()
 		->createQuery("SELECT d , COUNT(DISTINCT c.id) as ccount  FROM UkronicBundle:Decrypt d JOIN d.movie m INNER JOIN d.comments c WHERE m.typeMovie='F' GROUP BY d.id ORDER BY ccount DESC " )
@@ -176,9 +205,22 @@ class DecryptRepository extends \Doctrine\ORM\EntityRepository
 		return $q->getResult();
 	}
 
+	public function moreCommentSerieDecrypts(){
+		$q = $this->getEntityManager()
+		->createQuery("SELECT d , COUNT(DISTINCT c.id) as ccount  FROM UkronicBundle:Decrypt d JOIN d.movie m INNER JOIN d.comments c WHERE m.typeMovie='S' GROUP BY d.id ORDER BY ccount DESC " )
+		->setMaxresults(5);
+		return $q->getResult();
+	}
+
 	public function allCommentMovieDecrypts(){
 		$q = $this->getEntityManager()
 		->createQuery("SELECT d , COUNT(DISTINCT c.id) as ccount  FROM UkronicBundle:Decrypt d JOIN d.movie m INNER JOIN d.comments c WHERE m.typeMovie='F' GROUP BY d.id ORDER BY ccount DESC " );
+		return $q->getResult();
+	}
+
+	public function allCommentSerieDecrypts(){
+		$q = $this->getEntityManager()
+		->createQuery("SELECT d , COUNT(DISTINCT c.id) as ccount  FROM UkronicBundle:Decrypt d JOIN d.movie m INNER JOIN d.comments c WHERE m.typeMovie='S' GROUP BY d.id ORDER BY ccount DESC " );
 		return $q->getResult();
 	}
 

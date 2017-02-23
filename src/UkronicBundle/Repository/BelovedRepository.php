@@ -61,6 +61,16 @@ class BelovedRepository extends \Doctrine\ORM\EntityRepository
 		return $results;
 	}
 
+	function moreLikedSerieDecrypt(){
+		$q = $this->getEntityManager()
+		->createQuery("SELECT b , COUNT(DISTINCT b.id) AS bcount FROM UkronicBundle:Beloved b JOIN b.decrypt d JOIN d.movie m WHERE m.typeMovie = 'S' GROUP BY d.id   ORDER BY bcount DESC")
+		->setMaxresults(5); 
+		
+		$results = $q->getResult();
+		return $results;
+	}
+
+
 	public function countLikes(){
 		$q = $this->getEntityManager()
 		->createQuery("SELECT COUNT(DISTINCT u.id) FROM UkronicBundle:Beloved u");

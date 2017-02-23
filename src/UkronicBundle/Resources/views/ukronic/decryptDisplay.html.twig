@@ -20,9 +20,7 @@
 						Séquence
 					{% endif %}
 				</p>
-
-					"{{ decrypt.title }}"
-				</p>
+				
 				<p>  par <a href="{{ path('profile',{'id':decrypt.user.id}) }}"> {{ decrypt.user.username }} </a></p>
 				
 
@@ -31,6 +29,10 @@
 		</div>
 		<div class="row">
 			<div class="col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
+				<p>
+
+					"{{ decrypt.title }}"
+				</p>
 				<p class="commentaire">
 				{{ decrypt.content }}
 				</p>
