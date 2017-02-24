@@ -462,4 +462,11 @@ class DefaultController extends Controller
         return $this->redirectToRoute('decryptRead',array("id"=>$decrypt->getId()));
     }
 
+     /**
+     * @Route("/ukronic/cgu", name="ukronic-cgu")
+     */
+    public function cguUkronicAction(){
+        return $this->render('UkronicBundle:User:cgu.html.twig');
+    }
+
 }
