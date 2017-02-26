@@ -7,116 +7,118 @@
 	<div class="presentation profile block-first">
 		<h4>Profil Ukronic</h4>
 	</div>
-	<div class="row profile ">
-		<div class="col-md-3 col-md-offset-3">
-		{% set chemin = "images/users/" ~ user.imageName %}
-		<img src="{{ asset(chemin) }}" alt="{{ user.username }}" width=300px height=300px >
-		{% if app.user.id is defined %}
-			{% if app.user.id == user.id %}
-				<p class="text-center">
-				<a class="btn-blue" href="{{ path('imageUser',{'id' : app.user.id }) }}">Modifier la photo</a>
-				</p>
-			{% endif %}
-		{% endif %}
-		</div>
-		<div class="col-md-4">
-			<h2 class="text-center">
-				{% if app.user.id is defined and app.user.id == user.id %}
-					Mon Profil
-				{% else %}
-					Profil de {{ user.username }}
-				{% endif %}
-			</h2>
-			
-			<p>Film préféré : 
-				{% if preferedMovie.id is defined %}
-					<a href="{{ path('dbukronic',{'id': preferedMovie.id}) }}">
-						{{ preferedMovie.title }}
-					</a>
-				{% else %}
-					non renseigné
-				{% endif %}
-			 </p>
-			<p>Perdu dans ce film... :
-				{% if ambiguousMovie.id is defined %}
-					<a href="{{ path('dbukronic',{'id': ambiguousMovie.id}) }}">
-						{{ ambiguousMovie.title }}
-					</a>
-				{% else %}
-					non renseigné
-				{% endif %}
-				
-			</p>
-			<p>J'ai (normalement) tout compris :
-				{% if understandMovie.id is defined %}
-					<a href="{{ path('dbukronic',{'id': understandMovie.id}) }}">
-						{{ understandMovie.title }}
-					</a>
-				{% else %}
-					non renseigné
-				{% endif %}
-			</p>
-		</div>
-
-	</div>
-
-	<div class="row">
-		
-		<div class="col-md-3 col-md-offset-3">
-			<h2 class="text-center">Mon activité</h2>
-			<div>
-				
-				<p> {{ nbLikes | number_format }} likes postés</p>
-				<p>{{ nbComment | number_format }} commentaires postés</p>
-				<p> {{ nbSequence | number_format }} séquences décryptées</p>
-				<p> {% if nbSequence100 is defined %} {{ nbSequence100 | number_format }} {% else %} inconnu {% endif %} - 100 mots</p>
-				<p> {{ nbSequence300 | number_format }} - 300 mots</p>
-				<p> {{ nbSequenceO300 | number_format }} + 300 mots</p>
-				<p> {{ nbEnd  | number_format}} fin de films décryptés</p>
-				<p> {{ nbEnd100 | number_format }}  - 100 mots</p>
-				<p> {{ nbEnd300 | number_format }}  - 300 mots</p>
-				<p> {{ nbEndO300 | number_format }} + 300 mots</p>
-
-			</div>
-		</div>
-		<div class="col-md-4">
-			<h2 class="text-center">Actualités</h2>
-			<div>
-				
-				{% for histo in lastHistos %}
-					<div class="histo">
-					<p>- <span>{{ histo.dateAction | date("d/m/Y H:i") }} </span>
-						{{ user.username }} 
-						{% if histo.action == 1 %}
-							{# a commenté #}
-							{{ render(controller('UkronicBundle:Decrypt:Comment',{'id':histo.reference}))}}
-						{% elseif histo.action == 2 %}
-							{# a liké #}
-							{{ render(controller('UkronicBundle:Decrypt:Like',{'id':histo.reference}))}}
-						{% elseif histo.action == 3 %}
-							{#
-							a décrypté la fin pour 
-							#}
-							{{ render(controller('UkronicBundle:Decrypt:Detail',{'id':histo.reference,'typeDecrypt':'F'}))}}
-						{% elseif histo.action == 4 %}
-							{#
-							a décrypté la séquence pour
-							#}
-							{{ render(controller('UkronicBundle:Decrypt:Detail',{'id':histo.reference,'typeDecrypt':'S'}))}}
-						{% elseif histo.action == 5 %}
-							{# like de commentaire #}
-								
-							{{ render(controller('UkronicBundle:Comment:LikeDisplay',{'id':histo.reference}))}}
-						{% else %}
-							action spéciale
-						{% endif %}
-					
+	<div class="container">
+		<div class="row profile ">
+			<div class="col-md-3 col-md-offset-3">
+			{% set chemin = "images/users/" ~ user.imageName %}
+			<img src="{{ asset(chemin) }}" alt="{{ user.username }}" width=300px height=300px >
+			{% if app.user.id is defined %}
+				{% if app.user.id == user.id %}
+					<p class="text-center">
+					<a class="btn-blue" href="{{ path('imageUser',{'id' : app.user.id }) }}">Modifier la photo</a>
 					</p>
-					</div>
-				    
-				{% endfor %}
+				{% endif %}
+			{% endif %}
+			</div>
+			<div class="col-md-4">
+				<h2 class="text-center">
+					{% if app.user.id is defined and app.user.id == user.id %}
+						Mon Profil
+					{% else %}
+						Profil de {{ user.username }}
+					{% endif %}
+				</h2>
+
+				<p>Film préféré :
+					{% if preferedMovie.id is defined %}
+						<a href="{{ path('dbukronic',{'id': preferedMovie.id}) }}">
+							{{ preferedMovie.title }}
+						</a>
+					{% else %}
+						non renseigné
+					{% endif %}
+				 </p>
+				<p>Perdu dans ce film... :
+					{% if ambiguousMovie.id is defined %}
+						<a href="{{ path('dbukronic',{'id': ambiguousMovie.id}) }}">
+							{{ ambiguousMovie.title }}
+						</a>
+					{% else %}
+						non renseigné
+					{% endif %}
+
+				</p>
+				<p>J'ai (normalement) tout compris :
+					{% if understandMovie.id is defined %}
+						<a href="{{ path('dbukronic',{'id': understandMovie.id}) }}">
+							{{ understandMovie.title }}
+						</a>
+					{% else %}
+						non renseigné
+					{% endif %}
+				</p>
 			</div>
 
+		</div>
+
+		<div class="row">
+
+			<div class="col-md-3 col-md-offset-3">
+				<h2 class="text-center">Mon activité</h2>
+				<div>
+
+					<p> {{ nbLikes | number_format }} likes postés</p>
+					<p>{{ nbComment | number_format }} commentaires postés</p>
+					<p> {{ nbSequence | number_format }} séquences décryptées</p>
+					<p> {% if nbSequence100 is defined %} {{ nbSequence100 | number_format }} {% else %} inconnu {% endif %} - 100 mots</p>
+					<p> {{ nbSequence300 | number_format }} - 300 mots</p>
+					<p> {{ nbSequenceO300 | number_format }} + 300 mots</p>
+					<p> {{ nbEnd  | number_format}} fin de films décryptés</p>
+					<p> {{ nbEnd100 | number_format }}  - 100 mots</p>
+					<p> {{ nbEnd300 | number_format }}  - 300 mots</p>
+					<p> {{ nbEndO300 | number_format }} + 300 mots</p>
+
+				</div>
+			</div>
+			<div class="col-md-4">
+				<h2 class="text-center">Actualités</h2>
+				<div>
+
+					{% for histo in lastHistos %}
+						<div class="histo">
+						<p>- <span>{{ histo.dateAction | date("d/m/Y H:i") }} </span>
+							{{ user.username }}
+							{% if histo.action == 1 %}
+								{# a commenté #}
+								{{ render(controller('UkronicBundle:Decrypt:Comment',{'id':histo.reference}))}}
+							{% elseif histo.action == 2 %}
+								{# a liké #}
+								{{ render(controller('UkronicBundle:Decrypt:Like',{'id':histo.reference}))}}
+							{% elseif histo.action == 3 %}
+								{#
+								a décrypté la fin pour
+								#}
+								{{ render(controller('UkronicBundle:Decrypt:Detail',{'id':histo.reference,'typeDecrypt':'F'}))}}
+							{% elseif histo.action == 4 %}
+								{#
+								a décrypté la séquence pour
+								#}
+								{{ render(controller('UkronicBundle:Decrypt:Detail',{'id':histo.reference,'typeDecrypt':'S'}))}}
+							{% elseif histo.action == 5 %}
+								{# like de commentaire #}
+
+								{{ render(controller('UkronicBundle:Comment:LikeDisplay',{'id':histo.reference}))}}
+							{% else %}
+								action spéciale
+							{% endif %}
+
+						</p>
+						</div>
+
+					{% endfor %}
+				</div>
+
+			</div>
 		</div>
 	</div>
 {% endblock %}

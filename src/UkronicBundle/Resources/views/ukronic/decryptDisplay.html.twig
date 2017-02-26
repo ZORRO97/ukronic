@@ -1,14 +1,14 @@
 {% extends 'UkronicBundle::layout.html.twig' %}
 
 {% block content %}
-	<div class="presentation block-first"></div>
+	<div class="presentation"></div>
 	<div class="container decrypt-display">
 		<div class="row">
-			<div class="col-md-3 col-md-offset-3 col-sm-4 col-sm-offset-2 col-xs-6">
+			<div class="col-md-3 col-md-offset-3 col-sm-4 col-sm-offset-2">
 				<p><a href=" {{ path("dbukronic",{'id':decrypt.movie.id}) }} "><img class="img-responsive center-block img-decrypt-big" src="{{ decrypt.movie.posterURL }}" alt="image Film"></a></p>
 			</div>
 
-			<div class="col-md-3 col-sm-4 col-xs-6">
+			<div class="col-md-3 col-sm-4">
 
 
 				<p class="">Décryptage de  <a href="{{ path('dbukronic',{'id':decrypt.movie.id}) }}"> {{ decrypt.movie.title }}  </a></p>

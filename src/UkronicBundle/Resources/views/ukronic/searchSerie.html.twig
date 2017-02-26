@@ -9,7 +9,7 @@
 			{% if series is defined %}
 				{% for item in series %}
 
-					<div class="col-md-2 col-lg-2 col-xs-3 movie-content">
+					<div class="col-md-3 col-sm-4 col-xs-6 col-lg-2 movie-content">
 						<div class="decrypt">
 							<a href="{{ path("dbukronic", {'id': item.id}) }}">
 								<img class="img-responsive img-movie-big" src= {{ item.posterURL }} >

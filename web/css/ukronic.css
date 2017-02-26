@@ -26,7 +26,7 @@ h1 {
 }
 
 .block-first {
-	margin-top: 150px;
+	margin-top: 137px;
 }
 
 /* Global Form */
@@ -65,6 +65,12 @@ input {
 }
 
 /* NAVIGATION */
+@media screen and (min-width: 768px) and (max-width: 991px) {
+	.logo img {
+		width: 150px;
+		position: absolute;
+	}
+}
 
 #banner ul li a {
 	color: white;
@@ -84,6 +90,11 @@ input {
 nav {
 	padding-top: 30px;
 }
+@media screen and (max-width:768px) {
+	nav {
+		padding-top: 0;
+	}
+}
 header .form-group {
 	max-width : 90%;
 }
@@ -92,6 +103,16 @@ header input {
 	max-width: 95%;
 	background-color: rgba(0, 0, 0, 0.2);
 }
+@media screen and (min-width: 768px) and (max-width: 991px) {
+	header input {
+		width : 550px;
+	}
+}
+@media screen and (max-width: 563px) {
+	header input {
+		width: 250px;
+	}
+}
 .nav-films {
 	display: inline-block;
 	margin: 0 0 0 23%;
@@ -99,6 +120,11 @@ header input {
 nav li {
 	min-width: 40px;
 	margin-right: 25px;
+}
+@media screen and (min-width: 991px) and (max-width: 1164px) {
+	nav li {
+		margin-right: 12px;
+	}
 }
 .nav-films li a {
 	text-decoration:none;
@@ -171,6 +197,13 @@ nav li {
 	line-height: 60px;
 	font-size: 46px;
 }
+@media screen and (max-width: 768px) {
+	.invite-title {
+		padding-top: calc(0px + 25vh);
+		line-height: 50px;
+		font-size: 36px;
+	}
+}
 
 .invite-link {
 	margin-bottom: 80px;
@@ -215,8 +248,12 @@ nav li {
 }
 .presentation {
 	margin-bottom : 50px;
-	
 	visibility: hidden;
+}
+@media screen and (max-width: 991px) {
+	.presentation {
+		margin-bottom: 20px;
+	}
 }
 #explications {
 	padding-top: 60px;
@@ -262,7 +299,7 @@ nav li {
 	width : 100%;
 	height: auto;
 	object-fit:cover;
-	max-width: 420px;
+	max-width: 300px;
 }
 
 .decrypt a img {
@@ -381,8 +418,40 @@ p.espace-star {
 .login, .series {
 	padding-top: 30px;
 }
-@media screen and (max-width: 980px) {
+@media screen and (max-width: 768px) {
 	.block-first, .login, .series {
-		padding-top : 220px;
+		padding-top : 0px;
+		margin-top: 215px;
+
+	}
+}
+@media screen and (min-width: 768px) and (max-width: 991px) {
+	.block-first {
+		padding-top: 0px;
+	}
+}
+@media screen and (max-width: 768px) {
+	.fh5co-heading h2 {
+		font-size     : 36px;
+		margin-top    : 50px;
+		line-height: 1em;
+	}
+}
+
+@media screen and (max-width:768px) {
+	.block-image-user {
+		padding-top: 50px;
+	}
+}
+.block-dashboard {
+	padding-top: 20px;
+}
+@media screen and (max-width:768px) {
+	.block-dashboard {
+		padding-top: 50px;
+	}
+	.block-decrypt-notes,
+	.block-search-result {
+		margin-top: 250px;
 	}
 }
