@@ -1,3 +1,4 @@
+{% import 'UkronicBundle::macros.html.twig' as macros %}
 {% extends 'UkronicBundle::layout.html.twig' %}
 
 {% block content %}
@@ -36,7 +37,7 @@
 					  <i class="fa fa-circle fa-stack-2x blue"></i>
 					  <i class="fa fa-lightbulb-o fa-stack-1x fa-inverse"></i>
 					</span>
-					<p>Ici pas de critique ! Dites seulement ce que vous avez compris ... ou pas !</p>
+					<p>Ici pas de critique ! Dites seulement ce que vous avez compris ... ou pas compris !</p>
 				</div>
 				<div class="col-md-3">
 					<span class="fa-stack fa-lg">
@@ -84,19 +85,7 @@
 						<div class="decrypt"> {# fh5co-blog animate-box #}
 
 							<a href="{{ path('decryptRead', {'id': decrypt.id}) }}"><img class="img-responsive" src="{{ decrypt.movie.posterURL }}" alt=""></a>
-							<div class="decrypt-text">
-								<h3 class="title-movie text-uppercase"><a href="{{path('dbukronic',{'id':decrypt.movie.id})}}">{{ decrypt.movie.title }}</a></h3>
-								<p>Par : <a class="text-underline" href="{{path('profile',{'id':decrypt.user.id})}}"> {{ decrypt.user.username }} </a></p>
-								<!--<p>
-									{% if decrypt.typeDecrypt == "S"%}
-										Séquence
-									{% else %}
-										Hypothèse de Fin
-									{% endif %}
-								</p>-->
-								<p><i class="fa fa-quote-left" aria-hidden="true"></i><a href="{{ path('decryptRead', {'id': decrypt.id}) }}"> {{ decrypt.title }} </a><i class="fa fa-quote-right" aria-hidden="true"></i></p>
-
-							</div> 
+							{{ include('UkronicBundle:Decrypt:oneDecrypt.html.twig')}}
 						</div>
 					</div>
 
@@ -120,12 +109,7 @@
 					<div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
 						<div class="decrypt">
 							<a href="{{ path('decryptRead', {'id': decrypt.id}) }}"><img class="img-responsive" src="{{ decrypt.movie.posterURL }}" alt=""></a>
-							<div class="decrypt-text">
-								<h3 class="title-movie text-uppercase"><a href="{{path('dbukronic',{'id':decrypt.movie.id})}}">{{ decrypt.movie.title }}</a></h3>
-								<p>Par : <a class="text-underline" href="{{path('profile',{'id':decrypt.user.id})}}"> {{ decrypt.user.username }} </a></p>
-								<p><i class="fa fa-quote-left" aria-hidden="true"></i></span><a href="{{ path('decryptRead', {'id': decrypt.id}) }}"> {{ decrypt.title }} </a><i class="fa fa-quote-right" aria-hidden="true"></i></p>
-
-							</div> 
+							{{ include('UkronicBundle:Decrypt:oneDecrypt.html.twig')}}
 						</div>
 					</div>
 

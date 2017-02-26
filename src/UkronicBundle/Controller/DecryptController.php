@@ -126,6 +126,16 @@ class DecryptController extends Controller
     }
 
     /**
+     * @Route("/decrypt/serie/moreRead/all", name="decryptSerieMoreReadAll")
+     */
+    public function DecryptSerieMoreReadAllAction(){
+        $em = $this->getDoctrine()->getManager();
+        $decryptRepository = $em->getRepository('UkronicBundle:Decrypt');
+        $results = $decryptRepository->serieMoreReadAllDecrypted();
+        return $this->render('UkronicBundle:Decrypt:allSerieMoreReadDecrypts.html.twig',array('results'=>$results));
+    }
+
+    /**
      * @Route("/decrypt/serie/more/all", name="decryptSerieMoreAll")
      */
     public function DecryptSerieMoreAllAction(){
@@ -155,6 +165,25 @@ class DecryptController extends Controller
         return $this->render('UkronicBundle:Decrypt:allMovieCommentDecrypts.html.twig',array('results'=>$results));
     }
 
+     /**
+     * @Route("/decrypt/serie/like/all", name="decryptSerieLikeAll")
+     */
+    public function DecryptSerieLikeAllAction(){
+        $em = $this->getDoctrine()->getManager();
+        $belovedRepository = $em->getRepository('UkronicBundle:Beloved');
+        $results = $belovedRepository->moreLikedSerieDecrypt();
+        return $this->render('UkronicBundle:Decrypt:allSerieLikeDecrypts.html.twig',array('results'=>$results));
+    }
+
+/**
+     * @Route("/decrypt/serie/comment/all", name="decryptSerieCommentAll")
+     */
+    public function DecryptSerieCommentAllAction(){
+        $em = $this->getDoctrine()->getManager();
+        $decryptRepository = $em->getRepository('UkronicBundle:Decrypt');
+        $results = $decryptRepository->allCommentSerieDecrypts();
+        return $this->render('UkronicBundle:Decrypt:allSerieCommentDecrypts.html.twig',array('results'=>$results));
+    }
 
     /**
      * @Route("/decrypt/signaler/{id}", name="decryptSignalement")

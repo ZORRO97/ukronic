@@ -9,13 +9,13 @@
 
 				<div class="fh5co-heading">
 
-					<h2>Les derniers décryptages de films</h2>
+					<h2>Les derniers décryptages de séries</h2>
 					
 				</div>
 			</div>
 			<div class="row animate-box">
-				{% if lastMovieDecrypts is not empty %}
-				{% for decrypt in lastMovieDecrypts %}
+				{% if lastSerieDecrypts is not empty %}
+				{% for decrypt in lastSerieDecrypts %}
 
 					<div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
 						<div class=" decrypt"> {# fh5co-blog animate-box #}
@@ -27,7 +27,7 @@
 				{% endfor %}
 				{% endif %}
 				<div class="col-md-2">
-					<a class="text-center text-underline" href="{{ path('decryptMovieDateAll') }}">Voir plus...</a>
+					<a class="text-center text-underline" href="{{ path('decryptSerieDateAll') }}">Voir plus...</a>
 				</div>
 				
 				
@@ -38,14 +38,14 @@
 
 				<div class="col-md-8 col-xs-12 fh5co-heading">
 
-					<h2>TOP 5 des films les plus décryptés</h2>
+					<h2>TOP 5 des séries les plus décryptées</h2>
 				</div>
 			</div>
 			
 			<div class="row">
 				
-				{% if moreMovieDecrypts is not empty %}
-				{% for item in moreMovieDecrypts %}
+				{% if moreSerieDecrypts is not empty %}
+				{% for item in moreSerieDecrypts %}
 					
 					<div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
 						<div class="decrypt">
@@ -62,7 +62,7 @@
 				{% endfor %}
 				{% endif %}
 				<div class="col-md-2">
-					<a class="text-center text-underline" href="{{ path('decryptMovieMoreAll') }}">Voir plus...</a>
+					<a class="text-center text-underline" href="{{ path('decryptSerieMoreAll') }}">Voir plus...</a>
 				</div>
 			</div>
 
@@ -73,8 +73,8 @@
 			</div>
 
 			<div class="row animate-box">
-				{% if moreReadMovieDecrypts is not empty %}
-				{% for decrypt in moreReadMovieDecrypts %}
+				{% if moreReadSerieDecrypts is not empty %}
+				{% for decrypt in moreReadSerieDecrypts %}
 					
 					
 					
@@ -105,7 +105,7 @@
 				{% endfor %}
 				{% endif %}
 				<div class="col-md-2">
-					<a class="text-center text-underline" href="{{ path('decryptMovieMoreReadAll') }}">Voir plus...</a>
+					<a class="text-center text-underline" href="{{ path('decryptSerieMoreReadAll') }}">Voir plus...</a>
 				</div>
 				
 				
@@ -124,8 +124,8 @@
 
 			
 			<div class="row animate-box">
-				{% if moreLikeDecrypts is not empty %}
-				{% for item in moreLikeDecrypts %}
+				{% if moreLikeSerieDecrypts is not empty %}
+				{% for item in moreLikeSerieDecrypts %}
 
 					<div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
 						<div class=" decrypt"> {# fh5co-blog animate-box #}
@@ -153,7 +153,7 @@
 				{% endfor %}
 				{% endif %}
 				<div class="col-md-2">
-					<a class="text-center text-underline" href="{{ path('decryptMovieLikeAll') }}">Voir plus...</a>
+					<a class="text-center text-underline" href="{{ path('decryptSerieLikeAll') }}">Voir plus...</a>
 				</div>
 				
 				
@@ -171,8 +171,8 @@
 
 			<div class="row">
 				
-				{% if moreCommentMovieDecrypts is not empty %}
-				{% for item in moreCommentMovieDecrypts %}
+				{% if moreCommentSerieDecrypts is not empty %}
+				{% for item in moreCommentSerieDecrypts %}
 					
 					<div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
 						<div class="decrypt">
@@ -191,7 +191,7 @@
 				{% endfor %}
 				{% endif %}
 				<div class="col-md-2">
-					<a class="text-center text-underline" href="{{ path('decryptMovieCommentAll') }}">Voir plus...</a>
+					<a class="text-center text-underline" href="{{ path('decryptSerieCommentAll') }}">Voir plus...</a>
 				</div>
 
 

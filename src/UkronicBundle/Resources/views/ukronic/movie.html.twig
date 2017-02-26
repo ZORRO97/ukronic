@@ -44,6 +44,9 @@
 
 				{% if is_granted("ROLE_USER") %}
 				<p><a class="btn-blue" href="{{ path('decrypt', {'idMovie': movie.id}) }}">Ajouter un décryptage</a></p>
+				{% else %}
+					<p class="text-red">Vous devez être connecté</p>
+					<p><a class="btn-blue" href="#">Ajouter un décryptage</a></p>
 				{% endif %}
 			</div>
 

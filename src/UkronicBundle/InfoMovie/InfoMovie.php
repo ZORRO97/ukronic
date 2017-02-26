@@ -23,10 +23,10 @@ class InfoMovie {
     
     $result = "";
     // Construct the object.
-    // $allohelper = new AlloHelper;
+    
 
     // Define parameters.
-    $keywords = $text; // "The Dark Knight";
+    $keywords = implode("+",explode(' ',$text)); // "The Dark Knight";
     $page = 1;
     
     // It's important to catch Exceptions.
@@ -69,7 +69,7 @@ class InfoMovie {
     // $allohelper = new AlloHelper;
 
     // Define parameters.
-    $keywords = $text; // "The Dark Knight";
+    $keywords = implode("+",explode(' ',$text)); // "The Dark Knight";
     $page = 1;
     
     // It's important to catch Exceptions.
