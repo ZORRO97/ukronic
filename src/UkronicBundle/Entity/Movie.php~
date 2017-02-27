@@ -82,6 +82,27 @@ class Movie
      */
     private $posterURL;
 
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="season", type="integer", nullable=true)
+     */
+    private $season;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="episode", type="integer", nullable=true)
+     */
+    private $episode;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="episodeTitle", type="string", length=255, nullable=true)
+     */
+    private $episodeTitle;
+
 
     public function __construct()
     {
@@ -334,5 +355,53 @@ class Movie
     public function getRatings()
     {
         return $this->ratings;
+    }
+
+    /**
+     * Set season
+     *
+     * @param integer $season
+     *
+     * @return Movie
+     */
+    public function setSeason($season)
+    {
+        $this->season = $season;
+
+        return $this;
+    }
+
+    /**
+     * Get season
+     *
+     * @return integer
+     */
+    public function getSeason()
+    {
+        return $this->season;
+    }
+
+    /**
+     * Set episode
+     *
+     * @param integer $episode
+     *
+     * @return Movie
+     */
+    public function setEpisode($episode)
+    {
+        $this->episode = $episode;
+
+        return $this;
+    }
+
+    /**
+     * Get episode
+     *
+     * @return integer
+     */
+    public function getEpisode()
+    {
+        return $this->episode;
     }
 }

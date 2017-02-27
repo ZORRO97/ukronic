@@ -12,6 +12,7 @@
 
 
 				<p class="">Décryptage de  <a href="{{ path('dbukronic',{'id':decrypt.movie.id}) }}"> {{ decrypt.movie.title }}  </a></p>
+				{% if decrypt.movie.typeMovie == 'F' %}
 				<p>
 					{% if decrypt.typeDecrypt == "F" %}
 						Hypothèse de fin
@@ -20,7 +21,11 @@
 						Séquence
 					{% endif %}
 				</p>
-				
+				{% elseif decrypt.movie.typeMovie == 'S' %}
+					<p>
+						<a href="{{ path('dbukronic',{'id':decrypt.movie.id}) }}">"{{ decrypt.movie.episodeTitle }}" </a>Saison {{ decrypt.movie.season }} Episode {{ decrypt.movie.episode }}
+					</p>
+				{% endif %}
 				<p>  par <a href="{{ path('profile',{'id':decrypt.user.id}) }}"> {{ decrypt.user.username }} </a></p>
 				
 

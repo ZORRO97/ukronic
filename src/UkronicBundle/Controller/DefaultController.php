@@ -469,4 +469,11 @@ class DefaultController extends Controller
         return $this->render('UkronicBundle:User:cgu.html.twig');
     }
 
+      /**
+     * @Route("/ukronic/apropos", name="ukronic-apropos")
+     */
+    public function aproposUkronicAction(){
+        return $this->render('UkronicBundle:User:apropos.html.twig');
+    }
+
 }

@@ -20,7 +20,7 @@
 					<div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
 						<div class=" decrypt"> {# fh5co-blog animate-box #}
 							<a href="{{ path('decryptRead', {'id': decrypt.id}) }}"><img class="img-responsive" src="{{ decrypt.movie.posterURL }}" alt=""></a>
-							{{ include('UkronicBundle:Decrypt:oneDecrypt.html.twig')}}
+							{{ include('UkronicBundle:Decrypt:oneSerieDecrypt.html.twig')}}
 						</div>
 					</div>
 
@@ -52,6 +52,8 @@
 							<a href="{{ path('dbukronic', {'id': item[0].movie.id}) }}"><img class="img-responsive" src="{{ item[0].movie.posterURL }}" alt=""></a>
 							<div class="decrypt-text">
 								<h3 class="title-movie"><a href="{{path('dbukronic',{'id':item[0].movie.id})}}">{{ item[0].movie.title }}</a></h3>
+								<p> <a href="{{path('dbukronic',{'id':item[0].movie.id})}}">"{{ item[0].movie.episodeTitle }}" </a></p>
+								<p>Saison {{ item[0].movie.season }} Episode {{ item[0].movie.episode }}</p>
 								<p> {{ item[0].movie.productionYear }} </p>
 								<p>{{ item["dcount"] }} décryptage(s)</p>
 
@@ -84,14 +86,10 @@
 							<a href="{{ path('decryptRead', {'id': decrypt.id}) }}"><img class="img-responsive" src="{{ decrypt.movie.posterURL }}" alt=""></a>
 							<div class="decrypt-text">
 								<h3 class="title-movie"><a href="{{path('dbukronic',{'id':decrypt.movie.id})}}">{{ decrypt.movie.title }}</a></h3>
+								<p> <a href="{{path('dbukronic',{'id':decrypt.movie.id})}}">"{{ decrypt.movie.episodeTitle }}" </a></p>
+								<p>Saison {{ decrypt.movie.season }} Episode {{ decrypt.movie.episode }}</p>
 								<p>Par : <a class="text-underline" href="{{path('profile',{'id':decrypt.user.id})}}"> {{ decrypt.user.username }} </a></p>
-								<!--<p>
-									{% if decrypt.typeDecrypt == "S" %}
-										Séquence
-									{% else %}
-										Hypothèse de Fin
-									{% endif %}
-								<a href="{{ path('decryptRead', {'id': decrypt.id}) }}"> {{ decrypt.title }} </a></p>-->
+								
 								<p>
 									{{ decrypt.nbRead }} <img class="icon-ukronic" src="{{ asset('images/side-view-of-sitting-man-reading_318-29449.jpg') }}" alt="lecture">{# Lectures #}
 								</p>
@@ -132,15 +130,10 @@
 							<a href="{{ path('decryptRead', {'id': item[0].decrypt.id}) }}"><img class="img-responsive" src="{{ item[0].decrypt.movie.posterURL }}" alt=""></a>
 							<div class="decrypt-text">
 								<h3 class="title-movie"><a href="{{path('dbukronic',{'id':item[0].decrypt.movie.id})}}">{{ item[0].decrypt.movie.title }}</a></h3>
+								<p> <a href="{{path('dbukronic',{'id':item[0].decrypt.movie.id})}}">"{{ item[0].decrypt.movie.episodeTitle }}" </a></p>
+								<p>Saison {{ item[0].decrypt.movie.season }} Episode {{ item[0].decrypt.movie.episode }}</p>
 								<p>Par : <a class="text-underline" href="{{path('profile',{'id':item[0].decrypt.user.id})}}"> {{ item[0].decrypt.user.username }} </a></p>
-								<!--<p>
-									{% if item[0].decrypt.typeDecrypt == "S" %}
-										Séquence
-									{% else %}
-										Hypothèse de Fin
-									{% endif %}
-								 : </span><a href="{{ path('decryptRead', {'id': item[0].decrypt.id}) }}"> {{ item[0].decrypt.title }} </a></p>
-								<p>-->
+								<p>
 									{{ item.bcount }} <img class="icon-ukronic" src="{{ asset('images/FBLike-Icon_300_v2.png') }}" alt="like">{# LIKE #}
 								</p>
 
@@ -179,7 +172,9 @@
 							<a href="{{ path('dbukronic', {'id': item[0].movie.id}) }}"><img class="img-responsive" src="{{ item[0].movie.posterURL }}" alt=""></a>
 							<div class="decrypt-text">
 								<h3 class="title-movie"><a href="{{path('dbukronic',{'id':item[0].movie.id})}}">{{ item[0].movie.title }}</a></h3>
-								<p> {{ item[0].movie.productionYear }} </p>
+								<p> <a href="{{path('dbukronic',{'id':item[0].movie.id})}}">"{{ item[0].movie.episodeTitle }}" </a></p>
+								<p>Saison {{ item[0].movie.season }} Episode {{ item[0].movie.episode }}</p>
+								{# <p> {{ item[0].movie.productionYear }} </p> #}
 								<p>Par <a class="text-underline" href="{{path('profile',{'id':item[0].user.id})}}"> {{ item[0].user.username }} </a></p>
 								<p><a href="{{ path('decryptRead', {'id': item[0].id}) }}">" {{ item[0].title }} "</a></p>
 								<p>{{ item["ccount"] }} <img class="icon-ukronic" src="{{ asset('images/Comment-edit-icon.png') }}" alt="commentaire">{# commentaire(s) #}</p>

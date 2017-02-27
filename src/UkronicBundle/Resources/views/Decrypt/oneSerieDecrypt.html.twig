@@ -1,0 +1,15 @@
+<div class="decrypt-text">
+	<h3 class="title-movie"> {{ decrypt.movie.title}} </h3>
+	<p class="title-movie"><a href="{{path('dbukronic',{'id':decrypt.movie.id})}}">"{{ decrypt.movie.episodeTitle }}"</a></p>
+	<p>Saison {{ decrypt.movie.season }} Episode {{ decrypt.movie.episode }}</p>
+	<p>Par : <a class="text-underline" href="{{path('profile',{'id':decrypt.user.id})}}"> {{ decrypt.user.username }} </a></p>
+	
+	<p><i class="fa fa-quote-left" aria-hidden="true"></i> <a href="{{ path('decryptRead', {'id': decrypt.id}) }}"> 
+		
+		{{ decrypt.title }} 
+		</a> <i class="fa fa-quote-right" aria-hidden="true"></i>
+	</p>
+	<p> {{ decrypt.wordCount }} mots {#- {{ decrypt.dateDecrypt | date("d/m/Y") }} #}
+	</p>
+
+</div> 

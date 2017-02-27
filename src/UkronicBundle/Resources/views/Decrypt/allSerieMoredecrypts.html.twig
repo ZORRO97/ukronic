@@ -20,6 +20,8 @@
 							<a href="{{ path('dbukronic', {'id': item[0].movie.id}) }}"><img class="img-responsive" src="{{ item[0].movie.posterURL }}" alt=""></a>
 							<div class="decrypt-text">
 								<h3 class="title-movie"><a href="{{path('dbukronic',{'id':item[0].movie.id})}}">{{ item[0].movie.title }}</a></h3>
+								<p> <a href="{{path('dbukronic',{'id':item[0].movie.id})}}">"{{ item[0].movie.episodeTitle }}" </a></p>
+								<p>Saison {{ item[0].movie.season }} Episode {{ item[0].movie.episode }}</p>
 								<p>
 									{{ item["dcount"] }} décryptage(s)
 								</p>

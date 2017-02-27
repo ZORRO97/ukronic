@@ -41,11 +41,12 @@
 
 					<div class="col-md-3 col-sm-4 col-lg-2 col-xs-6 movie-content">
 						<div class="decrypt">
-							<a href="{{ path("movie", {'imdbID': item["imdbID"] , 'typeMovie' : 'S'}) }}">
+							<a href="{{ path("choiceSerie", {'id': item["imdbID"] }) }}">
 								<img class="img-responsive" src= {{ item["Poster"] }} >
 								<div class="movie-content">
 									<h3 class="title-movie"> {{ item["Title"] }} </h3>
 									<p class ="vintage"> {{ item["Year"] }} </p>
+									<p class="vintage">  {# {{ item['totalSeasons']}} #} saisons </p>
 								</div>
 							</a>
 						</div>

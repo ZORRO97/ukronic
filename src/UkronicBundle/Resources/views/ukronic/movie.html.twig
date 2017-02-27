@@ -38,6 +38,11 @@
 		
 			<div class="col-md-4 infos-movie">
 				<h1>{{ movie.title }} </h1>
+				{% if movie.typeMovie == "S" %}
+					<p>
+						Saison {{ movie.season }} Episode {{ movie.episode }} : " {{ movie.episodeTitle }} "
+					</p>
+				{% endif %}
 				<p>DATE DE SORTIE : {{ movie.productionYear }} </p>
 				<p>CASTING : {{ movie.casting }} </p>
 				<p>SCRIPT :  {{ movie.script }} </p>

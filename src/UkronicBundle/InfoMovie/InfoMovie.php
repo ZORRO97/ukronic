@@ -141,12 +141,12 @@ class InfoMovie {
   }
 
   /**
-   * doit renvoyer les informations relatives au film
+   * doit renvoyer les informations relatives à la série
    *
    * @param string $text
    * @return Movie
    */
-  public function detailSerie($imdbID){
+  public function detailSerie($imdbID,$titleSerie){
     try
     {
         // Request data with parameters, and save the response in $data.
@@ -158,14 +158,50 @@ class InfoMovie {
         {
             $movie = new Movie();
             $result = (array) json_decode($content,true); // 2nd param to get as array
-            $movie->setTitle($result["Title"]);
+            $movie->setTitle($titleSerie);
+            $movie->setEpisodeTitle($result["Title"]);
             $movie->setProductionYear($result["Year"]);
             $movie->setCasting($result["Actors"]);
             $movie->setPosterURL($result["Poster"]);
             $movie->setScript($result["Plot"]);
             $movie->setNumber($imdbID);
             $movie->setTypeMovie("S");
+            $movie->setSeason((int) $result["Season"]);
+            $movie->setEpisode((int) $result["Episode"]);
             return $movie;
+        } else return null;
+        
+        
+    }
+    
+    // Error
+    catch ( \Exception $e )
+    {
+        // Print a error message.
+        
+      $result = "Error " . $e->getCode() . " : ". $e->getMessage();
+    }
+    return $result;
+  }
+
+
+  /**
+   * doit renvoyer les informations relatives à la série
+   *
+   * @param string $text
+   * @return Movie
+   */
+  public function detailSaisonSerie($imdbID,$season){
+    try
+    {
+        // Request data with parameters, and save the response in $data.
+        
+        $url = "http://www.omdbapi.com/?i=". $imdbID . "&r=json&type=series&Season=".$season;
+        
+        $content = file_get_contents($url);
+        if (!empty($content))
+        {
+            $result = (array) json_decode($content,true); // 2nd param to get as array
         } else return null;
         
         

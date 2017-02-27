@@ -1,0 +1,26 @@
+{% extends "UkronicBundle::layout.html.twig" %}
+
+{% block title %}Choix de l'épisode de la série{% endblock %}
+
+{% block content %}
+<h1>Affichage des possibilités</h1>
+<div>
+	
+		{{ dump(infos) }}
+		<p> {{ infos[0].Title }} </p>
+		<p> {{ infos[0].totalSeasons }} saisons</p>
+		
+		{% for season in infos %}
+			<h4> Saison{{ season.Season }} </h4>
+			{% for item in season.Episodes %}
+				<p>
+					<a href="{{ path("serie", {'imdbID': item["imdbID"] , 'titleSerie' : infos[0].Title }) }}">
+					Episode {{ item.Episode }} : " {{ item.Title }} "
+					</a>
+				</p>
+			{% endfor %}
+
+	{% endfor %}
+	
+</div>
+{% endblock %}
