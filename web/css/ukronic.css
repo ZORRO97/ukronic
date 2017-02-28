@@ -28,13 +28,23 @@ h1 {
 .block-first {
 	margin-top: 137px;
 }
-
+@media screen and (max-width: 768px) {
+	.block-first {
+		margin-top: 0 !important;
+	}
+}
 /* Global Form */
 input {
 	padding: 4px 8px;
 	/*border-radius: 8px;
 	/*border: 2px solid #fff;*/
 	border: none;
+}
+.form-control {
+	margin-bottom:10px;
+}
+.form-control:focus {
+	border-color: #149bde;
 }
 
 /* Classes specifiques */
@@ -48,6 +58,9 @@ input {
 .bg-blue a {
 	color: #fff;
 }
+.grey {
+	color: #313131;
+}
 .text-underline {
 	text-decoration: underline;
 }
@@ -60,15 +73,44 @@ input {
 	color: white;
 	padding: 5px 15px;
 }
-.btn-blue:hover {
+.btn-blue:hover,
+.btn-blue:focus {
 	color: white;
+}
+.link-grey {
+	font-size: 12px;
+	border: none;
+	background-color: transparent;
+	color: #149bde;
+	text-decoration: underline;
+}
+.link-grey:hover {
+	color: #313131;
+}
+.btn-like {
+	border : none;
+}
+.bnt-like:hover {
+	border: none;
+}
+.btn-like img {
+	width: 30px;
+	height: 35px;
+}
+.padding-top-20 {
+	padding-top: 20px;
 }
 
 /* NAVIGATION */
-@media screen and (min-width: 768px) and (max-width: 991px) {
+@media screen and (min-width: 769px) and (max-width: 991px) {
 	.logo img {
 		width: 150px;
 		position: absolute;
+	}
+}
+@media screen and (max-width: 768px) {
+	.logo img {
+		width: 120px;
 	}
 }
 
@@ -237,6 +279,9 @@ nav li {
 		height : 900px;
 	}
 }
+.sequence-block ul {
+	padding-left: 0;
+}
 
 /* Page profil */
 .profile img {
@@ -275,6 +320,7 @@ nav li {
 }
 .decrypt-text {
 	padding: 5px 10px;
+	line-height: 14px;
 }
 .decrypt-text p {
 	font-size: 0.8em;
@@ -318,10 +364,16 @@ nav li {
 }
 
 .decrypt-item {
-	border : 1px solid black;
-	margin: 2px;
+	margin: 10px 0;
 }
-
+.decrypt-item li {
+	list-style-type: none;
+	margin-bottom: 10px;
+}
+.decrypt-resume {
+	background-color: #E5E4E8;
+	padding: 10px;
+}
 .movie {
 	border : 5px solid black;
 	height: 350px;
@@ -361,9 +413,9 @@ nav li {
 
 .commentaire {
 	margin-top : 10px;
-
+	background-color: #eeeeee;
 	padding: 5px;
-	border: 2px solid darkgray;
+	border: 2px solid #cccccc;
 	color : black;
 }
 
@@ -454,4 +506,10 @@ p.espace-star {
 	.block-search-result {
 		margin-top: 250px;
 	}
+}
+
+footer {
+	margin-top: 40px;
+	padding: 40px 0;
+	background-color: lightgrey;
 }
