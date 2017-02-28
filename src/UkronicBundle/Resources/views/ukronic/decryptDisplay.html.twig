@@ -41,19 +41,24 @@
 				<p class="commentaire">
 				{{ decrypt.content }}
 				</p>
-				<p class="text-right">
+				<p class="pull-left">
 					{% if user != "anon." %}
 						{% if not liked  %}
-						<a href="{{ path('decryptLike', {'id' : decrypt.id }) }}" class="btn btn-primary btn-like"><img class="icon-ukronic-big" src="{{ asset("images/FBLike-Icon_300_v2.png") }}" alt="like"></a>
+						<a href="{{ path('decryptLike', {'id' : decrypt.id }) }}" class="btn btn-like"><img class="icon-ukronic-big" src="{{ asset("images/FBLike-Icon_300_v2.png") }}" alt="like"></a>
 						{% else %}
-							<a href="#" class="btn btn-warning"><img class="icon-ukronic-big" src="{{ asset("images/Like-2-icon.png")}}" alt="liked"></a>
+							<a href="#" class="btn btn-like"><img class="icon-ukronic-big" src="{{ asset("images/Like-2-icon.png")}}" alt="liked"></a>
 
 						{% endif %}
+
 						{{ nbLiked }}
-						<button id="signaler" class="btn-blue" data-button="{{ decrypt.id }}">Signaler</button>
+
+				<p>
+				<p class="pull-right">
+						<button id="signaler" class="link-grey" data-button="{{ decrypt.id }}">Signaler un abus</button>
 						<div id="notif"></div>
 					{% endif %}
 				</p>
+				<p class="clearfix"></p>
 			</div>
 		</div>
 
@@ -73,14 +78,13 @@
 				}}) }}
 				</div>
 
-				{{ form_widget(form.save) }}
+				{{ form_widget(form.save,{ "attr":{"class":"btn-blue"}}) }}
 				{{ form_end(form) }}
 				{% endif %}
 				{% if decrypt.comments is not empty  %}
 					{% set userId = user.id is defined ? user.id : null %}
 					{% for comment in decrypt.comments | reverse %}
 						<div class="commentaire">
-
 							<p>
 								Le {{ comment.dateComment | date("d/m/Y h:i") }}
 
@@ -91,7 +95,7 @@
 									{{render(controller('UkronicBundle:Comment:IsLikeAnonymous',{'id':comment.id}))}}
 								{% else %}
 									{{render(controller('UkronicBundle:Comment:IsLike',{'id':comment.id,'userId':userId}))}}
-									<button class="signalComment btn-blue" data-button="{{ comment.id }}">Signaler</button>
+									<button class="signalComment link-grey" data-button="{{ comment.id }}">Signaler un abus</button>
 								{% endif %}
 							</p>
 						</div>
