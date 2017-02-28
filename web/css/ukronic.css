@@ -28,6 +28,17 @@ h1 {
 .block-first {
 	margin-top: 137px;
 }
+.block-first>h2, .block-first h1 {
+	padding-top: 20px;
+}
+body>div>section:last-child,
+.block-first .container>div:last-child,
+.block-first>.container {
+	padding-bottom: 40px;
+}
+.block-first>.container {
+	padding-top: 20px;
+}
 @media screen and (max-width: 768px) {
 	.block-first {
 		margin-top: 0 !important;
@@ -134,7 +145,36 @@ nav {
 }
 @media screen and (max-width:768px) {
 	nav {
-		padding-top: 0;
+		padding-top : 0;
+	}
+
+	.navbar {
+		margin-bottom : 0;
+	}
+
+	.navbar-header {
+		margin-bottom : 10px;
+	}
+
+	.navbar-collapse>ul, .navbar-collapse li {
+		display : block;
+		margin  : 0;
+	}
+
+	.nav-films li a:after {
+		height : 0 !important;
+		margin : 0 !important;
+	}
+	.nav-login {
+		float: none !important;
+	}
+	.dropdown-menu {
+		float:none;
+		position:relative;
+		padding-left: 0;
+	}
+	.dropdown-menu li {
+		padding: 0;
 	}
 }
 header .form-group {
@@ -224,7 +264,7 @@ nav li {
 #image-ukronic-salle {
 	/*height: 600px;*/
 	background: url('../images/Image-public-big.png') no-repeat;
-	height: 100vh;
+	height: calc(100vh - 139px);
 	width: 100%;
 
 	background-size: cover;
@@ -232,7 +272,7 @@ nav li {
 }
 
 .invite-title {
-	padding-top : calc(130px + 25vh);
+	padding-top : calc(130px + 5vh);
 	color: white;
 	width: 80%;
 	margin: 0 auto;
@@ -241,7 +281,7 @@ nav li {
 }
 @media screen and (max-width: 768px) {
 	.invite-title {
-		padding-top: calc(0px + 25vh);
+		padding-top: calc(0px + 10vh);
 		line-height: 50px;
 		font-size: 36px;
 	}
@@ -502,6 +542,9 @@ p.espace-star {
 	.block-dashboard {
 		padding-top: 50px;
 	}
+	.block-dashboard h2 {
+		font-size: 22px;
+	}
 	.block-decrypt-notes,
 	.block-search-result {
 		margin-top: 250px;
@@ -509,7 +552,6 @@ p.espace-star {
 }
 
 footer {
-	margin-top: 40px;
 	padding: 40px 0;
 	background-color: lightgrey;
 }

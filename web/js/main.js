@@ -214,12 +214,4 @@
 		}, 1000);
 	});
 
-	if (screen.width() < 768) {
-		alert('Less than 768');
-	}
-	else {
-
-		alert('More than 768');
-	}
-
 }());
