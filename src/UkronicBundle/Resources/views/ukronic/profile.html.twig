@@ -31,18 +31,30 @@
 
 				<p>Film préféré :
 					{% if preferedMovie.id is defined %}
+						{% if preferedMovie.typeMovie == "F" %}
 						<a href="{{ path('dbukronic',{'id': preferedMovie.id}) }}">
 							{{ preferedMovie.title }}
 						</a>
+						{% else %}
+							<a href="{{ path('dbukronic-serie',{'id': preferedMovie.id}) }}">
+							{{ preferedMovie.title }}
+						</a>
+						{% endif %}
 					{% else %}
 						non renseigné
 					{% endif %}
 				 </p>
 				<p>Perdu dans ce film... :
 					{% if ambiguousMovie.id is defined %}
-						<a href="{{ path('dbukronic',{'id': ambiguousMovie.id}) }}">
-							{{ ambiguousMovie.title }}
-						</a>
+						{% if ambiguousMovie.typeMovie == "F" %}
+							<a href="{{ path('dbukronic',{'id': ambiguousMovie.id}) }}">
+								{{ ambiguousMovie.title }}
+							</a>
+						{% else %}
+							<a href="{{ path('dbukronic-serie',{'id': ambiguousMovie.id}) }}">
+								{{ ambiguousMovie.title }}
+							</a>
+						{% endif %}
 					{% else %}
 						non renseigné
 					{% endif %}
@@ -50,9 +62,15 @@
 				</p>
 				<p>J'ai (normalement) tout compris :
 					{% if understandMovie.id is defined %}
-						<a href="{{ path('dbukronic',{'id': understandMovie.id}) }}">
-							{{ understandMovie.title }}
-						</a>
+						{% if understandMovie.typeMovie == "F" %}
+							<a href="{{ path('dbukronic',{'id': understandMovie.id}) }}">
+								{{ understandMovie.title }}
+							</a>
+						{% else %}
+							<a href="{{ path('dbukronic-serie',{'id': understandMovie.id}) }}">
+								{{ understandMovie.title }}
+							</a>
+						{% endif %}
 					{% else %}
 						non renseigné
 					{% endif %}

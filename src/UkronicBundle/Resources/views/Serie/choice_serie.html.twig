@@ -3,24 +3,27 @@
 {% block title %}Choix de l'épisode de la série{% endblock %}
 
 {% block content %}
-<h1>Affichage des possibilités</h1>
-<div>
-	
-		{{ dump(infos) }}
-		<p> {{ infos[0].Title }} </p>
-		<p> {{ infos[0].totalSeasons }} saisons</p>
-		
-		{% for season in infos %}
-			<h4> Saison{{ season.Season }} </h4>
-			{% for item in season.Episodes %}
-				<p>
-					<a href="{{ path("serie", {'imdbID': item["imdbID"] , 'titleSerie' : infos[0].Title }) }}">
-					Episode {{ item.Episode }} : " {{ item.Title }} "
-					</a>
-				</p>
-			{% endfor %}
 
-	{% endfor %}
-	
+<div class="container">
+	<div class="row">
+		<div class="col-md-8 col-md-offset-2">
+			<h2 class="text-center">Episodes de la série {{ infos[0].Title }}</h2>
+			<p class="text-center"> {{ infos[0].totalSeasons }} saisons</p>
+			{# <img class="img-responsive" src="{{ infos[0]. }}" alt=""> #}
+
+			{% for season in infos %}
+				<h4 class="text-center"> {{ "Saison " ~ season.Season }} </h4>
+				{% for item in season.Episodes %}
+					<p class="text-center">
+						<a href="{{ path("serie", {'imdbID': item["imdbID"] , 'titleSerie' : infos[0].Title }) }}">
+						Episode {{ item.Episode }} : " {{ item.Title }} "
+						</a>
+					</p>
+				{% endfor %}
+
+			{% endfor %}
+		</div>
+	</div>	
+		
 </div>
 {% endblock %}

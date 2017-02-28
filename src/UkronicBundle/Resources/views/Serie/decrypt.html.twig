@@ -1,0 +1,156 @@
+{% extends 'UkronicBundle::layout.html.twig' %}
+
+{% block content %}
+	<div class="container block-first block-decrypt-notes">
+
+		{{ form_start(form) }}
+		
+		<div class="row espace-form">
+			
+			<div class="col-md-4"><img src="{{ movie.posterURL }}" alt="le film" width= 300px height= 400px></div>
+			
+			<div class="col-md-5 col-md-offset-1">
+				<p class="title-movie espace-star"> {{ movie.title }} </p>
+				<p> {{ "Saison " ~ movie.season ~ " Episode " ~ movie.episode }}</p>
+				<p> {{ movie.episodeTitle }} </p>
+				
+				
+				{# Notes #}
+				{# trois rangées d'étoiles #}
+				{# Note du film #}
+				{# Etoiles niveau ambiguité #}
+				{# Etoiles je pense avoir compris #}
+				
+				<table class="espace-star">
+					{% for i in 1..3 %}
+						{% if i  == 1 %}
+								
+						<tr class="prefered">
+							<th>Ma note</th>
+						{% elseif i == 2 %}		
+						<tr class="nocomprendo">
+							<th>Niveau Ambiguité</th>
+						{% else %}		
+						<tr class="baleze">
+							<th>Compréhension</th>
+						{% endif %}
+							
+							{% for j in 1..10 %}
+								<td>
+							    <img src="{{ asset("fleche_creuse.png") }}" alt="étoile" class="star">
+								</td>
+							{% endfor %}
+							<td><span></span>/10</td>
+
+						</tr>
+
+					{% endfor %}
+					
+				</table>
+				    
+				
+			</div>
+
+		</div>
+
+		<div>
+			{# le titre #}
+			<div class="row">
+				<div class="col-md-12">
+					
+					<p>Titre
+					{{ form_widget(form.title,{'attr': {'placeholder': 'entrez un titre'}}) }} </p>
+				</div>
+			</div>
+		</div>
+
+		<div>
+			{# le corps de la critique #}
+			<div class="row">
+				<div class="col-md-12">
+					{# formulaire pour le corps de la critique #}
+					<p>Contenu (<span id="compteur">0</span> mots)</p>
+					{{ form_widget(form.content,{'id':"decryptContent",
+						'attr':{
+				'placeholder':'Entrez votre décryptage',
+				'class':'form-control',
+				'rows':5
+
+					}
+				}) }}
+					
+				</div>
+			</div>
+		</div>
+		<div>
+			{# bouton validation #}
+			{{ form_rest(form) }}
+			
+			{{ form_end(form) }} 
+		</div>
+	</div>
+    
+{% endblock %}
+
+{% block javascripts %}
+
+	{{ parent() }}
+	<script>
+	$(function(){
+		var prefered = $('input.prefered').val();
+		$(".prefered td span").html(prefered);
+		
+		var nocomprendo = $('input.nocomprendo').val();
+		$(".nocomprendo td span").html(nocomprendo);
+		
+		var baleze = $('input.baleze').val();
+		$(".baleze td span").html(baleze);
+		
+
+		// on remplit l'affichage si une ancienne note existe
+		if (prefered > 0) {
+			var preferedTd = $('tr.prefered').find('td')[prefered - 1];
+			$(preferedTd).find('img').attr("src","{{ asset("fleche_pleine.png") }}");
+			$(preferedTd).prevAll().find('img').attr("src","{{ asset("fleche_pleine.png") }}");
+		}
+
+		if (nocomprendo > 0) {
+			var nocomprendoTd = $('tr.nocomprendo').find('td')[nocomprendo - 1];
+			$(nocomprendoTd).find('img').attr("src","{{ asset("fleche_pleine.png") }}");
+			$(nocomprendoTd).prevAll().find('img').attr("src","{{ asset("fleche_pleine.png") }}");
+		}
+
+		if (baleze > 0) {
+			var balezeTd = $('tr.baleze').find('td')[baleze - 1];
+			$(balezeTd).find('img').attr("src","{{ asset("fleche_pleine.png") }}");
+			$(balezeTd).prevAll().find('img').attr("src","{{ asset("fleche_pleine.png") }}");
+		}
+		// en cas de clic sur une étoile on met à jour l'affichage sur une ligne
+		$('.star').click(function(){
+			
+			$(this).attr("src","{{ asset("fleche_pleine.png") }}");
+			$(this).parent().prevAll().find('img').attr("src","{{ asset("fleche_pleine.png") }}");
+			$(this).parent().nextAll().find('img').attr("src","{{ asset("fleche_creuse.png") }}");
+			var classSelected = $(this).parent().parent().attr('class');
+			
+			
+			var myLeft = $(this).parent().prevAll().length; // position de l'étoile cliquée sur la ligne
+			$('input.'+classSelected).val(myLeft); // on met la valeur dans le champ
+			$('.'+classSelected +" td span").html(myLeft);
+
+			
+			
+		});
+
+		$("#decryptContent").keyup(function(){
+			// console.log("modif commentaire");
+			var str = $(this).val();
+			console.log(str);
+			var compteur = str.split(/\b\w+\b/).length-1;
+			console.log("le compteur vaut : "+compteur);
+			$('#compteur').html(compteur);
+		});
+	});
+	</script>
+    
+{% endblock %}

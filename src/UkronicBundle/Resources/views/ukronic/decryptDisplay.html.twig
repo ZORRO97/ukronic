@@ -5,14 +5,19 @@
 	<div class="container decrypt-display">
 		<div class="row">
 			<div class="col-md-3 col-md-offset-3 col-sm-4 col-sm-offset-2">
+				{% if decrypt.movie.typeMovie == "F" %}
 				<p><a href=" {{ path("dbukronic",{'id':decrypt.movie.id}) }} "><img class="img-responsive center-block img-decrypt-big" src="{{ decrypt.movie.posterURL }}" alt="image Film"></a></p>
+				{% else %}
+					<p><a href=" {{ path("dbukronic-serie",{'id':decrypt.movie.id}) }} "><img class="img-responsive center-block img-decrypt-big" src="{{ decrypt.movie.posterURL }}" alt="image Serie"></a></p>
+				{% endif %}
 			</div>
 
 			<div class="col-md-3 col-sm-4">
 
 
-				<p class="">Décryptage de  <a href="{{ path('dbukronic',{'id':decrypt.movie.id}) }}"> {{ decrypt.movie.title }}  </a></p>
+				
 				{% if decrypt.movie.typeMovie == 'F' %}
+					<p>Décryptage de  <a href="{{ path('dbukronic',{'id':decrypt.movie.id}) }}"> {{ decrypt.movie.title }}  </a></p>
 				<p>
 					{% if decrypt.typeDecrypt == "F" %}
 						Hypothèse de fin
@@ -22,8 +27,9 @@
 					{% endif %}
 				</p>
 				{% elseif decrypt.movie.typeMovie == 'S' %}
+					<p>Décryptage de  <a href="{{ path('dbukronic-serie',{'id':decrypt.movie.id}) }}"> {{ decrypt.movie.title }}  </a></p>
 					<p>
-						<a href="{{ path('dbukronic',{'id':decrypt.movie.id}) }}">"{{ decrypt.movie.episodeTitle }}" </a>Saison {{ decrypt.movie.season }} Episode {{ decrypt.movie.episode }}
+						<a href="{{ path('dbukronic-serie',{'id':decrypt.movie.id}) }}">"{{ decrypt.movie.episodeTitle }}" </a>Saison {{ decrypt.movie.season }} Episode {{ decrypt.movie.episode }}
 					</p>
 				{% endif %}
 				<p>  par <a href="{{ path('profile',{'id':decrypt.user.id}) }}"> {{ decrypt.user.username }} </a></p>
@@ -130,7 +136,8 @@
 
 				}).done(function(data){
 					// console.log(data);
-					$("#notif").html('décryptage signalé');
+					// $("#notif").html('décryptage signalé');
+					alert("Décryptage signalé à l'administrateur !");
 					myButton.hide();
 				}
 			).fail(function(err){
@@ -159,7 +166,8 @@
 
 				}).done(function(data){
 					// console.log(data);
-					$('<span>décryptage signalé</span>').insertAfter(myButton);
+					// $('<span>décryptage signalé</span>').insertAfter(myButton);
+					alert("Commentaire signalé à l'administrateur !");
 					myButton.hide();
 
 				}
