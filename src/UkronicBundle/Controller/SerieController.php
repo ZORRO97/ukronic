@@ -4,7 +4,16 @@ namespace UkronicBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\HttpFoundation\Request;
 use UkronicBundle\Entity\Movie;
+use UkronicBundle\Entity\Decrypt;
+use UkronicBundle\Entity\Histo;
+use UkronicBundle\Entity\Rating;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\HiddenType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 
 class SerieController extends Controller
 {
@@ -63,11 +72,144 @@ class SerieController extends Controller
         if ($movie == null) {
             return $this->redirect(path("main"));
         }
-        return $this->render("UkronicBundle:Ukronic:movie.html.twig",array(
-            "movie"=>$movie,
-            "filter_end" => "-100",
+        return $this->render("UkronicBundle:Serie:episode.html.twig",array(
+            "movie"=>$movie,            
             "filter_seq" => "-100"
             ));
+    }
+
+      /**
+     * @Route("/episode/dbukronic/{id}/{filter_seq}", name="dbukronic-serie")
+     */
+    public function dbukronicSerieAction($id,$filter_seq="-100"){
+
+        
+        $em = $this->getDoctrine()->getManager();
+        $repository = $em->getRepository("UkronicBundle:Movie");
+        // vérifier si le film existe dans la BDD Ukronic
+        $result = $repository->findOneById($id);
+        // die(var_dump($result));
+
+        if ($result) {
+            $movie = $result;
+        } else {
+           // return $this->redirectToRoute("main");
+        	die(var_dump($result));
+        }
+
+        return $this->render("UkronicBundle:Serie:episode.html.twig",array(
+            "movie"=>$movie,
+            "filter_seq" => $filter_seq
+            ));
+    }
+
+     /**
+     * @Route("/decrypt/episode/{idMovie}", name="decrypt-episode")
+     */
+    public function decryptEpisodeAction($idMovie, Request $request){
+
+        $user = $this->container->get('security.token_storage')->getToken()->getUser();
+        //if ($this->container->get('security.authorization_checker')->isGranted('ROLE_USER') === true) {
+        if (!$user) {
+            
+            $this->redirectToRoute("dbukronic-serie",array("id"=>$idMovie));
+        }
+        
+
+        $em = $this->getDoctrine()->getManager();
+        $repository = $em->getRepository("UkronicBundle:Movie");
+        // vérifier si le film existe dans la BDD Ukronic
+        $movie = $repository->findOneById($idMovie);
+
+        $decrypt = new Decrypt();
+        $decrypt->setTypeDecrypt("S");
+        
+        $repositoryRating = $em->getRepository("UkronicBundle:Rating");
+        $rating = $repositoryRating->trouve($user->getId(),$movie->getId());
+        if (!$rating) {
+            $rating = new Rating();
+        } 
+
+
+
+
+        $form = $this->createFormBuilder($decrypt)
+           
+            ->add('title',TextType::class)
+            ->add('content',TextareaType::class)            
+            ->add('prefered',HiddenType::class, array(
+                    'mapped' => false,
+                    
+                    'attr'=> array('class' => "prefered",
+                                    'value' => $rating->getNote()
+                        )
+                ))
+            ->add('nocomprendo',HiddenType::class, array(
+                    'mapped' => false,
+                    
+                    'attr'=> array('class' => "nocomprendo",
+                            'value' => $rating->getAmbiguous()
+                        )
+                ))
+            ->add('baleze',HiddenType::class, array(
+                    'mapped' => false,
+                    
+                    'attr'=> array('class' => "baleze",
+                        "value" => $rating->getUnderstand())
+                ))
+            
+            ->add('save', SubmitType::class, array('label' => 'Publier'))
+            ->getForm();
+        
+        $form->handleRequest($request);
+        
+        if ($form->isSubmitted() && $form->isValid()) {
+        // $form->getData() holds the submitted values
+        
+            $decrypt = $form->getData();
+            $decrypt->setDateDecrypt(new \DateTime('now'));
+            $decrypt->setNbRead(0);
+            $decrypt->setNbLiked(0);
+            $decrypt->setWordCount(str_word_count($decrypt->getContent()));
+            $decrypt->setMovie($movie);
+            $decrypt->setUser($user);
+            // raccorder au User connecté
+            // enregistrer le décryptage
+            $em->persist($decrypt);
+            $em->flush();
+
+            $prefered = $form['prefered']->getData();
+            
+            $nocomprendo = $form['nocomprendo']->getData();
+            
+            $baleze = $form['baleze']->getData();
+
+            // $rating = new Rating();
+            $rating->setMovie($movie);
+            $rating->setUser($user);
+            $rating->setNote($prefered);
+            $rating->setAmbiguous($nocomprendo);
+            $rating->setUnderstand($baleze);
+            $em->persist($rating);
+
+            $histo = new Histo();
+            $histo->setUser($user);
+            // ajouter les détails
+            
+            $histo->setAction(4);
+            
+            $histo->setDateAction(new \DateTime('now'));
+            $histo->setReference($decrypt->getId());
+            $em->persist($histo);
+
+
+            $em->flush();
+            return $this->redirectToRoute("dbukronic-serie",array("id"=>$idMovie));
+            
+        } 
+
+       
+        return $this->render("UkronicBundle:Serie:decrypt.html.twig", array("movie"=>$movie, "form"=>$form->createView()));
     }
 
 }

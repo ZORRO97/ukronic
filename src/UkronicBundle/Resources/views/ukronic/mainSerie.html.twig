@@ -49,10 +49,10 @@
 					
 					<div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
 						<div class="decrypt">
-							<a href="{{ path('dbukronic', {'id': item[0].movie.id}) }}"><img class="img-responsive" src="{{ item[0].movie.posterURL }}" alt=""></a>
+							<a href="{{ path('dbukronic-serie', {'id': item[0].movie.id}) }}"><img class="img-responsive" src="{{ item[0].movie.posterURL }}" alt=""></a>
 							<div class="decrypt-text">
-								<h3 class="title-movie"><a href="{{path('dbukronic',{'id':item[0].movie.id})}}">{{ item[0].movie.title }}</a></h3>
-								<p> <a href="{{path('dbukronic',{'id':item[0].movie.id})}}">"{{ item[0].movie.episodeTitle }}" </a></p>
+								<h3 class="title-movie"><a href="{{path('dbukronic-serie',{'id':item[0].movie.id})}}">{{ item[0].movie.title }}</a></h3>
+								<p> <a href="{{path('dbukronic-serie',{'id':item[0].movie.id})}}">"{{ item[0].movie.episodeTitle }}" </a></p>
 								<p>Saison {{ item[0].movie.season }} Episode {{ item[0].movie.episode }}</p>
 								<p> {{ item[0].movie.productionYear }} </p>
 								<p>{{ item["dcount"] }} décryptage(s)</p>
@@ -85,8 +85,8 @@
 						<div class=" decrypt"> {# fh5co-blog animate-box #}
 							<a href="{{ path('decryptRead', {'id': decrypt.id}) }}"><img class="img-responsive" src="{{ decrypt.movie.posterURL }}" alt=""></a>
 							<div class="decrypt-text">
-								<h3 class="title-movie"><a href="{{path('dbukronic',{'id':decrypt.movie.id})}}">{{ decrypt.movie.title }}</a></h3>
-								<p> <a href="{{path('dbukronic',{'id':decrypt.movie.id})}}">"{{ decrypt.movie.episodeTitle }}" </a></p>
+								<h3 class="title-movie"><a href="{{path('dbukronic-serie',{'id':decrypt.movie.id})}}">{{ decrypt.movie.title }}</a></h3>
+								<p> <a href="{{path('dbukronic-serie',{'id':decrypt.movie.id})}}">"{{ decrypt.movie.episodeTitle }}" </a></p>
 								<p>Saison {{ decrypt.movie.season }} Episode {{ decrypt.movie.episode }}</p>
 								<p>Par : <a class="text-underline" href="{{path('profile',{'id':decrypt.user.id})}}"> {{ decrypt.user.username }} </a></p>
 								
@@ -129,8 +129,8 @@
 						<div class=" decrypt"> {# fh5co-blog animate-box #}
 							<a href="{{ path('decryptRead', {'id': item[0].decrypt.id}) }}"><img class="img-responsive" src="{{ item[0].decrypt.movie.posterURL }}" alt=""></a>
 							<div class="decrypt-text">
-								<h3 class="title-movie"><a href="{{path('dbukronic',{'id':item[0].decrypt.movie.id})}}">{{ item[0].decrypt.movie.title }}</a></h3>
-								<p> <a href="{{path('dbukronic',{'id':item[0].decrypt.movie.id})}}">"{{ item[0].decrypt.movie.episodeTitle }}" </a></p>
+								<h3 class="title-movie"><a href="{{path('dbukronic-serie',{'id':item[0].decrypt.movie.id})}}">{{ item[0].decrypt.movie.title }}</a></h3>
+								<p> <a href="{{path('dbukronic-serie',{'id':item[0].decrypt.movie.id})}}">"{{ item[0].decrypt.movie.episodeTitle }}" </a></p>
 								<p>Saison {{ item[0].decrypt.movie.season }} Episode {{ item[0].decrypt.movie.episode }}</p>
 								<p>Par : <a class="text-underline" href="{{path('profile',{'id':item[0].decrypt.user.id})}}"> {{ item[0].decrypt.user.username }} </a></p>
 								<p>
@@ -169,10 +169,10 @@
 					
 					<div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
 						<div class="decrypt">
-							<a href="{{ path('dbukronic', {'id': item[0].movie.id}) }}"><img class="img-responsive" src="{{ item[0].movie.posterURL }}" alt=""></a>
+							<a href="{{ path('dbukronic-serie', {'id': item[0].movie.id}) }}"><img class="img-responsive" src="{{ item[0].movie.posterURL }}" alt=""></a>
 							<div class="decrypt-text">
-								<h3 class="title-movie"><a href="{{path('dbukronic',{'id':item[0].movie.id})}}">{{ item[0].movie.title }}</a></h3>
-								<p> <a href="{{path('dbukronic',{'id':item[0].movie.id})}}">"{{ item[0].movie.episodeTitle }}" </a></p>
+								<h3 class="title-movie"><a href="{{path('dbukronic-serie',{'id':item[0].movie.id})}}">{{ item[0].movie.title }}</a></h3>
+								<p> <a href="{{path('dbukronic-serie',{'id':item[0].movie.id})}}">"{{ item[0].movie.episodeTitle }}" </a></p>
 								<p>Saison {{ item[0].movie.season }} Episode {{ item[0].movie.episode }}</p>
 								{# <p> {{ item[0].movie.productionYear }} </p> #}
 								<p>Par <a class="text-underline" href="{{path('profile',{'id':item[0].user.id})}}"> {{ item[0].user.username }} </a></p>
