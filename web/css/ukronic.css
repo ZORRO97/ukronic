@@ -271,17 +271,18 @@ nav li {
 
 }
 
-.invite-title {
+h1.invite-title {
 	padding-top : calc(130px + 5vh);
 	color: white;
 	width: 80%;
 	margin: 0 auto;
 	line-height: 60px;
 	font-size: 46px;
+	max-width: 750px;
 }
 @media screen and (max-width: 768px) {
-	.invite-title {
-		padding-top: calc(0px + 10vh);
+	h1.invite-title {
+		padding-top: calc(0px + 15vh);
 		line-height: 50px;
 		font-size: 36px;
 	}
