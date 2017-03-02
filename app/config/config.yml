@@ -78,7 +78,7 @@ fos_user:
         confirmation:
             enabled: true
     from_email:
-        address: "%mailer_user%"
+        address: "%mailer_address%"
         sender_name: Ukronic
 
 # vich File upload
