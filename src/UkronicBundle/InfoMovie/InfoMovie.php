@@ -2,9 +2,7 @@
 namespace UkronicBundle\InfoMovie;
 
 
-//require_once "api-allocine-helper.php";
 
-//use UkronicBundle\InfoMovie\AlloHelper;
 use Symfony\Component\Debug\Exception;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RedirectResponse;
@@ -33,7 +31,7 @@ class InfoMovie {
     try
     {
         // Request data with parameters, and save the response in $data.
-        // $data = $allohelper->search( $keywords, $page );
+        
         $url = "http://www.omdbapi.com/?s=". $keywords . "&r=json&type=movie";
         
         $content = file_get_contents($url);
@@ -76,7 +74,7 @@ class InfoMovie {
     try
     {
         // Request data with parameters, and save the response in $data.
-        // $data = $allohelper->search( $keywords, $page );
+        
         $url = "http://www.omdbapi.com/?s=". $keywords . "&r=json&type=series";
         
         $content = file_get_contents($url);

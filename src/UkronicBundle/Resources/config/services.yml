@@ -3,3 +3,5 @@
 services:
     ukronic.infomovie:
         class: UkronicBundle\InfoMovie\InfoMovie
+    ukronic.imageuser:
+        class: UkronicBundle\ImageUser\ImageUser
