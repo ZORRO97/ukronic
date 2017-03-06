@@ -22,7 +22,6 @@ h1 {
          url('cfoldphotographcredit-webfont.woff') format('woff');
     font-weight: normal;
     font-style: normal;
-
 }
 
 .block-first {
@@ -44,6 +43,7 @@ body>div>section:last-child,
 		margin-top: 0 !important;
 	}
 }
+
 /* Global Form */
 input {
 	padding: 4px 8px;
@@ -83,6 +83,7 @@ input {
 	background-color: #149BDE;
 	color: white;
 	padding: 5px 15px;
+	margin-bottom: 10px;
 }
 .btn-blue:hover,
 .btn-blue:focus {
@@ -112,7 +113,38 @@ input {
 	padding-top: 20px;
 }
 
+/* Surcouche bootstrap */
+
+@media screen and (min-width: 768px) {
+	.navbar-toggle {
+		display : block;
+	}
+	.navbar-collapse.collapse {
+		display: none !important;
+	}
+	.navbar-collapse.in {
+		display: block !important;
+	}
+}
+@media screen and (min-width: 769px) {
+	.navbar-toggle {
+		display: none;
+	}
+	.navbar-collapse.collapse {
+		display:block !important;
+	}
+}
+@media screen and (max-width: 768px) {
+	.navbar-fixed-top {
+		position: relative;
+	}
+}
+
 /* NAVIGATION */
+.logo img {
+	z-index:1000;
+	position: relative;
+}
 @media screen and (min-width: 769px) and (max-width: 991px) {
 	.logo img {
 		width: 150px;
@@ -120,6 +152,9 @@ input {
 	}
 }
 @media screen and (max-width: 768px) {
+	.logo {
+		float: left;
+	}
 	.logo img {
 		width: 120px;
 	}
@@ -266,9 +301,12 @@ nav li {
 	background: url('../images/Image-public-big.png') no-repeat;
 	height: calc(100vh - 139px);
 	width: 100%;
-
 	background-size: cover;
-
+}
+@media screen and (max-width: 768px) {
+	#image-ukronic-salle {
+		height: 100vh;
+	}
 }
 
 h1.invite-title {
@@ -292,7 +330,11 @@ h1.invite-title {
 	margin-bottom: 80px;
 	padding-top: 130px;
 }
-
+@media screen and (max-width:769px) {
+	.invite-link {
+		padding-top : 45px;
+	}
+}
 .icon-ukronic {
 	height : 20px;
 	width : 20px;
@@ -512,10 +554,12 @@ p.espace-star {
 	padding-top: 30px;
 }
 @media screen and (max-width: 768px) {
-	.block-first, .login, .series {
+	.block-first, .series {
 		padding-top : 0px;
 		margin-top: 215px;
-
+	}
+	.login {
+		margin-top: 30px;
 	}
 }
 @media screen and (min-width: 768px) and (max-width: 991px) {
