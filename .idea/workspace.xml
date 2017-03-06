@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1590b090-32f1-4cf5-87ec-9e0df8950a4e" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/UkronicBundle/Resources/views/ukronic/main.html.twig" afterPath="$PROJECT_DIR$/src/UkronicBundle/Resources/views/ukronic/main.html.twig" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/UkronicBundle/Resources/views/ukronic/mainMovie.html.twig" afterPath="$PROJECT_DIR$/src/UkronicBundle/Resources/views/ukronic/mainMovie.html.twig" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/UkronicBundle/Resources/views/ukronic/mainSerie.html.twig" afterPath="$PROJECT_DIR$/src/UkronicBundle/Resources/views/ukronic/mainSerie.html.twig" />
     </list>
     <ignored path="ukronic.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -67,11 +68,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="main.html.twig" pinned="false" current-in-tab="true">
+      <file leaf-file-name="main.html.twig" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/UkronicBundle/Resources/views/ukronic/main.html.twig">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-0.8200837" vertical-offset="1983" max-vertical-offset="3105">
-              <caret line="93" column="54" selection-start-line="93" selection-start-column="54" selection-end-line="93" selection-end-column="54" />
+            <state vertical-scroll-proportion="-14.875" vertical-offset="1983" max-vertical-offset="3105">
+              <caret line="156" column="36" selection-start-line="156" selection-start-column="36" selection-end-line="156" selection-end-column="54" />
               <folding />
             </state>
           </provider>
@@ -90,18 +91,28 @@
       <file leaf-file-name="movie.html.twig" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/UkronicBundle/Resources/views/ukronic/movie.html.twig">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-14.25" vertical-offset="783" max-vertical-offset="2055">
+            <state vertical-scroll-proportion="-46.875" vertical-offset="0" max-vertical-offset="2055">
               <caret line="75" column="24" selection-start-line="75" selection-start-column="24" selection-end-line="75" selection-end-column="24" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="mainMovie.html.twig" pinned="false" current-in-tab="false">
+      <file leaf-file-name="mainMovie.html.twig" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/UkronicBundle/Resources/views/ukronic/mainMovie.html.twig">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="78.125" vertical-offset="1875" max-vertical-offset="3075">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.58577406" vertical-offset="0" max-vertical-offset="3060">
+              <caret line="28" column="54" selection-start-line="28" selection-start-column="54" selection-end-line="28" selection-end-column="54" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="mainSerie.html.twig" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/UkronicBundle/Resources/views/ukronic/mainSerie.html.twig">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-21.75" vertical-offset="2283" max-vertical-offset="3000">
+              <caret line="187" column="54" selection-start-line="187" selection-start-column="54" selection-end-line="187" selection-end-column="54" />
               <folding />
             </state>
           </provider>
@@ -128,7 +139,6 @@
         <option value="$PROJECT_DIR$/src/UkronicBundle/Resources/views/Decrypt/allMovieMoredecrypts.html.twig" />
         <option value="$PROJECT_DIR$/src/UkronicBundle/Resources/views/Decrypt/allMovieMoreReadDecrypts.html.twig" />
         <option value="$PROJECT_DIR$/web/css/style.css" />
-        <option value="$PROJECT_DIR$/src/UkronicBundle/Resources/views/ukronic/mainMovie.html.twig" />
         <option value="$PROJECT_DIR$/src/UkronicBundle/Resources/views/User/inscription.html.twig" />
         <option value="$PROJECT_DIR$/app/config/parameters.yml.dist" />
         <option value="$PROJECT_DIR$/app/config/config.yml" />
@@ -159,6 +169,8 @@
         <option value="$PROJECT_DIR$/web/css/ukronic.css" />
         <option value="$PROJECT_DIR$/app/config/parameters.yml" />
         <option value="$PROJECT_DIR$/src/UkronicBundle/Resources/views/ukronic/main.html.twig" />
+        <option value="$PROJECT_DIR$/src/UkronicBundle/Resources/views/ukronic/mainSerie.html.twig" />
+        <option value="$PROJECT_DIR$/src/UkronicBundle/Resources/views/ukronic/mainMovie.html.twig" />
       </list>
     </option>
   </component>
@@ -509,13 +521,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/UkronicBundle/Resources/views/Admin/movies.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="754">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/UkronicBundle/Resources/views/Comment/likeDisplay.html.twig">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="754">
@@ -794,14 +799,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/UkronicBundle/Resources/views/ukronic/movie.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-14.25" vertical-offset="783" max-vertical-offset="2055">
-          <caret line="75" column="24" selection-start-line="75" selection-start-column="24" selection-end-line="75" selection-end-column="24" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/UkronicBundle/Resources/views/ukronic/decrypt.html.twig">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="1.7364017" vertical-offset="0" max-vertical-offset="2400">
@@ -858,14 +855,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/UkronicBundle/Resources/views/ukronic/mainMovie.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="78.125" vertical-offset="1875" max-vertical-offset="3075">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/web/css/ukronic.css">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="3945" max-vertical-offset="9105">
@@ -900,8 +889,32 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/UkronicBundle/Resources/views/ukronic/main.html.twig">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.8200837" vertical-offset="1983" max-vertical-offset="3105">
-          <caret line="93" column="54" selection-start-line="93" selection-start-column="54" selection-end-line="93" selection-end-column="54" />
+        <state vertical-scroll-proportion="-14.875" vertical-offset="1983" max-vertical-offset="3105">
+          <caret line="156" column="36" selection-start-line="156" selection-start-column="36" selection-end-line="156" selection-end-column="54" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/UkronicBundle/Resources/views/ukronic/movie.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-46.875" vertical-offset="0" max-vertical-offset="2055">
+          <caret line="75" column="24" selection-start-line="75" selection-start-column="24" selection-end-line="75" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/UkronicBundle/Resources/views/ukronic/mainSerie.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-21.75" vertical-offset="2283" max-vertical-offset="3000">
+          <caret line="187" column="54" selection-start-line="187" selection-start-column="54" selection-end-line="187" selection-end-column="54" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/UkronicBundle/Resources/views/ukronic/mainMovie.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.58577406" vertical-offset="0" max-vertical-offset="3060">
+          <caret line="28" column="54" selection-start-line="28" selection-start-column="54" selection-end-line="28" selection-end-column="54" />
           <folding />
         </state>
       </provider>
