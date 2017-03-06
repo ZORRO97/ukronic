@@ -7,6 +7,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
 use UkronicBundle\Entity\User;
 use UkronicBundle\Entity\MovieQuery;
+use UkronicBundle\Entity\Recherche;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
@@ -87,9 +88,26 @@ class UserController extends Controller
     /**
      * @Route("/Banner",name="UkronicBanner")
      */
-    public function BannerAction(){
+    public function BannerAction(Request $request){
+
+        $recherche = new Recherche();
+        $form = $this->createFormBuilder($recherche)
+                    ->setAction($this->generateUrl('ukronic-recherche'))
+                    ->add('title', TextType::class)
+                    //->add('save', SubmitType::class)
+                    ->getForm();
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+        // $form->getData() holds the submitted values
         
-        return $this->render("UkronicBundle:User:banner.html.twig");
+            $recherche = $form->getData();
+            $title = $recherche->title;
+            // die(var_dump($title));
+            // return $this->redirectToRoute('ukronic-recherche',array('title'=>$title)); 
+            return $this->redirectToRoute('movieSearch');      
+        }
+        
+        return $this->render("UkronicBundle:User:banner.html.twig",array('form'=>$form->createView()));
     }
 
 }

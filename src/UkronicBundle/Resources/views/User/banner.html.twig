@@ -72,6 +72,7 @@
               </div><!-- /.container-fluid -->
             </nav>
         </div>
+        {#
           <div class="text-center">
               <ul class="list-inline">
                   <li class="form-group">
@@ -82,6 +83,8 @@
                   </li>
               </ul>
           </div>
+          #}
+          {% include 'UkronicBundle:User:formSearch.html.twig'  %}
       </div>
 
 
@@ -158,6 +161,8 @@
                     </div><!-- /.container-fluid -->
                 </nav>
             </div>
+            {% include 'UkronicBundle:User:formSearch.html.twig'  %}
+            {#
             <div class="text-center">
                 <ul class="list-inline">
                     <li class="form-group">
@@ -168,6 +173,7 @@
                     </li>
                 </ul>
             </div>
+            #}
         </div>
 
 
