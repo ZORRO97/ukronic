@@ -74,14 +74,14 @@ class SerieController extends Controller
         }
         return $this->render("UkronicBundle:Serie:episode.html.twig",array(
             "movie"=>$movie,            
-            "filter_seq" => "-100"
+            "filter_seq" => "all"
             ));
     }
 
       /**
      * @Route("/episode/dbukronic/{id}/{filter_seq}", name="dbukronic-serie")
      */
-    public function dbukronicSerieAction($id,$filter_seq="-100"){
+    public function dbukronicSerieAction($id,$filter_seq="all"){
 
         
         $em = $this->getDoctrine()->getManager();

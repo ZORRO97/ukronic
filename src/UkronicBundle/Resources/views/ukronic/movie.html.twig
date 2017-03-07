@@ -50,8 +50,12 @@
 				{% if is_granted("ROLE_USER") %}
 				<p><a class="btn-blue" href="{{ path('decrypt', {'idMovie': movie.id}) }}">Ajouter un décryptage</a></p>
 				{% else %}
+					
+					<p><a id="fake-button" class="btn-blue" href="#">Ajouter un décryptage</a></p>
 					<p class="text-red">Vous devez être connecté</p>
-					<p><a class="btn-blue" href="#">Ajouter un décryptage</a></p>
+				{% endif %}
+				{% if movie.decrypts | length == 0 %}
+					<p>Soyez le premier à décrypter ce film !</p>
 				{% endif %}
 			</div>
 
@@ -125,6 +129,9 @@
 			console.log("bouton cliqué");
 
 			$("#sequence-decrypt").html();
+		});
+		$("#fake-button").click(function(){
+			$(".text-red").css('color','red');
 		});
 	});
 	</script>
