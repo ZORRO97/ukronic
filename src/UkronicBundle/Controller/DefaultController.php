@@ -156,8 +156,8 @@ class DefaultController extends Controller
         }
         return $this->render("UkronicBundle:Ukronic:movie.html.twig",array(
             "movie"=>$movie,
-            "filter_end" => "-100",
-            "filter_seq" => "-100"
+            "filter_end" => "all",
+            "filter_seq" => "all"
             ));
     }
 
@@ -166,7 +166,7 @@ class DefaultController extends Controller
      /**
      * @Route("/dbukronic/{id}/{filter_end}/{filter_seq}", name="dbukronic")
      */
-    public function dbukronicAction($id,$filter_end="-100",$filter_seq="-100"){
+    public function dbukronicAction($id,$filter_end="all",$filter_seq="all"){
 
         
         $em = $this->getDoctrine()->getManager();
