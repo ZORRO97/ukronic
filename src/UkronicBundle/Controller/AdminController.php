@@ -34,6 +34,8 @@ class AdminController extends Controller
         ));
     }
 
+
+
     /**
      * @Route("/admin/dashboard",name="dashboardAdmin")
      */
@@ -176,6 +178,32 @@ class AdminController extends Controller
         
     } 
 
+
+     /**
+     * @Route("/admin/users/del/{id}",name="delUserAdmin")
+     */
+    public function delUserAdminAction($id,Request $request) {
+
+        if ($request->isXmlHttpRequest()){
+        $em = $this->getDoctrine()->getManager();
+        $repository = $em->getRepository('UkronicBundle:User');
+        $user = $repository->findOneById($id);
+        
+        if ($user) {
+            $em->remove($user);
+            
+
+            // du même coup changer le status du signalement
+            $em->flush();
+            return new JsonResponse(array('reponse' => "Enfin une réponse de l'ajax"));
+
+        } else {
+            return new JsonResponse(array('statut'=> false ,'reponse'=>'échec'));
+        }
+        }
+        return false;
+    } 
+
      /**
      * @Route("/admin/comment/del/{id}/{idSig}",name="delCommentAdmin")
      */
@@ -201,6 +229,8 @@ class AdminController extends Controller
         }
         return false;
     } 
+
+
 
      /**
      * @Route("/admin/signalement/ignore/{idSig}",name="ignoreSignalementAdmin")

@@ -24,37 +24,37 @@ class User extends BaseUser
     protected $id;
 
     /**
-     * @ORM\OneToMany(targetEntity="Decrypt", mappedBy="user")
+     * @ORM\OneToMany(targetEntity="Decrypt", mappedBy="user",cascade="remove")
      */
     private $decrypts;
 
     /**
-     * @ORM\OneToMany(targetEntity="Rating", mappedBy="user")
+     * @ORM\OneToMany(targetEntity="Rating", mappedBy="user",cascade="remove")
      */
     private $ratings;
 
     /**
-     * @ORM\OneToMany(targetEntity="Histo", mappedBy="user")
+     * @ORM\OneToMany(targetEntity="Histo", mappedBy="user",cascade="remove")
      */
     private $histos;
 
     /**
-     * @ORM\OneToMany(targetEntity="Beloved", mappedBy="user")
+     * @ORM\OneToMany(targetEntity="Beloved", mappedBy="user",cascade="remove")
      */
     private $likes;
 
     /**
-     * @ORM\OneToMany(targetEntity="Comment", mappedBy="user")
+     * @ORM\OneToMany(targetEntity="Comment", mappedBy="user",cascade="remove")
      */
     private $comments;
 
     /**
-     * @ORM\OneToMany(targetEntity="LikeComment", mappedBy="user")
+     * @ORM\OneToMany(targetEntity="LikeComment", mappedBy="user",cascade="remove")
      */
     private $commentLikes;
 
     /**
-     * @ORM\OneToMany(targetEntity="Signalement", mappedBy="user")
+     * @ORM\OneToMany(targetEntity="Signalement", mappedBy="user",cascade="remove")
      */
     private $signalements;
 

@@ -38,12 +38,12 @@ class Decrypt
     private $movie;
 
    /**
-     * @ORM\OneToMany(targetEntity="Beloved", mappedBy="decrypt")
+     * @ORM\OneToMany(targetEntity="Beloved", mappedBy="decrypt",cascade="remove")
      */
     private $likes;
 
     /**
-     * @ORM\OneToMany(targetEntity="Comment", mappedBy="decrypt")
+     * @ORM\OneToMany(targetEntity="Comment", mappedBy="decrypt",cascade="remove")
      */
     private $comments;
 

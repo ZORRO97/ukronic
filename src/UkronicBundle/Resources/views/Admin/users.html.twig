@@ -7,7 +7,7 @@
 <div class="container-fluid block-first">
 
 	<div class="col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-2">
-<h1>Welcome to the Admin:users page</h1>
+<h1>Liste des utilisateurs</h1>
 <table class="table table-bordered">
 	<tr>
 		<th>Id</th>
@@ -16,6 +16,7 @@
 		<th>Commentaires</th>
 		<th>Likes</th>
 		<th>CommentLikes</th>
+		<th>Action</th>
 	</tr>
 	{% for user in users %}
 		<tr>
@@ -37,6 +38,9 @@
 			<td>
 				{{ user.commentLikes | length }}
 			</td>
+			<td>
+				<button class="supprimer-user btn-danger" data-button= {{ user.id }}  >Supprimer</button>
+			</td>
 
 			
 		</tr>
@@ -44,4 +48,41 @@
 </table>
 </div>
 </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+   <script>
+   $(function(){
+   	console.log("Jquery actif");
+   	
+
+   	$('.supprimer-user').click(function(){
+   		console.log("supprimer user cliqué");
+   		var myButton = $(this);
+		var trButton = myButton.parent().parent();
+		var monId = $(this).attr('data-button');
+		console.log("monId : "+monId);
+		
+		var monUrl = "{{ path('delUserAdmin',{'id': 'monId'}) }}";
+		monUrl = monUrl.replace('monId',monId);
+		
+		console.log(monUrl);
+		$.ajax({
+			url: monUrl,
+			datatype: "json"
+		}).done(function(){
+			console.log("Suppression user réussi");
+			trButton.hide();
+		}).fail(function(){
+			console.log("Suppression user ajax échec");
+		});
+   	});
+
+   	
+
+
+   });
+   </script>
+    
 {% endblock %}
