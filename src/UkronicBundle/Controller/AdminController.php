@@ -190,10 +190,7 @@ class AdminController extends Controller
         $user = $repository->findOneById($id);
         
         if ($user) {
-            $em->remove($user);
-            
-
-            // du même coup changer le status du signalement
+            $em->remove($user);           
             $em->flush();
             return new JsonResponse(array('reponse' => "Enfin une réponse de l'ajax"));
 

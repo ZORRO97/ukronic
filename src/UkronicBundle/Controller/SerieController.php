@@ -27,15 +27,17 @@ class SerieController extends Controller
     	$infos = $serviceMovie->detailSaisonSerie($id,1);
     	$results = array();
     	array_push($results, $infos);
-    	$totalSaisons = $infos["totalSeasons"];
-    	if ($totalSaisons > 1) {
-    		$cpt=1;
-    		while ($cpt < $totalSaisons) {
-    			$cpt += 1;
-    			$infos = $serviceMovie->detailSaisonSerie($id,$cpt);
-    			array_push($results,$infos);
-    		}
-    	}
+        if (array_key_exists('totalSeasons', $infos)){
+        	$totalSaisons = $infos["totalSeasons"];
+        	if ($totalSaisons > 1) {
+        		$cpt=1;
+        		while ($cpt < $totalSaisons) {
+        			$cpt += 1;
+        			$infos = $serviceMovie->detailSaisonSerie($id,$cpt);
+        			array_push($results,$infos);
+        		}
+        	}
+        }
         return $this->render('UkronicBundle:Serie:choice_serie.html.twig', array(
             // ... les passer en paramètres
             'infos'=>$results

@@ -1,3 +1,5 @@
+{% import 'UkronicBundle::macros.html.twig' as macros %}
+
 {% extends "UkronicBundle::layout.html.twig" %}
 
 {% block title %}Recherche Ukronic{% endblock %}
@@ -17,7 +19,8 @@
 						<div class="col-md-3 col-sm-4 col-lg-2 col-xs-6 movie-content">
 							<div class="decrypt">
 								<a href="{{ path("movie", {'imdbID': item["imdbID"] , 'typeMovie' : 'F'}) }}">
-									<img class="img-responsive" src= {{ item["Poster"] }} >
+								
+									{{ macros.displayCheckImage(item["Poster"]) }}
 									<div class="movie-content">
 									<h3 class="title-movie"> {{ item["Title"] }} </h3>
 									<p> {{ item["Year"] }} </p>
@@ -27,10 +30,7 @@
 						</div>
 
 					{% endfor %}
-					{#
-				{% else %}
-					<p class="text-center">Pas de résultat</p>
-					#}
+				
 				{% endif %}
 			</div>
 
@@ -42,20 +42,19 @@
 					<div class="col-md-3 col-sm-4 col-lg-2 col-xs-6 movie-content">
 						<div class="decrypt">
 							<a href="{{ path("choiceSerie", {'id': item["imdbID"] }) }}">
-								<img class="img-responsive" src= {{ item["Poster"] }} >
+
+									{{ macros.displayCheckImage(item["Poster"]) }}
 								<div class="movie-content">
+									
 									<h3 class="title-movie"> {{ item["Title"] }} </h3>
 									<p class ="vintage"> {{ item["Year"] }} </p>
-									{# <p class="vintage">  {{ item['totalSeasons']}}  saisons </p> #}
+									
 								</div>
 							</a>
 						</div>
 					</div>
 				{% endfor %}
-					{#
-				{% else %}
-					<p class="text-center">Pas de résultat</p>
-					#}
+				
 			{% endif %}
 		</div>
 

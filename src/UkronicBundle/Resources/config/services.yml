@@ -1,7 +1,15 @@
 # src/OC/PlatformBundle/Resources/config/services.yml
 
+parameters:
+
+    app.file.twig.extension.class: UkronicBundle\Twig\Extension\FileExtension
+
 services:
     ukronic.infomovie:
         class: UkronicBundle\InfoMovie\InfoMovie
     ukronic.imageuser:
         class: UkronicBundle\ImageUser\ImageUser
+    app.file.twig.extension:
+        class: %app.file.twig.extension.class%
+        tags:
+            - { name: twig.extension }

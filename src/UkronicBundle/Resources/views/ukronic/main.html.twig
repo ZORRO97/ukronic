@@ -84,7 +84,10 @@
 
 						<div class="decrypt"> {# fh5co-blog animate-box #}
 
-							<a href="{{ path('decryptRead', {'id': decrypt.id}) }}"><img class="img-responsive" src="{{ decrypt.movie.posterURL }}" alt=""></a>
+							<a href="{{ path('decryptRead', {'id': decrypt.id}) }}">
+							{#	<img class="img-responsive" src="{{ decrypt.movie.posterURL }}" alt=""> #}
+							{{ macros.displayCheckImage(decrypt.movie.posterURL) }}
+							</a>
 							{{ include('UkronicBundle:Decrypt:oneDecrypt.html.twig')}}
 						</div>
 					</div>
@@ -108,7 +111,10 @@
 
 					<div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
 						<div class="decrypt">
-							<a href="{{ path('decryptRead', {'id': decrypt.id}) }}"><img class="img-responsive" src="{{ decrypt.movie.posterURL }}" alt=""></a>
+							<a href="{{ path('decryptRead', {'id': decrypt.id}) }}">
+								 {# <img class="img-responsive" src="{{ decrypt.movie.posterURL }}" alt=""> #}
+								{{ macros.displayCheckImage(decrypt.movie.posterURL) }}
+							</a>
 							{{ include('UkronicBundle:Decrypt:oneSerieDecrypt.html.twig')}}
 						</div>
 					</div>
@@ -140,7 +146,10 @@
 
 					<div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
 						<div class="decrypt">
-							<a href="{{ path('dbukronic', {'id': item[0].movie.id}) }}"><img class="img-responsive" src="{{ item[0].movie.posterURL }}" alt=""></a>
+							<a href="{{ path('dbukronic', {'id': item[0].movie.id}) }}">
+								{# <img class="img-responsive" src="{{ item[0].movie.posterURL }}" alt=""> #}
+								{{ macros.displayCheckImage(item[0].movie.posterURL) }}
+							</a>
 							<div class="decrypt-text">
 								<h3 class="title-movie text-uppercase"><a href="{{path('dbukronic',{'id':item[0].movie.id})}}">{{ item[0].movie.title }}</a></h3>
 								<p> {{ item[0].movie.productionYear }} </p>
@@ -174,7 +183,10 @@
 
 					<div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
 						<div class="decrypt">
-							<a href="{{ path('dbukronic-serie', {'id': item[0].movie.id}) }}"><img class="img-responsive" src="{{ item[0].movie.posterURL }}" alt=""></a>
+							<a href="{{ path('dbukronic-serie', {'id': item[0].movie.id}) }}">
+								{# <img class="img-responsive" src="{{ item[0].movie.posterURL }}" alt=""> #}
+								{{ macros.displayCheckImage(item[0].movie.posterURL) }}
+							</a>
 							<div class="decrypt-text">
 								<h3 class="title-movie text-uppercase"><a href="{{path('dbukronic-serie',{'id':item[0].movie.id})}}">{{ item[0].movie.title }}</a></h3>
 								<p> <a href="{{path('dbukronic-serie',{'id':item[0].movie.id})}}">"{{ item[0].movie.episodeTitle }}" </a></p>
