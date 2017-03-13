@@ -207,11 +207,15 @@
 		loaderPage();
 		counterWayPoint();
 	});
-	var topExplications = $("#explications").offset().top;
-	$(".btn-explications").click(function() {
-		$('html, body').animate({
-			scrollTop: $("#explications").offset().top - 140
-		}, 1000);
-	});
+	var divExplication = $("#explications");
+	if (typeof divExplication !== 'undefined' && typeof divExplication.offset() !== 'undefined' && typeof divExplication.offset().top !== 'undefined'){
+		var topExplications = $("#explications").offset().top;
+		console.log("topEx : "+topExplications);
+		$(".btn-explications").click(function() {
+			$('html, body').animate({
+				scrollTop: $("#explications").offset().top - 140
+			}, 1000);
+		});
+	}
 
 }());
