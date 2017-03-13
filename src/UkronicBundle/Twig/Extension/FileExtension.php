@@ -34,7 +34,7 @@ class FileExtension extends \Twig_Extension
             //if request was ok, check response code
             $statusCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);  
             
-            if ($statusCode == 200 || $statusCode == 403) {
+            if ($statusCode == 200) {
                 $ret = true;   
             }
         }
