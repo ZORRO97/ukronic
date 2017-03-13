@@ -1,3 +1,5 @@
+{% import 'UkronicBundle::macros.html.twig' as macros %}
+
 {% extends 'UkronicBundle::layout.html.twig' %}
 
 {% block content %}
@@ -20,7 +22,10 @@
 
 					<div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
 						<div class="decrypt">
-							<a href="{{ path('dbukronic', {'id': item[0].movie.id}) }}"><img class="img-responsive" src="{{ item[0].movie.posterURL }}" alt=""></a>
+							<a href="{{ path('dbukronic', {'id': item[0].movie.id}) }}">
+								{# <img class="img-responsive" src="{{ item[0].movie.posterURL }}" alt=""> #}
+								{{ macros.displayCheckImage(item[0].movie.posterURL) }}
+							</a>
 							<div class="decrypt-text">
 								<h3 class="title-movie"><a href="{{path('dbukronic',{'id':item[0].movie.id})}}">{{ item[0].movie.title }}</a></h3>
 								<p> {{ item[0].movie.productionYear }} </p>

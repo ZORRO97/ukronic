@@ -1,4 +1,7 @@
 {# alldecrypts.html.twig #}
+
+{% import 'UkronicBundle::macros.html.twig' as macros %}
+
 {% extends 'UkronicBundle::layout.html.twig' %}
 
 {% block content %}
@@ -16,7 +19,11 @@
 
 					<div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
 						<div class=" decrypt"> {# fh5co-blog animate-box #}
-							<a href="{{ path('decryptRead', {'id': decrypt.id}) }}"><img class="img-responsive" src="{{ decrypt.movie.posterURL }}" alt=""></a>
+							<a href="{{ path('decryptRead', {'id': decrypt.id}) }}">
+								{# <img class="img-responsive" src="{{ decrypt.movie.posterURL }}" alt=""> #}
+								{{ macros.displayCheckImage(decrypt.movie.posterURL) }}
+
+							</a>
 							
 								
 							{{ include('UkronicBundle:Decrypt:oneSerieDecrypt.html.twig')}}
