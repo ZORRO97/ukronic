@@ -30,6 +30,12 @@
 								</a>
 								<div class="decrypt-text">
 									<h3 class="title-movie"><a href="{{path('dbukronic',{'id':item.movie.id})}}">{{ item.movie.title }}</a></h3>
+									<p>Par : <a class="text-underline" href="{{path('profile',{'id':item.user.id})}}"> {{ item.user.username }} </a></p>
+									<p>
+									<i class="fa fa-quote-left" aria-hidden="true"></i> <a href="{{ path('decryptRead', {'id': item.id}) }}"> 
+									{{ item.title }} 
+									</a> <i class="fa fa-quote-right" aria-hidden="true"></i>
+									</p>
 									<p>{{ item.nbRead }} <img class="icon-ukronic" src="{{ asset('images/side-view-of-sitting-man-reading_318-29449.jpg') }}" alt="lecture">{#lecture(s)#}</p>
 
 								</div> 

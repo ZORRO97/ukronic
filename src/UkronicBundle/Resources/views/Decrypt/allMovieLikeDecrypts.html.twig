@@ -22,17 +22,23 @@
 					
 
 					<div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
-						<div class=" decrypt"> {# fh5co-blog animate-box #}
+						<div class="decrypt"> {# fh5co-blog animate-box #}
 							<a href="{{ path('decryptRead', {'id': item[0].decrypt.id}) }}">
 								{# <img class="img-responsive" src="{{ item[0].decrypt.movie.posterURL }}" alt=""> #}
 								{{ macros.displayCheckImage(item[0].decrypt.movie.posterURL) }}
 							</a>
+							
+
 							<div class="decrypt-text">
-								<h3 class="title-movie"><a href="{{ path('dbukronic',{'id': item[0].decrypt.movie.id }) }}">{{ item[0].decrypt.movie.title }}</a></h3>
-								<p><span class="vintage">Décrypteur : </span><a href="{{path('profile',{'id':item[0].decrypt.user.id})}}"> {{ item[0].decrypt.user.username }} </a></p>
-								<p><span class="vintage">Titre décryptage : </span><a href="{{ path('decryptRead', {'id': item[0].decrypt.id}) }}"> {{ item[0].decrypt.title }} </a></p>
+								<h3 class="title-movie"><a href="{{path('dbukronic',{'id':item[0].decrypt.movie.id})}}">{{ item[0].decrypt.movie.title }}</a></h3>
+								<p>Par : <a class="text-underline" href="{{path('profile',{'id':item[0].decrypt.user.id})}}"> {{ item[0].decrypt.user.username }} </a></p>
 								<p>
-									{{ item['bcount'] }} <img class="icon-ukronic" src="{{ asset('images/side-view-of-sitting-man-reading_318-29449.jpg') }}" alt="lecture">
+									<i class="fa fa-quote-left" aria-hidden="true"></i> <a href="{{ path('decryptRead', {'id': item[0].decrypt.id}) }}"> 
+									{{ item[0].decrypt.title }} 
+								</a> <i class="fa fa-quote-right" aria-hidden="true"></i>
+								</p>
+								<p>
+									{{ item.bcount }} <img class="icon-ukronic" src="{{ asset('images/FBLike-Icon_300_v2.png') }}" alt="like">{# LIKE #}
 								</p>
 
 							</div> 
