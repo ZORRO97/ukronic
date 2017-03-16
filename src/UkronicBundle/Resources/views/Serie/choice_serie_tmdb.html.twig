@@ -1,0 +1,36 @@
+{% extends "UkronicBundle::layout.html.twig" %}
+
+{% import 'UkronicBundle::macros.html.twig' as macros %}
+
+{% block title %}Choix de l'épisode de la série{% endblock %}
+
+{% block content %}
+
+<div class="container">
+	
+	<div class="row">
+		<div class="col-md-8 col-md-offset-2">
+			<h2 class="text-center">Episodes de la série {{ serieInfos.name }}</h2>
+			<p class="text-center"> {{ totalSaisons }} saisons</p>
+			
+			{{ macros.displayImageTMDB(serieInfos.poster_path) }}
+
+			{% for season in infos %}
+				<h4 class="text-center"> {{ "Saison " ~ season.season_number }} </h4>
+				{{ macros.displayImageTMDB(season.poster_path) }}
+				
+				
+				{% for item in season.episodes %}
+					<p class="text-center">
+						<a href="{{ path("serieTMDB", {'id': idSerie , 'saison' : item.season_number , 'episode': item.episode_number ,'name' : serieInfos.name }) }}">
+						Episode {{ item.episode_number }} : " {{ item.name }} "
+						</a>
+					</p>
+				{% endfor %}
+
+			{% endfor %}
+		</div>
+	</div>	
+		
+</div>
+{% endblock %}

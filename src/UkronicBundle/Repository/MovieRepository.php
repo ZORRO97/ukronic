@@ -40,5 +40,11 @@ class MovieRepository extends \Doctrine\ORM\EntityRepository
 
 		return $nb;
 	}
+
+	public function findEpisodeSerie($id,$season,$episode){
+		$q = $this->getEntityManager()
+		->createQuery("SELECT m FROM UkronicBundle:Movie m WHERE m.number = $id AND m.season = $season AND m.episode = $episode");
+		return $q->getResult();
+	}
 	
 }

@@ -45,6 +45,39 @@ class SerieController extends Controller
     }
 
     /**
+     * @Route("/choiceSerieTMDB/{id}",name="choiceSerieTMDB")
+     */
+    public function choiceSerieTMDBAction($id)
+    {
+        // utiliser le service pour récupérer dans un tableau les épisodes de toutes les saisons
+        $serviceMovie = $this->get('ukronic.infomovie');
+        $serieInfos = $serviceMovie->infoSerieTMDB($id);
+        $infos = $serviceMovie->detailSaisonSerieTMDB($id,1);
+        $results = array();
+        array_push($results, $infos);
+        if (array_key_exists('number_of_seasons', $serieInfos)){
+            $totalSaisons = (int) $serieInfos["number_of_seasons"];
+            if ($totalSaisons > 1) {
+                $cpt=1;
+                while ($cpt < $totalSaisons) {
+                    $cpt += 1;
+                    $infos = $serviceMovie->detailSaisonSerieTMDB($id,$cpt);
+                    array_push($results,$infos);
+                }
+            }
+        } else {
+            $totalSaisons = 1;
+        }
+        return $this->render('UkronicBundle:Serie:choice_serie_tmdb.html.twig', array(
+            // ... les passer en paramètres
+            'infos'=>$results,
+            'totalSaisons'=>$totalSaisons,
+            'serieInfos'=>$serieInfos,
+            'idSerie'=>$id
+        ));
+    }
+
+    /**
      * @Route("/serie/{imdbID}/{titleSerie}", name="serie")
      */
     public function serieAction($imdbID,$titleSerie) {
@@ -69,6 +102,44 @@ class SerieController extends Controller
 
         $em->persist($movie);
         $em->flush();
+        }
+
+        if ($movie == null) {
+            return $this->redirect(path("main"));
+        }
+        return $this->render("UkronicBundle:Serie:episode.html.twig",array(
+            "movie"=>$movie,            
+            "filter_seq" => "all"
+            ));
+    }
+
+    /**
+     * @Route("/serieTMDB/{id}/{saison}/{episode}/{name}", name="serieTMDB")
+     */
+    public function serieTMDBAction($id,$saison,$episode,$name) {
+
+        $movie = new Movie();
+        $em = $this->getDoctrine()->getManager();
+        $repository = $em->getRepository("UkronicBundle:Movie");
+        // vérifier si le film existe dans la BDD Ukronic
+        $result = $repository->findEpisodeSerie($id,$saison,$episode);
+
+        if ($result) {
+            $movie = $result[0];
+        } else {
+
+
+        // récupérer les infos en fonction de tmdbID
+
+            $serviceMovie = $this->get('ukronic.infomovie');  
+            
+            $movie = $serviceMovie->detailSerieTMDB($id,$saison,$episode,$name);        
+                      
+            if ($movie !== null){
+                
+                $em->persist($movie);
+                $em->flush();
+            }
         }
 
         if ($movie == null) {

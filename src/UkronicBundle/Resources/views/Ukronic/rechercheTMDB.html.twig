@@ -2,7 +2,7 @@
 
 {% extends "UkronicBundle::layout.html.twig" %}
 
-{% block title %}Recherche Ukronic{% endblock %}
+{% block title %}Recherche Ukronic TMDb{% endblock %}
 
 {% block content %}
 
@@ -12,47 +12,55 @@
 
 		<h2 class="text-center">LES FILMS</h2>
 		<div class="row">
-			{% if movies.Search is defined %}
-				{% for item in movies.Search %}
-
+			
+			{% if movies.results is defined %}
+				
+				{% for item in movies.results %}
+					
 
 					<div class="col-md-3 col-sm-4 col-lg-2 col-xs-6 movie-content">
 						<div class="decrypt">
-							<a href="{{ path("movie", {'imdbID': item["imdbID"] , 'typeMovie' : 'F'}) }}">
+							<a href="{{ path("movieTMDB", {'tmdbId': item.id , 'typeMovie' : 'F'}) }}">
 							
-								{{ macros.displayCheckImage(item["Poster"]) }}
+								{{ macros.displayImageTMDB(item.poster_path) }}
 								<div class="movie-content">
-								<h3 class="title-movie"> {{ item["Title"] }} </h3>
-								<p> {{ item["Year"] }} </p>
+								<h3 class="title-movie"> {{ item.title }} </h3>
+								<p> {{ item.release_date[:4] }} </p>
 								</div>
 							</a>
 						</div>
 					</div>
 
 				{% endfor %}
-			
+				
+
 			{% endif %}
-		</div>
+		</div>	
 
 		<h2 class="text-center">LES SERIES</h2>
 		<div class="row">
-			{% if series.Search is defined %}
-				{% for item in series.Search %}
+			{% if series.results is defined %}
+				{% for item in series.results %}
+					
 
 					<div class="col-md-3 col-sm-4 col-lg-2 col-xs-6 movie-content">
 						<div class="decrypt">
-							<a href="{{ path("choiceSerie", {'id': item["imdbID"] }) }}">
+							<a href="{{ path("choiceSerieTMDB", {'id': item.id }) }}">
 
-									{{ macros.displayCheckImage(item["Poster"]) }}
+									{{ macros.displayImageTMDB(item.poster_path) }}
 								<div class="movie-content">
 									
-									<h3 class="title-movie"> {{ item["Title"] }} </h3>
-									<p class ="vintage"> {{ item["Year"] }} </p>
+									<h3 class="title-movie"> {{ item.name }} </h3>
+									<p > {{ item.first_air_date[:4] }} </p>
 									
 								</div>
 							</a>
 						</div>
 					</div>
+					
+					
+					{#  {{ dump(item) }} #}
+					
 				{% endfor %}
 				
 			{% endif %}

@@ -50,3 +50,15 @@
 		<img class="img-responsive center-block img-decrypt-big" src= "{{ asset('images/lunettes-' ~ couleur ~ '.png') }}" >
 	{% endif %}
 {% endmacro %}
+
+
+
+{% macro displayImageTMDB(path) %}
+	{% set chemin  = "https://image.tmdb.org/t/p/w300" ~ path %}
+	{% if remote_file_exists(chemin) %}
+		<img class="img-responsive" src= "{{ chemin }}" >
+	{% else %}
+		{% set couleur = random(['black','blue','dark-blue','dark-green','green','grey','orange','pink','purple'])  %}
+		<img class="img-responsive" src= "{{ asset('images/lunettes-' ~ couleur ~ '.png') }}" >
+	{% endif %}
+{% endmacro %}

@@ -161,7 +161,36 @@ class DefaultController extends Controller
             ));
     }
 
-    
+    /**
+     * @Route("/movieTMDB/{tmdbId}", name="movieTMDB")
+     */
+    public function movieTMDBAction($tmdbId) {
+
+        $movie = new Movie();
+        $em = $this->getDoctrine()->getManager();
+        $repository = $em->getRepository("UkronicBundle:Movie");
+        // vérifier si le film existe dans la BDD Ukronic
+        $result = $repository->findOneByNumber($tmdbId);
+
+        if ($result) {
+            $movie = $result;
+        } else {
+        // récupérer les infos en fonction de tmdbID
+            $serviceMovie = $this->get('ukronic.infomovie');
+            $movie = $serviceMovie->detailMovieTMDB($tmdbId); 
+            $em->persist($movie);
+            $em->flush();
+        }
+
+        if ($movie == null) {
+            return $this->redirect(path("main"));
+        }
+        return $this->render("UkronicBundle:Ukronic:movie.html.twig",array(
+            "movie"=>$movie,
+            "filter_end" => "all",
+            "filter_seq" => "all"
+            ));
+    }
 
      /**
      * @Route("/dbukronic/{id}/{filter_end}/{filter_seq}", name="dbukronic")

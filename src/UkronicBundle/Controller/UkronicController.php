@@ -48,11 +48,12 @@ class UkronicController extends Controller
             $serviceMovie = $this->get('ukronic.infomovie');
                 
 
-            $movies = $serviceMovie->listeMovies($title);
-            $series = $serviceMovie->listeSeries($title);
+            // $movies = $serviceMovie->listeMovies($title);
+            $movies = $serviceMovie->listeMoviesTMDB($title);
+            $series = $serviceMovie->listeSeriesTMDB($title);
         
 
-        return $this->render('UkronicBundle:Ukronic:recherche.html.twig', array(
+        return $this->render('UkronicBundle:Ukronic:rechercheTMDB.html.twig', array(
             'title' => $title,
             'movies'=> $movies,
             'series'=> $series
