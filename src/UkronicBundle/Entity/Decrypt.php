@@ -97,10 +97,7 @@ class Decrypt
     private $typeDecrypt;
 
      public function __construct()
-    {
-        // parent::__construct();
-        // your own logic
-       
+    {      
         $this->likes = new ArrayCollection();
         $this->comments = new ArrayCollection();
     }

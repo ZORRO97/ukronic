@@ -5,9 +5,10 @@ namespace UkronicBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
+
 use UkronicBundle\Entity\User;
-use UkronicBundle\Entity\MovieQuery;
 use UkronicBundle\Entity\Recherche;
+
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
@@ -72,7 +73,6 @@ class UserController extends Controller
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             
-            // $user->setImageName($user->getUsername());
             $user = $form->getData();
             $em = $this->getDoctrine()->getManager();
             $em->persist($user);
@@ -102,8 +102,7 @@ class UserController extends Controller
         
             $recherche = $form->getData();
             $title = $recherche->title;
-            // die(var_dump($title));
-            // return $this->redirectToRoute('ukronic-recherche',array('title'=>$title)); 
+            
             return $this->redirectToRoute('movieSearch');      
         }
         

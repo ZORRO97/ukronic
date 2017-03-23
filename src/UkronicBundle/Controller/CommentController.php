@@ -8,7 +8,6 @@ use UkronicBundle\Entity\LikeComment;
 use UkronicBundle\Entity\Histo;
 use UkronicBundle\Entity\Signalement;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
 class CommentController extends Controller

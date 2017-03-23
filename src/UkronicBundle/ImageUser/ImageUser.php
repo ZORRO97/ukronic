@@ -2,7 +2,6 @@
 
 namespace UkronicBundle\ImageUser;
 
-// use UkronicBundle\Entity\User;
 
 class ImageUser {
 

@@ -2,7 +2,7 @@
 
 namespace UkronicBundle\Repository;
 use UkronicBundle\Entity\User;
-use Doctrine\DBAL\Query\Doctrine_Query;
+
 
 /**
  * DecryptRepository
@@ -12,18 +12,7 @@ use Doctrine\DBAL\Query\Doctrine_Query;
  */
 class DecryptRepository extends \Doctrine\ORM\EntityRepository
 {
-/*
-	public function nbComment(User $user){
-		$monId = $user->getId();
-		$q = $this->getEntityManager()
-		->createQuery("SELECT COUNT(d.id) FROM UkronicBundle:Decrypt d JOIN d.user u");
-    	
- 
-  	$nb = $q->getSingleResult();
-		return $nb;
 
-	}
-*/
 	public function countDecrypts(){
 		$q = $this->getEntityManager()
 		->createQuery("SELECT COUNT(DISTINCT u.id) FROM UkronicBundle:Decrypt u");
@@ -98,28 +87,23 @@ class DecryptRepository extends \Doctrine\ORM\EntityRepository
 	}
 
 	public function movieLikeAllDecrypted(){
-		//
 		$q = $this->getEntityManager()
 		->createQuery("SELECT d , COUNT(DISTINCT b.id) AS clike FROM UkronicBundle:Decrypt d UkronicBundle:Beloved b INNER JOIN b.decrypt d GROUP BY d.id ORDER BY clike DESC" );
     	$decrypts = $q->getResult();
 		return $decrypts;
-		// return "en cours de debug";
 	}
 
 	public function serieLikeAllDecrypted(){
-		//
 		$q = $this->getEntityManager()
 		->createQuery("SELECT d , COUNT(DISTINCT b.id) AS clike FROM UkronicBundle:Decrypt d UkronicBundle:Beloved b INNER JOIN b.decrypt d JOIN decrypt.movie m WHERE m.typeMovie='S' GROUP BY d.id ORDER BY clike DESC" );
     	$decrypts = $q->getResult();
-		return $decrypts;
-		
+		return $decrypts;		
 	}
 
 
 
 	public function getDecrypts($idMovie , $filter, $typeDecrypt) {
-		// $monId = $user->getId();
-
+		
 		switch ($filter) {
         	case '-100':
         		$q = $this->getEntityManager()
@@ -225,7 +209,7 @@ class DecryptRepository extends \Doctrine\ORM\EntityRepository
 	}
 
 	public function sequenceDecrypted(User $user){
-		// TODO requête comptant le nombre de séquences décryptées
+		// requête comptant le nombre de séquences décryptées
 		$monId = $user->getId();
 		$q = $this->getEntityManager()
 		->createQuery("SELECT COUNT(DISTINCT d.id) FROM UkronicBundle:Decrypt d  JOIN d.user u JOIN d.movie m WHERE d.typeDecrypt = 'S' AND u.id = $monId ");
@@ -236,7 +220,7 @@ class DecryptRepository extends \Doctrine\ORM\EntityRepository
 	}
 
 	public function sequenceM100Decrypted(User $user){
-		// TODO nombre de séquences de moins de 100 mots
+		//  nombre de séquences de moins de 100 mots
 		$monId = $user->getId();
 		$q = $this->getEntityManager()
 		->createQuery("SELECT COUNT(DISTINCT d.id) FROM UkronicBundle:Decrypt d JOIN d.user u JOIN d.movie m WHERE d.typeDecrypt = 'S' AND d.wordCount < 100 AND u.id = $monId" );

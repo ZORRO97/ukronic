@@ -7,13 +7,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\JsonResponse;
-use UkronicBundle\Entity\User;
-use UkronicBundle\Entity\Movie;
-use UkronicBundle\Entity\Decrypt;
-use UkronicBundle\Entity\Comment;
-use UkronicBundle\Entity\Beloved;
-use UkronicBundle\Entity\LikeComment;
-use UkronicBundle\Entity\Signalement;
+
 
 
 
@@ -212,7 +206,7 @@ class AdminController extends Controller
         $comment = $repository->findOneById($id);
         $signalRepository = $em->getRepository('UkronicBundle:Signalement');
         $signal = $signalRepository->findOneById($idSig);
-        if ($comment AND $signal) {
+        if ($comment && $signal) {
             $em->remove($comment);
             $signal->setStatus("T");
 

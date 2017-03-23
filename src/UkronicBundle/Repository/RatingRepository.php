@@ -4,7 +4,7 @@ namespace UkronicBundle\Repository;
 
 use UkronicBundle\Entity\Rating;
 use UkronicBundle\Entity\User;
-use Doctrine\DBAL\Query\Doctrine_Query;
+
 
 /**
  * RatingRepository

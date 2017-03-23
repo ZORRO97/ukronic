@@ -4,17 +4,22 @@ namespace UkronicBundle\InfoMovie;
 
 
 use Symfony\Component\Debug\Exception;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\RedirectResponse;
 use UkronicBundle\Entity\Movie;
-// use Symfony\Component\DependencyInjection\ContainerInterface;
 
 class InfoMovie {
 
-  const TMDB_API_KEY = "a4ab4f6f303e9422f8f2d884f37be4a0";
-  //$this->container->getParameter('tmdb_api_key');
-  // 
+  
+  private $api_key;
+  
+   
   const BASE_URL = "https://api.themoviedb.org/3";
+
+  public function __construct($tmdb_api_key){
+    $this->api_key = $tmdb_api_key;
+    // on récupère la clé de l'API en paramètres pour permettre une gestion de la clé API plus aisée dans les paramètres
+
+  }
+  
 	
 	/**
    * doit renvoyer la liste des films
@@ -29,8 +34,8 @@ class InfoMovie {
     // Construct the object.
     
 
-    // Define parameters.
-    $keywords = implode("+",explode(' ',$text)); // "The Dark Knight";
+    // remplace les espaces par des +
+    $keywords = implode("+",explode(' ',$text)); 
     $page = 1;
     
     // It's important to catch Exceptions.
@@ -43,10 +48,9 @@ class InfoMovie {
         $content = file_get_contents($url);
         if (!empty($content))
         {
-            $result = (array) json_decode($content,true); // 2nd param to get as array
-        }
-        
-        
+            $result = (array) json_decode($content,true); 
+            // 2nd param to get as array
+        }      
     }
     
     // Error
@@ -81,12 +85,13 @@ class InfoMovie {
     {
         // Request data with parameters, and save the response in $data.
         
-        $url = self::BASE_URL."/search/movie?api_key=".self::TMDB_API_KEY."&query=". $keywords . "&language=fr";
+        $url = self::BASE_URL."/search/movie?api_key=".$this->api_key."&query=". $keywords . "&language=fr";
         
         $content = file_get_contents($url);
         if (!empty($content))
         {
-            $result = (array) json_decode($content,true); // 2nd param to get as array
+            $result = (array) json_decode($content,true); 
+            // 2nd param to get as array
         }
         
         
@@ -111,10 +116,7 @@ class InfoMovie {
   public function listeSeries($text)
   {
     
-    $result = "";
-    // Construct the object.
-    // $allohelper = new AlloHelper;
-
+    $result = "";  
     // Define parameters.
     $keywords = implode("+",explode(' ',$text)); // "The Dark Knight";
     $page = 1;
@@ -129,17 +131,14 @@ class InfoMovie {
         $content = file_get_contents($url);
         if (!empty($content))
         {
-            $result = (array) json_decode($content,true); // 2nd param to get as array
-        }
-        
-        
+            $result = (array) json_decode($content,true); 
+            // 2nd param to get as array
+        }       
     }
-    
-    // Error
+        // Error
     catch ( \Exception $e )
     {
-        // Print a error message.
-        
+        // Print a error message.        
       $result = "Error " . $e->getCode() . " : ". $e->getMessage();
     }
     return $result;
@@ -158,8 +157,9 @@ class InfoMovie {
     // Construct the object.
     // $allohelper = new AlloHelper;
 
-    // Define parameters.
-    $keywords = implode("+",explode(' ',$text)); // Remplace les espaces par des + pour la chaîne de recherche
+   
+    $keywords = implode("+",explode(' ',$text)); 
+    // Remplace les espaces par des + pour la chaîne de recherche
     $page = 1;
     
     // It's important to catch Exceptions.
@@ -168,7 +168,7 @@ class InfoMovie {
         // Request data with parameters, and save the response in $data.
         
         
-        $url = self::BASE_URL."/search/tv?api_key=".self::TMDB_API_KEY."&query=". $keywords . "&language=fr";
+        $url = self::BASE_URL."/search/tv?api_key=".$this->api_key."&query=". $keywords . "&language=fr";
         
         $content = file_get_contents($url);
         if (!empty($content))
@@ -204,12 +204,13 @@ class InfoMovie {
     try
     {
         // Request data with parameters, and save the response in $data.  
-        $url = self::BASE_URL."/tv/".$id."?api_key=".self::TMDB_API_KEY."&language=fr";
+        $url = self::BASE_URL."/tv/".$id."?api_key=".$this->api_key."&language=fr";
         
         $content = file_get_contents($url);
         if (!empty($content))
         {
-            $result = (array) json_decode($content,true); // 2nd param to get as array
+            $result = (array) json_decode($content,true); 
+            // 2nd param to get as array
         }       
       }
     
@@ -235,13 +236,14 @@ class InfoMovie {
         // Request data with parameters, and save the response in $data.
         
         
-        $url = self::BASE_URL."/movie/".$tmdbID."?api_key=".self::TMDB_API_KEY."&language=fr&append_to_response=credits";
+        $url = self::BASE_URL."/movie/".$tmdbID."?api_key=".$this->api_key."&language=fr&append_to_response=credits";
         
         $content = file_get_contents($url);
         if (!empty($content))
         {
             $movie = new Movie();
-            $result = (array) json_decode($content,true); // 2nd param to get as array
+            $result = (array) json_decode($content,true); 
+            // 2nd param to get as array
             $movie->setTitle($result["title"]); 
 
             $release_date = $result["release_date"];
@@ -260,7 +262,8 @@ class InfoMovie {
             } else {
               $listeActors = "";
             }
-            $movie->setCasting($listeActors); // ajouter les guest_stars
+            $movie->setCasting($listeActors); 
+            // ajouter les guest_stars
 
             
             $movie->setPosterURL("https://image.tmdb.org/t/p/w300".$result["poster_path"]);
@@ -341,7 +344,8 @@ class InfoMovie {
         if (!empty($content))
         {
             $movie = new Movie();
-            $result = (array) json_decode($content,true); // 2nd param to get as array
+            $result = (array) json_decode($content,true); 
+            // 2nd param to get as array
             $movie->setTitle($titleSerie);
             $movie->setEpisodeTitle($result["Title"]);
             $movie->setProductionYear($result["Year"]);
@@ -380,14 +384,15 @@ class InfoMovie {
         // Request data with parameters, and save the response in $data.
         
         
-        $url = self::BASE_URL."/tv/".$id."/season/".$saison."/episode/".$episode."?api_key=".self::TMDB_API_KEY."&language=fr&append_to_response=credits";
+        $url = self::BASE_URL."/tv/".$id."/season/".$saison."/episode/".$episode."?api_key=".$this->api_key."&language=fr&append_to_response=credits";
 
         
         $content = file_get_contents($url);
         if (!empty($content))
         {
             $movie = new Movie();
-            $result = (array) json_decode($content,true); // 2nd param to get as array
+            $result = (array) json_decode($content,true); 
+            // 2nd param to get as array
             $movie->setTitle($titleSerie);
             $movie->setEpisodeTitle($result["name"]);
             if (array_key_exists("air_date", $result)){
@@ -457,7 +462,8 @@ class InfoMovie {
         $content = file_get_contents($url);
         if (!empty($content))
         {
-            $result = (array) json_decode($content,true); // 2nd param to get as array
+            $result = (array) json_decode($content,true); 
+            // 2nd param to get as array
         } else return null;
         
         
@@ -484,12 +490,13 @@ class InfoMovie {
     {
         // Request data with parameters, and save the response in $data.
         
-        $url = self::BASE_URL."/tv/".$tmdbID."/season/".$season."?api_key=".self::TMDB_API_KEY."&language=fr";
+        $url = self::BASE_URL."/tv/".$tmdbID."/season/".$season."?api_key=".$this->api_key."&language=fr";
         
         $content = file_get_contents($url);
         if (!empty($content))
         {
-            $result = (array) json_decode($content,true); // 2nd param to get as array
+            $result = (array) json_decode($content,true); 
+            // 2nd param to get as array
         } else return null;
         
         

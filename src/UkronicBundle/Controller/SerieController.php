@@ -13,7 +13,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
-use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+
 
 class SerieController extends Controller
 {
@@ -104,7 +104,7 @@ class SerieController extends Controller
         $em->flush();
         }
 
-        if ($movie == null) {
+        if ($movie === null) {
             return $this->redirect(path("main"));
         }
         return $this->render("UkronicBundle:Serie:episode.html.twig",array(
@@ -142,7 +142,7 @@ class SerieController extends Controller
             }
         }
 
-        if ($movie == null) {
+        if ($movie === null) {
             return $this->redirect(path("main"));
         }
         return $this->render("UkronicBundle:Serie:episode.html.twig",array(
@@ -161,13 +161,11 @@ class SerieController extends Controller
         $repository = $em->getRepository("UkronicBundle:Movie");
         // vérifier si le film existe dans la BDD Ukronic
         $result = $repository->findOneById($id);
-        // die(var_dump($result));
-
+        
         if ($result) {
             $movie = $result;
         } else {
-           // return $this->redirectToRoute("main");
-        	die(var_dump($result));
+           return $this->redirectToRoute("main");        	
         }
 
         return $this->render("UkronicBundle:Serie:episode.html.twig",array(
@@ -257,7 +255,6 @@ class SerieController extends Controller
             
             $baleze = $form['baleze']->getData();
 
-            // $rating = new Rating();
             $rating->setMovie($movie);
             $rating->setUser($user);
             $rating->setNote($prefered);

@@ -44,11 +44,9 @@ class UkronicController extends Controller
             $data = $request->request->get('form');
             
             $title = $data['title'];
-            // die(var_dump($title));
+            
             $serviceMovie = $this->get('ukronic.infomovie');
-                
 
-            // $movies = $serviceMovie->listeMovies($title);
             $movies = $serviceMovie->listeMoviesTMDB($title);
             $series = $serviceMovie->listeSeriesTMDB($title);
         

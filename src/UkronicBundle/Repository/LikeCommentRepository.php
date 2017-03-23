@@ -2,8 +2,8 @@
 
 namespace UkronicBundle\Repository;
 
-use UkronicBundle\Entity\User;
-use UkronicBundle\Entity\Comment;
+
+
 
 /**
  * LikeCommentRepository

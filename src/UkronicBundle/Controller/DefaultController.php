@@ -5,14 +5,14 @@ namespace UkronicBundle\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
-use UkronicBundle\Entity\MovieQuery;
+
 use UkronicBundle\Entity\Movie;
 use UkronicBundle\Entity\Decrypt;
 use UkronicBundle\Entity\Rating;
 use UkronicBundle\Entity\Histo;
 use UkronicBundle\Entity\Beloved;
 use UkronicBundle\Entity\Comment;
-use UkronicBundle\Repository\DecryptRepository;
+
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
@@ -151,7 +151,7 @@ class DefaultController extends Controller
         $em->flush();
         }
 
-        if ($movie == null) {
+        if ($movie === null) {
             return $this->redirect(path("main"));
         }
         return $this->render("UkronicBundle:Ukronic:movie.html.twig",array(
@@ -182,7 +182,7 @@ class DefaultController extends Controller
             $em->flush();
         }
 
-        if ($movie == null) {
+        if ($movie === null) {
             return $this->redirect(path("main"));
         }
         return $this->render("UkronicBundle:Ukronic:movie.html.twig",array(
@@ -486,8 +486,6 @@ class DefaultController extends Controller
 
             $em->flush();
         }
-
-        //return $this->render("UkronicBundle:ukronic:decryptDisplay.html.twig", array("decrypt"=>$decrypt,"liked" =>true));
         return $this->redirectToRoute('decryptRead',array("id"=>$decrypt->getId()));
     }
 

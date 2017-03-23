@@ -2,7 +2,7 @@
 
 namespace UkronicBundle\Repository;
 use UkronicBundle\Entity\User;
-use Doctrine\DBAL\Query\Doctrine_Query;
+
 
 /**
  * HistoRepository
