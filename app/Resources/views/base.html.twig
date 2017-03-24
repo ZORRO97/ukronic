@@ -19,9 +19,10 @@
             <!-- Theme style  -->
             <link rel="stylesheet" href="{{ asset('css/style.css') }}">
             <link rel="stylesheet" href="{{ asset('css/ukronic.css') }}">
-    {% endblock %}
+    
 
-        <link rel="icon" type="image/x-icon" href="{{ asset('Ukronic-favicon-blue-small.png') }}" />
+            <link rel="icon" type="image/x-icon" href="{{ asset('Ukronic-favicon-blue-small.png') }}" />
+        {% endblock %}
 
         <!-- 
     //////////////////////////////////////////////////////
@@ -58,13 +59,11 @@
     </head>
     <body>
         {% block body %}
-            <h1>Projet symfony fantastique</h1>
+            
             
         {% endblock %}
         {% block javascripts %}
-           {# <script src="{{ asset('jquery-3.1.1.js') }}"></script>
-            <script src="{{ asset('bootstrap.min.js') }}"></script>
-            #}
+           
 
             <!-- jQuery -->
             <script src="{{ asset("js/jquery.min.js") }}"></script>

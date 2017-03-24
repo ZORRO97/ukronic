@@ -24,11 +24,9 @@
     
 
 {% block topnav %}
-	{#
-    {% include 'UkronicBundle:ukronic:topnav.html.twig'  %}
-	#}
 	{{ render(controller("UkronicBundle:User:Banner"))}}
 {% endblock %}
+
 <div class="block-first">
 
 	{% block content %}
@@ -41,10 +39,10 @@
 	    
 	{% endblock %}
 
-
 </div>
+
 	{% block footer %}
 		{% include 'UkronicBundle:User:footer.html.twig'  %}
-
 	{% endblock %}
+
 {% endblock %}
