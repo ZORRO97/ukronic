@@ -6,7 +6,6 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
 
-use UkronicBundle\Entity\User;
 use UkronicBundle\Entity\Recherche;
 
 use Symfony\Component\Form\Extension\Core\Type\TextType;

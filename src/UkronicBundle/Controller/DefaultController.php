@@ -223,8 +223,7 @@ class DefaultController extends Controller
 
         $em = $this->getDoctrine()->getManager();
         $decryptRepository = $em->getRepository('UkronicBundle:Decrypt');
-        $userRepository = $em->getRepository('UkronicBundle:User');
-        //$user = $this->container->get('security.token_storage')->getToken()->getUser();
+        $userRepository = $em->getRepository('UkronicBundle:User');        
         $user = $userRepository->findOneById($id);
 
         
@@ -356,7 +355,6 @@ class DefaultController extends Controller
             
             $baleze = $form['baleze']->getData();
 
-            // $rating = new Rating();
             $rating->setMovie($movie);
             $rating->setUser($user);
             $rating->setNote($prefered);

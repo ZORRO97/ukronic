@@ -34,7 +34,7 @@ class InfoMovie {
 
     // remplace les espaces par des +
     $keywords = implode("+",explode(' ',$text)); 
-    // $page = 1;
+    
     
     // It's important to catch Exceptions.
     try
@@ -75,8 +75,8 @@ class InfoMovie {
     
 
     // Define parameters.
-    $keywords = implode("+",explode(' ',$text)); // "The Dark Knight";
-    // $page = 1;
+    $keywords = implode("+",explode(' ',$text)); 
+    
     
     // It's important to catch Exceptions.
     try
@@ -116,8 +116,7 @@ class InfoMovie {
     
     $result = "";  
     // Define parameters.
-    $keywords = implode("+",explode(' ',$text)); // "The Dark Knight";
-    // $page = 1;
+    $keywords = implode("+",explode(' ',$text)); 
     
     // It's important to catch Exceptions.
     try
@@ -152,20 +151,14 @@ class InfoMovie {
   {
     
     $result = "";
-    // Construct the object.
-    // $allohelper = new AlloHelper;
-
-   
+       
     $keywords = implode("+",explode(' ',$text)); 
     // Remplace les espaces par des + pour la chaîne de recherche
-    // $page = 1;
     
     // It's important to catch Exceptions.
     try
     {
         // Request data with parameters, and save the response in $data.
-        
-        
         $url = self::BASE_URL."/search/tv?api_key=".$this->api_key."&query=". $keywords . "&language=fr";
         
         $content = file_get_contents($url);
@@ -173,8 +166,7 @@ class InfoMovie {
         {
             $result = (array) json_decode($content,true); // 2nd param to get as array
         }
-        
-        
+                
     }
     
     // Error
