@@ -1,5 +1,6 @@
 {
     "name": "flavazec/ukronic",
+    "description": "Application web Ukronic basé sur les décryptages de films et d'épisodes de séries",
     "license": "proprietary",
     "type": "project",
     "autoload": {
@@ -39,7 +40,7 @@
     },
     "scripts": {
         "symfony-scripts": [
-            
+            "Incenteev\\ParameterHandler\\ScriptHandler::buildParameters",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::buildBootstrap",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::clearCache",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installAssets",
