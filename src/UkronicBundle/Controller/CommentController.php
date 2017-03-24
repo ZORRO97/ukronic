@@ -97,7 +97,7 @@ class CommentController extends Controller
      */
     public function commentSignalementAction($id, Request $request){
         $user = $this->container->get('security.token_storage')->getToken()->getUser(); 
-        if ($request->isXmlHttpRequest() and $user) {
+        if ($request->isXmlHttpRequest() && $user) {
             // traiter la requête
             $signalement = new Signalement();
             $signalement->setDateSig(new \DateTime('now'));

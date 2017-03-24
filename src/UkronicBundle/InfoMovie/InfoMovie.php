@@ -36,7 +36,7 @@ class InfoMovie {
 
     // remplace les espaces par des +
     $keywords = implode("+",explode(' ',$text)); 
-    $page = 1;
+    // $page = 1;
     
     // It's important to catch Exceptions.
     try
@@ -78,7 +78,7 @@ class InfoMovie {
 
     // Define parameters.
     $keywords = implode("+",explode(' ',$text)); // "The Dark Knight";
-    $page = 1;
+    // $page = 1;
     
     // It's important to catch Exceptions.
     try
@@ -119,7 +119,7 @@ class InfoMovie {
     $result = "";  
     // Define parameters.
     $keywords = implode("+",explode(' ',$text)); // "The Dark Knight";
-    $page = 1;
+    // $page = 1;
     
     // It's important to catch Exceptions.
     try
@@ -160,7 +160,7 @@ class InfoMovie {
    
     $keywords = implode("+",explode(' ',$text)); 
     // Remplace les espaces par des + pour la chaîne de recherche
-    $page = 1;
+    // $page = 1;
     
     // It's important to catch Exceptions.
     try

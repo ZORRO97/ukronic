@@ -18,7 +18,7 @@ class DecryptController extends Controller
     public function displayAction($idMovie, $filter=null,$typeDecrypt='S')
     {
     	$em = $this->getDoctrine()->getManager();
-    	$user = $this->container->get('security.token_storage')->getToken()->getUser();
+    	
         $decryptRepository = $em->getRepository("UkronicBundle:Decrypt");
         $decrypts = $decryptRepository->getDecrypts($idMovie, $filter,$typeDecrypt);
 
@@ -36,7 +36,7 @@ class DecryptController extends Controller
     public function DetailAction($id,$typeDecrypt='S')
     {
         $em = $this->getDoctrine()->getManager();
-        $user = $this->container->get('security.token_storage')->getToken()->getUser();
+        
         $decryptRepository = $em->getRepository("UkronicBundle:Decrypt");
         $decrypt = $decryptRepository->findOneById($id);
 
@@ -54,7 +54,7 @@ class DecryptController extends Controller
     public function CommentAction($id)
     {
         $em = $this->getDoctrine()->getManager();
-        $user = $this->container->get('security.token_storage')->getToken()->getUser();
+        
         $decryptRepository = $em->getRepository("UkronicBundle:Decrypt");
         $decrypt = $decryptRepository->findOneById($id);
 
@@ -72,7 +72,7 @@ class DecryptController extends Controller
     public function LikeAction($id)
     {
         $em = $this->getDoctrine()->getManager();
-        $user = $this->container->get('security.token_storage')->getToken()->getUser();
+        
         $decryptRepository = $em->getRepository("UkronicBundle:Decrypt");
         $decrypt = $decryptRepository->findOneById($id);
 
@@ -190,7 +190,7 @@ class DecryptController extends Controller
      */
     public function decryptSignalementAction($id, Request $request){
         $user = $this->container->get('security.token_storage')->getToken()->getUser(); 
-        if ($request->isXmlHttpRequest() and $user) {
+        if ($request->isXmlHttpRequest() && $user) {
             // traiter la requête
             $signalement = new Signalement();
 

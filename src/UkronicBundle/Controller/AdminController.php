@@ -259,7 +259,7 @@ class AdminController extends Controller
         $decrypt = $repository->findOneById($id);
         $signalRepository = $em->getRepository('UkronicBundle:Signalement');
         $signal = $signalRepository->findOneById($idSig);
-        if ($decrypt AND $signal) {
+        if ($decrypt && $signal) {
             $em->remove($decrypt);
             $signal->setStatus("T");
 
