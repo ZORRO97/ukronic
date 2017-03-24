@@ -12,7 +12,7 @@ class UkronicController extends Controller
     /**
      * @Route("/Recherche/{title}", options={"expose"=true},name="ukronic-recherche")
      */
-    public function RechercheAction($title="Highlander")
+    public function rechercheAction($title="Highlander")
     {
     	
     	// utiliser les services pour récupérer la liste
@@ -34,7 +34,7 @@ class UkronicController extends Controller
      * @Route("/MaRecherche", name="ukronic-recherche-bis")
      * @Method({"POST"})
      */
-    public function RechercheBisAction(Request $request)
+    public function rechercheBisAction(Request $request)
     {
         
         

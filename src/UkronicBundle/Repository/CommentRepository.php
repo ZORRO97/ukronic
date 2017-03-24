@@ -10,9 +10,7 @@ namespace UkronicBundle\Repository;
  */
 class CommentRepository extends \Doctrine\ORM\EntityRepository
 {
-	function countForUser(User $user){
-		return 585;
-	}
+	
 
 	public function countComments(){
 		$q = $this->getEntityManager()

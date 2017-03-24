@@ -14,7 +14,7 @@ use UkronicBundle\Entity\User;
  */
 class RatingRepository extends \Doctrine\ORM\EntityRepository
 {
-	function trouve($idUser, $idMovie){
+	public function trouve($idUser, $idMovie){
 		
 		
 		$q = $this->getEntityManager()
@@ -33,7 +33,7 @@ class RatingRepository extends \Doctrine\ORM\EntityRepository
 
 	}
 
-	function preferedMovie(User $user){
+	public function preferedMovie(User $user){
 		$idUser = $user->getId();
 		$q = $this->getEntityManager()
 		->createQuery("SELECT r FROM UkronicBundle:Rating r  JOIN r.user u JOIN r.movie m WHERE u.id = $idUser ORDER BY r.note DESC");
@@ -46,7 +46,7 @@ class RatingRepository extends \Doctrine\ORM\EntityRepository
 		
 	}
 
-	function ambiguousMovie(User $user){
+	public function ambiguousMovie(User $user){
 		$idUser = $user->getId();
 		$q = $this->getEntityManager()
 		->createQuery("SELECT r FROM UkronicBundle:Rating r  JOIN r.user u JOIN r.movie m WHERE u.id = $idUser ORDER BY r.ambiguous ASC");
@@ -58,7 +58,7 @@ class RatingRepository extends \Doctrine\ORM\EntityRepository
     	}
 	}
 
-	function balaiseMovie(User $user){
+	public function balaiseMovie(User $user){
 		$idUser = $user->getId();
 		$q = $this->getEntityManager()
 		->createQuery("SELECT r FROM UkronicBundle:Rating r  JOIN r.user u JOIN r.movie m WHERE u.id = $idUser ORDER BY r.understand DESC");

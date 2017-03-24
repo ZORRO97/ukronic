@@ -11,14 +11,14 @@ namespace UkronicBundle\Repository;
 class MovieRepository extends \Doctrine\ORM\EntityRepository
 {
 
-	function allMovies(){
+	public function allMovies(){
 		$q = $this->getEntityManager()
 		->createQuery("SELECT m FROM UkronicBundle:Movie m   WHERE m.typeMovie = 'F' ORDER BY m.title" );
     	$movies = $q->getResult();
 		return $movies;
 	}
 
-	function allSeries(){
+	public function allSeries(){
 		$q = $this->getEntityManager()
 		->createQuery("SELECT m FROM UkronicBundle:Movie m   WHERE m.typeMovie = 'S' ORDER BY m.title" );
     	$series = $q->getResult();

@@ -11,9 +11,7 @@ class ImageUser {
 		$color_rand = $palette[array_rand($palette)];
 		return "lunettes-".$color_rand.".png";
 
-	}
-
-	
+	}	
 
 }
  ?>

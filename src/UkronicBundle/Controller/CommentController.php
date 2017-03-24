@@ -15,7 +15,7 @@ class CommentController extends Controller
     /**
      * @Route("/comment/islike/{id}/{userId}")
      */
-    public function IsLikeAction($id, $userId=null)
+    public function isLikeAction($id, $userId=null)
     {
         $em = $this->getDoctrine()->getManager();
     	
@@ -38,7 +38,7 @@ class CommentController extends Controller
     /**
      * @Route("/comment/islike/anonymous/{id}/",name="commentIslikeAnonymous")
      */
-    public function IsLikeAnonymousAction($id)
+    public function isLikeAnonymousAction($id)
     {
         $em = $this->getDoctrine()->getManager();
         
@@ -58,7 +58,7 @@ class CommentController extends Controller
     /**
      * @Route("/comment/like/{id}/{userId}", name="commentLike")
      */
-    public function LikeAction($id, $userId){
+    public function likeAction($id, $userId){
     	$em = $this->getDoctrine()->getManager();
     	$user = $em->getRepository('UkronicBundle:User')->findOneById($userId);
     	$comment = $em->getRepository('UkronicBundle:Comment')->findOneById($id);
@@ -82,7 +82,7 @@ class CommentController extends Controller
     /**
      * @Route("/comment/like/display/{id}", name="commentLikeDisplay")
      */
-    public function LikeDisplayAction($id){
+    public function likeDisplayAction($id){
         $em = $this->getDoctrine()->getManager();
         $comment = $em->getRepository('UkronicBundle:Comment')->findOneById($id);
         if ($comment) {

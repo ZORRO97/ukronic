@@ -27,7 +27,4 @@ class MovieQuery
     public function addMovie(Movie $movie){
         $this->liste->append($movie);
     }
-
-
-    
 }

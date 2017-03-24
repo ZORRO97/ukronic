@@ -14,7 +14,7 @@ use UkronicBundle\Entity\Decrypt;
  */
 class BelovedRepository extends \Doctrine\ORM\EntityRepository
 {
-	function isLiked(User $user, Decrypt $decrypt){
+	public function isLiked(User $user, Decrypt $decrypt){
 		$monId = $user->getId();
 		$decryptId = $decrypt->getId();
 		$q = $this->getEntityManager()
@@ -27,7 +27,7 @@ class BelovedRepository extends \Doctrine\ORM\EntityRepository
 		}
 	}
 
-	function nbLiked(User $user){
+	public function nbLiked(User $user){
 		$monId = $user->getId();
 		
 		$q = $this->getEntityManager()
@@ -36,7 +36,7 @@ class BelovedRepository extends \Doctrine\ORM\EntityRepository
 		return $nb;
 	}
 
-	function nbLikedDecrypt($decryptId){
+	public function nbLikedDecrypt($decryptId){
 		$q = $this->getEntityManager()
 		->createQuery("SELECT COUNT(DISTINCT b.id) FROM UkronicBundle:Beloved b  JOIN b.decrypt d WHERE d.id = $decryptId " );
     	$nb = $q->getSingleScalarResult();
@@ -44,7 +44,7 @@ class BelovedRepository extends \Doctrine\ORM\EntityRepository
 
 	}
 
-	function allLikedDecrypt(){
+	public function allLikedDecrypt(){
 		$q = $this->getEntityManager()
 		->createQuery("SELECT b , COUNT(DISTINCT b.id) AS bcount FROM UkronicBundle:Beloved b JOIN b.decrypt d GROUP BY d.id ORDER BY bcount DESC"); 
 		
@@ -52,7 +52,7 @@ class BelovedRepository extends \Doctrine\ORM\EntityRepository
 		return $results;
 	}
 	
-	function moreLikedDecrypt(){
+	public function moreLikedDecrypt(){
 		$q = $this->getEntityManager()
 		->createQuery("SELECT b , COUNT(DISTINCT b.id) AS bcount FROM UkronicBundle:Beloved b JOIN b.decrypt d GROUP BY d.id ORDER BY bcount DESC")
 		->setMaxresults(5); 
@@ -61,7 +61,7 @@ class BelovedRepository extends \Doctrine\ORM\EntityRepository
 		return $results;
 	}
 
-	function moreLikedSerieDecrypt(){
+	public function moreLikedSerieDecrypt(){
 		$q = $this->getEntityManager()
 		->createQuery("SELECT b , COUNT(DISTINCT b.id) AS bcount FROM UkronicBundle:Beloved b JOIN b.decrypt d JOIN d.movie m WHERE m.typeMovie = 'S' GROUP BY d.id   ORDER BY bcount DESC")
 		->setMaxresults(5); 

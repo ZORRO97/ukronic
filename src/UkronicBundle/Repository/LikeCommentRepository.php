@@ -14,7 +14,7 @@ namespace UkronicBundle\Repository;
 class LikeCommentRepository extends \Doctrine\ORM\EntityRepository
 {
 
-	function isLiked($id, $userId){
+	public function isLiked($id, $userId){
 		
 
 		$q = $this->getEntityManager()
@@ -27,7 +27,7 @@ class LikeCommentRepository extends \Doctrine\ORM\EntityRepository
 		}
 	}
 
-	function nbLiked($id){
+	public function nbLiked($id){
 		$q = $this->getEntityManager()
 		->createQuery("SELECT COUNT(DISTINCT b.id) FROM UkronicBundle:LikeComment b JOIN b.comment c WHERE c.id = $id");
 		return $q->getSingleScalarResult();

@@ -12,7 +12,7 @@ use UkronicBundle\Entity\User;
  */
 class HistoRepository extends \Doctrine\ORM\EntityRepository
 {
-	function lastNews(User $user){
+	public function lastNews(User $user){
 		$monId = $user->getId();
 		$q = $this->getEntityManager()
 		->createQuery("SELECT h FROM UkronicBundle:Histo h JOIN h.user u WHERE u.id = $monId ORDER BY h.dateAction DESC " )

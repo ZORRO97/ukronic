@@ -106,9 +106,9 @@
 							<p> "{{ comment.content }}" </p>
 							<p>
 								{% if userId is null %}
-									{{render(controller('UkronicBundle:Comment:IsLikeAnonymous',{'id':comment.id}))}}
+									{{render(controller('UkronicBundle:Comment:isLikeAnonymous',{'id':comment.id}))}}
 								{% else %}
-									{{render(controller('UkronicBundle:Comment:IsLike',{'id':comment.id,'userId':userId}))}}
+									{{render(controller('UkronicBundle:Comment:isLike',{'id':comment.id,'userId':userId}))}}
 									<button class="signalComment link-grey" data-button="{{ comment.id }}">Signaler un abus</button>
 								{% endif %}
 							</p>

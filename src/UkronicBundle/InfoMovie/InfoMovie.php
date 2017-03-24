@@ -31,8 +31,6 @@ class InfoMovie {
   {
     
     $result = "";
-    // Construct the object.
-    
 
     // remplace les espaces par des +
     $keywords = implode("+",explode(' ',$text)); 
@@ -497,9 +495,7 @@ class InfoMovie {
         {
             $result = (array) json_decode($content,true); 
             // 2nd param to get as array
-        } else return null;
-        
-        
+        } else return null;          
     }
     
     // Error
