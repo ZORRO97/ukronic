@@ -64,7 +64,7 @@ class Decrypt
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="date_decrypt", type="date")
+     * @ORM\Column(name="date_decrypt", type="datetime")
      */
     private $dateDecrypt;
 
