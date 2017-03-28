@@ -218,16 +218,16 @@ header .form-group {
 	max-width : 90%;
 }
 header input {
-	width     : 630px;
+	width     : 400px;
 	max-width: 95%;
 	background-color: rgba(0, 0, 0, 0.2);
 }
 @media screen and (min-width: 768px) and (max-width: 991px) {
 	header input {
-		width : 550px;
+		width : 350px;
 	}
 }
-@media screen and (max-width: 563px) {
+@media screen and (max-width: 680px) {
 	header input {
 		width: 250px;
 	}
