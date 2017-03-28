@@ -25,15 +25,12 @@
 							<td>  {{ signal.dateSig | date("d/m/Y") }} </td>
 							
 							{% if signal.type == "D" %}
-								{{render(controller('UkronicBundle:Admin:renduDecryptAdmin',{'id':signal.ref,'idSig':signal.id}))}}
+								{{render(controller('UkronicBundle:AdminTools:renduDecryptAdmin',{'id':signal.ref,'idSig':signal.id}))}}
 							{% elseif signal.type == "C" %}
 
-								{{render(controller('UkronicBundle:Admin:renduCommentAdmin',{'id':signal.ref,'idSig':signal.id}))}}
+								{{render(controller('UkronicBundle:AdminTools:renduCommentAdmin',{'id':signal.ref,'idSig':signal.id}))}}
 							{% endif %}
-							{#
-							<td> {{ signal.type }} </td>
-							<td> {{  signal.ref }} </td>
-							#}
+							
 							
 						</tr>
 

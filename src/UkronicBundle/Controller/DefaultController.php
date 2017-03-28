@@ -23,25 +23,7 @@ use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 
 class DefaultController extends Controller
 {
-    /**
-     * @Route("/depart", name="homepage")
-     */
-    public function indexAction(Request $request)
-    {
-        // replace this example code with whatever you need
-        return $this->render('default/index.html.twig', [
-            'base_dir' => realpath($this->getParameter('kernel.root_dir').'/..').DIRECTORY_SEPARATOR,
-        ]);
-    }
-
-    /**
-     * @Route("/testons", name="testons")
-     */
-    public function testonsAction()
-    {
-        // replace this example code with whatever you need
-        return $this->render('::base.html.twig');
-    }
+    
    
    /**
      * @Route("/", name="main")
@@ -487,18 +469,6 @@ class DefaultController extends Controller
         return $this->redirectToRoute('decryptRead',array("id"=>$decrypt->getId()));
     }
 
-     /**
-     * @Route("/ukronic/cgu", name="ukronic-cgu")
-     */
-    public function cguUkronicAction(){
-        return $this->render('UkronicBundle:User:cgu.html.twig');
-    }
-
-      /**
-     * @Route("/ukronic/apropos", name="ukronic-apropos")
-     */
-    public function aproposUkronicAction(){
-        return $this->render('UkronicBundle:User:apropos.html.twig');
-    }
+    
 
 }
