@@ -90,6 +90,7 @@ input {
 .btn-blue:hover,
 .btn-blue:focus {
 	color: white;
+	background-color: red;
 }
 .link-grey {
 	font-size: 12px;

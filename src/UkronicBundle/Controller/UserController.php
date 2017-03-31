@@ -64,4 +64,89 @@ class UserController extends Controller
         return $this->render("UkronicBundle:User:banner.html.twig",array('form'=>$form->createView()));
     }
 
+    /**
+    * @Route("/user/decrypt/display", name = "decryptsUser")
+    */
+    public function decryptUserAction(){
+        $user = $this->container->get('security.token_storage')->getToken()->getUser();
+        
+        if ($user) {
+            $em = $this->getDoctrine()->getManager();
+            $repository = $em->getRepository('UkronicBundle:Decrypt');
+            $decrypts = $repository->findByUser($user);
+            return $this->render("UkronicBundle:User:decryptsUser.html.twig",array(
+            
+                "decrypts" => $decrypts
+            ));
+        } else {
+            return $this->redirectToRoute('profile');
+        }
+    }
+
+    /**
+    * @Route("/user/decrypt/delete/{id}", name = "decryptDeleteUser")
+    */
+    public function decryptDeleteAction($id){
+        $user = $this->container->get('security.token_storage')->getToken()->getUser();
+        
+
+        
+        if ($user) {
+            $em = $this->getDoctrine()->getManager();
+            $repository = $em->getRepository('UkronicBundle:Decrypt');
+            $decrypt = $repository->findOneById($id);
+            if ($decrypt && $decrypt->getUser()->getId() == $user->getId()){
+                $em->remove($decrypt);
+                $em->flush();
+
+            }
+            return $this->redirectToRoute('decryptsUser');
+        } else {
+            return $this->redirectToRoute('main');
+        }
+    }
+
+    /**
+    * @Route("/user/comment/display", name = "commentsUser")
+    */
+    public function commentUserAction(){
+        $user = $this->container->get('security.token_storage')->getToken()->getUser();
+        
+        if ($user) {
+            $em = $this->getDoctrine()->getManager();
+            $repository = $em->getRepository('UkronicBundle:Comment');
+            $comments = $repository->findByUser($user);
+            return $this->render("UkronicBundle:User:commentsUser.html.twig",array(
+            
+                "comments" => $comments
+            ));
+        } else {
+            return $this->redirectToRoute('profile');
+        }
+    }
+
+     /**
+    * @Route("/user/comment/delete/{id}", name = "commentDeleteUser")
+    */
+    public function commentDeleteAction($id){
+
+        $user = $this->container->get('security.token_storage')->getToken()->getUser();
+                
+        if ($user) {
+            $em = $this->getDoctrine()->getManager();
+            $repository = $em->getRepository('UkronicBundle:Comment');
+            $comment = $repository->findOneById($id);
+            if ($comment && $comment->getUser()->getId() == $user->getId()){
+                $em->remove($comment);
+                $em->flush();
+
+            }
+            return $this->redirectToRoute('commentsUser');
+        } else {
+            return $this->redirectToRoute('main');
+        }
+    }
+
+
+
 }

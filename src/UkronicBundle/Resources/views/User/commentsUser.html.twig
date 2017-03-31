@@ -1,0 +1,79 @@
+{% extends 'UkronicBundle::layout.html.twig' %}
+{% block content %}
+	
+	
+	<div class="container">
+		<h1 class="text-center">Mes commentaires</h1>
+		<div class="row">
+			<table class="table">
+				<tr>
+					<th>Commentaire</th>
+					<th>Titre</th>
+					<th>Film ou Série</th>
+					<th>Date</th>
+					<th>Voir</th>
+					<th>Supprimer</th>
+				</tr>
+				{% for comment in comments %}
+					<tr>
+						<td> {{ comment.content }} </td>
+						<td> {{ comment.decrypt.title }} </td>
+						<td> {{ comment.decrypt.movie.title }} </td>
+						<td> {{ comment.dateComment | date('d/m/Y h:i') }} </td>
+						<td><a href="{{ path('decryptRead',{'id': comment.decrypt.id}) }}">Voir</a></td>
+						<td><button class="confirmModalLink" type="button" data-toggle="modal" data-target="#myModal" data-href="{{ path('commentDeleteUser',{'id':comment.id}) }}">Supprimer</button></td>
+					</tr>
+
+				{% endfor %}
+			</table>
+		</div>
+	</div>
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title text-center" id="exampleModalLabel">Supprimer le commentaire</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>Etes vous sur de vouloir supprimer ce commentaire ?</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default btn-blue" data-dismiss="modal" >Annuler</button>
+        <button type="button" class="btn btn-default btn-blue" id="confirmModalYes" style="margin-bottom:10px;">Confirmer</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+	
+
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+    $(document).ready(function () {
+	    var theHREF;
+	    
+	    $(".confirmModalLink").click(function(e) {
+	        e.preventDefault();
+	        theHREF = $(this).attr("data-href");	        
+	    });
+	   
+
+	    $("#confirmModalYes").click(function(e) {
+	    	e.preventDefault();	    	
+	        location = theHREF;
+	    });
+
+	   
+	});
+	</script>
+{% endblock %}

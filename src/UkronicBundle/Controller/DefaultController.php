@@ -13,11 +13,14 @@ use UkronicBundle\Entity\Histo;
 use UkronicBundle\Entity\Beloved;
 use UkronicBundle\Entity\Comment;
 
+use UkronicBundle\Form\DecryptType;
+
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+
 
 
 
@@ -279,9 +282,9 @@ class DefaultController extends Controller
             $rating = new Rating();
         } 
 
+        // $form = $this->createForm(DecryptType::class, $decrypt);
 
-
-
+        
         $form = $this->createFormBuilder($decrypt)
            
             ->add('title',TextType::class)
@@ -313,6 +316,7 @@ class DefaultController extends Controller
             
             ->add('save', SubmitType::class, array('label' => 'Publier'))
             ->getForm();
+            
         
         $form->handleRequest($request);
         
